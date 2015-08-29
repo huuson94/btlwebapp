@@ -78,16 +78,16 @@
 				if(stt == 0){
 					$('.menu').fadeIn();//addClass("animated fadeInDown");
 					stt=1;
-					$('.menu').css("display","block").removeClass("fadeOutLeft");
-					$(this).addClass("clicked").find('span').addClass("clicked_span");
+					//$('.menu').css("display","block").removeClass("fadeOutLeft");
+					//$(this).addClass("clicked").find('span').addClass("clicked_span");
 				}else{
-					$('.menu').addClass("fadeOutLeft");
+					$('.menu').fadeOut();//addClass("fadeOutLeft");
 					stt=0;
-					$('.menu').removeClass("fadeInDown");
-					setTimeout(function(){
-						$('.menu').css("display","none");
-					},600);
-					$(this).removeClass("clicked").find('span').removeClass("clicked_span");
+					// $('.menu').removeClass("fadeInDown");
+					// setTimeout(function(){
+					// 	$('.menu').css("display","none");
+					// },600);
+					// $(this).removeClass("clicked").find('span').removeClass("clicked_span");
 				}
 			})
 
