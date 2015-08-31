@@ -32,6 +32,80 @@
 		</div>
 	</div>
 @stop
+@section('category')
+	<span class="category">Phong cảnh</span>
+@stop
+@section('content')
+	<div class="container">
+		<ul>
+			<li class="item">
+				<article>
+					<img src="{{url('public/upload/images/Chrisfr06_Blue galaxy_ak1nRw.jpg')}}" alt="">
+					<div class="photo_content">
+						<a href="/home/detail/1"><p class="title">Vietnamese Girl Washing Car</p></a>
+						<p class="user_by">Bao Huy Bao Huy</p>
+						<div class="view">
+							<span class="like"><i>d</i> <span>16</span></span>
+							<span><i>„</i> 8000</span>
+						</div>
+					</div>
+				</article>
+			</li>
+			<li class="item">
+				<article>
+					<img src="{{url('public/upload/images/Fe Ilya_Voices_Z0RhQg.jpg')}}" alt="">
+					<div class="photo_content">
+						<p class="title">Vietnamese Girl Washing Car</p>
+						<p class="user_by">Bao Huy Bao Huy</p>
+						<div class="view">
+							<span class="like"><i>d</i> <span>16</span></span>
+							<span><i>„</i> 8000</span>
+						</div>
+					</div>
+				</article>
+			</li>
+			<li class="item">
+				<article>
+					<img src="{{url('public/upload/images/photosteve101_Music Is My Life_YkxhQw.jpg')}}" alt="">
+					<div class="photo_content">
+						<p class="title">Vietnamese Girl Washing Car</p>
+						<p class="user_by">Bao Huy Bao Huy</p>
+						<div class="view">
+							<span class="like"><i>d</i> <span>16</span></span>
+							<span><i>„</i> 8000</span>
+						</div>
+					</div>
+				</article>
+			</li>
+			<li class="item">
+				<article>
+					<img src="{{url('public/upload/images/photosteve101_Music Is My Life_YkxhQw.jpg')}}" alt="">
+					<div class="photo_content">
+						<p class="title">Vietnamese Girl Washing Car</p>
+						<p class="user_by">Bao Huy Bao Huy</p>
+						<div class="view">
+							<span class="like"><i>d</i> <span>16</span></span>
+							<span><i>„</i> 8000</span>
+						</div>
+					</div>
+				</article>
+			</li>
+			<li class="item">
+				<article>
+					<img src="{{url('public/upload/images/Fe Ilya_Voices_Z0RhQg.jpg')}}" alt="">
+					<div class="photo_content">
+						<p class="title">Vietnamese Girl Washing Car</p>
+						<p class="user_by">Bao Huy Bao Huy</p>
+						<div class="view">
+							<span class="like"><i>d</i> <span>16</span></span>
+							<span><i>„</i> 8000</span>
+						</div>
+					</div>
+				</article>
+			</li>
+		</ul>
+	</div>
+@stop
 @section('script-bot')
 	<script>
 		$(document).ready(function() {
@@ -71,35 +145,7 @@
 					$('.pop-up-signin').css("display","none");
 				},600);
 			})
-
-			//Effect for Menu
-			var stt=0;
-			$('.categories p').click(function(){
-				if(stt == 0){
-					$('.menu').fadeIn();//addClass("animated fadeInDown");
-					stt=1;
-					//$('.menu').css("display","block").removeClass("fadeOutLeft");
-					//$(this).addClass("clicked").find('span').addClass("clicked_span");
-				}else{
-					$('.menu').fadeOut();//addClass("fadeOutLeft");
-					stt=0;
-					// $('.menu').removeClass("fadeInDown");
-					// setTimeout(function(){
-					// 	$('.menu').css("display","none");
-					// },600);
-					// $(this).removeClass("clicked").find('span').removeClass("clicked_span");
-				}
-			})
-
-			//NiceScroll
-			$("html").niceScroll({ 
-				zindex: 1000000, 
-				cursorborderradius: "4px", // Làm cong các góc của scroll bar
-				cursorcolor: "#EA6A48", // Màu của scroll bar
-				cursorwidth:"10px", // Kích thước bề ngang của scroll bar
-				autohidemode:false   //Tắt chế độ tự ẩn của scroll bar
-				});
-
+			
 		})
 		
 /*****************************LOGIN FORM**************************/

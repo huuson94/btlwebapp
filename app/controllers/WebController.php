@@ -3,6 +3,13 @@
 		public function getIndex(){
 			return View::make('frontend/index');
 		}
+		public function getUpload(){
+			return View::make('frontend/upload');
+		}
+		public function getDetail($id){
+			//$id=Input::get('v');
+			return View::make('frontend/detail');
+		}
 		public function postDoLogin(){
 			$data=Input::all();
 			$user=Users::where('account',$data['account'])->where('password',$data['password'])->first();
@@ -61,8 +68,9 @@
 					echo 'success';
 				}
 			}
-
-			
 		}
+
+
+		
 	}
 ?>
