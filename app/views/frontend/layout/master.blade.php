@@ -21,7 +21,7 @@
 					</div>
 				</li>
 				<li>
-					<a href="">HOME</a>
+					<a href="{{url('/home')}}">HOME</a>
 				</li>
 				<li>
 					<input type="text" placeholder="Tìm kiếm ..." class="search">
@@ -31,7 +31,7 @@
 			<ul class="login_singin_area">
 				@if(Session::has('my_user'))
 					<li class="login">
-						<a><p>XIN CHÀO <span class="user_name">{{ Session::get('my_user')['name'] }}</span></p></a>
+						<a href=""><p>XIN CHÀO <span class="user_name">{{ Session::get('my_user')['name'] }}</span></p></a>
 					</li>
 					<li><a href="{{url('home/logout')}}">ĐĂNG XUẤT</a></li>
 				@else
@@ -48,9 +48,10 @@
 		</div>
 	</header>
 	<section>
-		<div class="wrapper">
-			<div class="categories">
-				<p><span></span>Danh mục</p>
+		<div class="wrapper @yield('width_70per')">
+			@yield('category')
+			<div class="categories @yield('width_70per')">
+				<p class="menu_button"><span></span>Danh mục</p>
 				<div class="menu">
 					<ul>
 						<li><a href="">Ảnh hot nhất</a></li>
@@ -71,79 +72,55 @@
 						<li><a href="">Liên Hệ</a></li>
 					</ul>
 				</div>
+				@if(Session::has('my_user'))
+					<a href="{{url('/home/upload')}}"><p class="upload_button"><i>â</i>Đăng ảnh</p></a>
+					<a href=""><p class="mypic_button">Ảnh của tôi</p></a>
+				@endif
 			</div>
-			<p class="category">Phong cảnh</p>
-			<div class="container">
-				<ul>
-					<li class="item">
-						<article>
-							<img src="{{url('public/upload/images/Chrisfr06_Blue galaxy_ak1nRw.jpg')}}" alt="">
-							<div class="photo_content">
-								<p class="title">Vietnamese Girl Washing Car</p>
-								<p class="user_by">Bao Huy Bao Huy</p>
-								<div class="view">
-									<span class="like"><i>d</i> <span>16</span></span>
-									<span><i>„</i> 8000</span>
-								</div>
-							</div>
-						</article>
-					</li>
-					<li class="item">
-						<article>
-							<img src="{{url('public/upload/images/Fe Ilya_Voices_Z0RhQg.jpg')}}" alt="">
-							<div class="photo_content">
-								<p class="title">Vietnamese Girl Washing Car</p>
-								<p class="user_by">Bao Huy Bao Huy</p>
-								<div class="view">
-									<span class="like"><i>d</i> <span>16</span></span>
-									<span><i>„</i> 8000</span>
-								</div>
-							</div>
-						</article>
-					</li>
-					<li class="item">
-						<article>
-							<img src="{{url('public/upload/images/photosteve101_Music Is My Life_YkxhQw.jpg')}}" alt="">
-							<div class="photo_content">
-								<p class="title">Vietnamese Girl Washing Car</p>
-								<p class="user_by">Bao Huy Bao Huy</p>
-								<div class="view">
-									<span class="like"><i>d</i> <span>16</span></span>
-									<span><i>„</i> 8000</span>
-								</div>
-							</div>
-						</article>
-					</li>
-					<li class="item">
-						<article>
-							<img src="{{url('public/upload/images/photosteve101_Music Is My Life_YkxhQw.jpg')}}" alt="">
-							<div class="photo_content">
-								<p class="title">Vietnamese Girl Washing Car</p>
-								<p class="user_by">Bao Huy Bao Huy</p>
-								<div class="view">
-									<span class="like"><i>d</i> <span>16</span></span>
-									<span><i>„</i> 8000</span>
-								</div>
-							</div>
-						</article>
-					</li>
-					<li class="item">
-						<article>
-							<img src="{{url('public/upload/images/Fe Ilya_Voices_Z0RhQg.jpg')}}" alt="">
-							<div class="photo_content">
-								<p class="title">Vietnamese Girl Washing Car</p>
-								<p class="user_by">Bao Huy Bao Huy</p>
-								<div class="view">
-									<span class="like"><i>d</i> <span>16</span></span>
-									<span><i>„</i> 8000</span>
-								</div>
-							</div>
-						</article>
-					</li>
-				</ul>
-			</div>
+			@yield('content')
 		</div>
 	</section>
 	@yield('script-bot')
+	<script type="text/javascript">
+		$(document).ready(function(){
+			//Effect for Menu
+			var stt=0;
+			$('.categories .menu_button').click(function(){
+				if(stt == 0){
+					$('.menu').fadeIn();//addClass("animated fadeInDown");
+					stt=1;
+					//$('.menu').css("display","block").removeClass("fadeOutLeft");
+					$(this).addClass("clicked").find('span').addClass("clicked_span");
+				}else{
+					$('.menu').fadeOut();//addClass("fadeOutLeft");
+					stt=0;
+					// $('.menu').removeClass("fadeInDown");
+					// setTimeout(function(){
+					// 	$('.menu').css("display","none");
+					// },600);
+					$(this).removeClass("clicked").find('span').removeClass("clicked_span");
+				}
+			})
+			//NiceScroll
+			$("html").niceScroll({ 
+				zindex: 1000000, 
+				cursorborderradius: "4px", // Làm cong các góc của scroll bar
+				cursorcolor: "#EA6A48", // Màu của scroll bar
+				cursorwidth:"10px", // Kích thước bề ngang của scroll bar
+				autohidemode:false   //Tắt chế độ tự ẩn của scroll bar
+				});
+
+			$(window).scroll(function(){
+				var x=$(window).scrollTop();
+				if(x>40){
+					if($('.categories').is(':visible'))
+						$('.categories').fadeOut(300);
+				}else{
+					if(!$('.categories').is(':visible'))
+						$('.categories').fadeIn(300);
+				}
+			});
+		})
+	</script>
 </body>
 </html>

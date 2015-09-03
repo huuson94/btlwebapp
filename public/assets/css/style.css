@@ -13,6 +13,11 @@
 	font-family: iconFont;
 	src: url(../font/sosa-regular-webfont.ttf);
 }
+i{
+	font-family: 'iconFont';
+	font-style: normal;
+	cursor: pointer;
+}
 body{
 	font-family: 'Roboto',sans-serif;
 	color: #666;
@@ -39,7 +44,7 @@ header{
 	background-color: rgba(255, 255, 255, 0.96);
 }
 header .top{
-	max-width: 1200px;
+	max-width: 90%;
 	margin: 0 auto;
 }
 header h1{
@@ -218,15 +223,20 @@ section{
 	background-color: #EAEAEA;
 	padding-top: 80px;
 }
+.width_70per{
+	max-width: 70%!important;
+}
 section .wrapper{
-	max-width: 1200px;
-	height: 100%;
-	margin: 70px auto 0;
+	max-width: 90%;
+	height: 1000px;
+	margin: 17px auto;
 	position: relative;
 }
 .categories{
+	width: 90%;
 	position: fixed;
 	z-index: 2;
+	top: 100px;
 }
 .categories .menu{
 	display: none;
@@ -237,6 +247,7 @@ section .wrapper{
     font-size: 17px;
 	position: absolute;
 	z-index: 2;
+	top: 40px;
 	box-shadow: -7px 13px 21px -3px;
 }
 .menu ul{
@@ -280,9 +291,9 @@ section .wrapper{
 }
 .wrapper .category{
 	text-align: center;
-    margin-top: -45px;
     font-size: 28px;
     color: #828282;
+    display: block;
 }
 .wrapper .category:after{
 	content: '';
@@ -299,9 +310,11 @@ section .wrapper{
 	color: #fff;
     font-size: 18px;
     border-radius: 4px;
-    padding: 8px 0 0 40px;
+    padding: 8px 0 0 29px;
     position: relative;
+    text-align: center;
 	cursor: pointer;
+	float: left;
 	-moz-transition: background-color 0.5s;
 	-webkit-transition: background-color 0.5s;
 	transition: background-color 0.5s;
@@ -340,6 +353,17 @@ section .wrapper{
 	position: absolute;
 	left: 0;
 	top: 7px;
+}
+.categories .upload_button,.categories .mypic_button{
+	float: right;
+	padding: 10px;
+    margin-left: 30px;
+}
+.categories .upload_button i{
+	font-size: 25px;
+    display: inline-block;
+    line-height: 0;
+    margin-right: 5px;
 }
 .clicked{
 	background-color:#F6F6F6!important;
@@ -433,11 +457,6 @@ section .wrapper{
 	float: right;
 	font-size: 16px;
 }
-.item .photo_content .view i{
-	font-family: 'iconFont';
-	font-style: normal;
-	cursor: pointer;
-}
 .item .photo_content .view .like{
 	margin-right: 10px;
     color: rgb(236, 107, 73);
@@ -450,4 +469,59 @@ section .wrapper{
 }
 .signin .error{
     color: #fff;
+}
+
+/**********************************************************************************/
+/*********************************** UPLOAD ***************************************/
+/**********************************************************************************/
+
+.upload_content{
+	width: 100%;
+    height: 100%;
+    background-color: #fff;
+    margin-top: 80px;
+}
+.upload_left{
+	float: left;
+    width: 65%;
+}
+.upload_left h1{
+	color: #EA6A48;
+ 	font-size: 23px;
+	font-weight: normal;
+	font-family: tahoma,sans-serif;
+	background-color: #F6F6F6;
+	height: 70px;
+	padding: 20px;
+}
+.upload_left .note{
+	font-size: 14px;
+	font-weight: normal;
+ 	height: 70px;
+	font-style: italic;
+	padding: 20px 20px 0;
+}
+.note span{
+	font-weight: bold;
+}
+.upload_left ul li{
+	width: 90%;
+    margin: 20px auto;
+}
+.upload_left ul li select,.upload_left ul li input,.upload_left ul li textarea{
+	display: block;
+    background-color: #F5F5F5;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 30px;
+    height: 40px;
+    width: 100%;
+    color: #656565;
+    outline: none;
+    padding-left: 10px;
+    margin-top: 5px;
+}
+.upload_left ul li textarea{
+	height: 120px;
 }
