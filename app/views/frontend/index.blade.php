@@ -6,7 +6,7 @@
 	<div class="pop-up">
 		<div class="wrapper">
 			<form action="{{url('home/do-login')}}" id="login-form">
-				<input type="text" name="account" placeholder="Nhập tài khoản">
+				<input type="text" name="nick_name" placeholder="Nhập tài khoản">
 				<input type="password" name="password" placeholder="Nhập mật khẩu">
 				<button>Đăng nhập</button>
 			</form>
@@ -20,7 +20,7 @@
 		<div class="wrapper">
 			<form action="{{url('home/do-signin')}}" id="signin-form">
 				<div><input type="text" name="name" placeholder="Họ và tên"></div>
-				<div><input type="text" name="account" placeholder="Nhập tài khoản"></div>
+				<div><input type="text" name="nick_name" placeholder="Nhập tài khoản"></div>
 				<div><input type="password" name="password" placeholder="Nhập mật khẩu"></div>
 				<div><input type="text" name="email" placeholder="Email( example@gmail.com )"></div>
 				<div><input type="text" name="phone" placeholder="Nhập số điện thoại"></div>
@@ -142,12 +142,12 @@
 					$('.signin .error').append('<p>* Đăng ký thành công! Chuyển về trang chủ để đăng nhập</p>');
 					window.location.reload();
 				}else if(data=='fail'){
-					$('.signin input[name="account"]').after('<p>* Tài khoản đã tồn tại</p>');
+					$('.signin input[name="nick_name"]').after('<p>* Tài khoản đã tồn tại</p>');
 				}else{
 					var msg=$.parseJSON(data);
 					$.each(msg,function(key,val){
 						if( key=='name' )$('.signin input[name="name"]').after('<p>*'+val+'</p>');
-						if( key=='account' )$('.signin input[name="account"]').after('<p>*'+val+'</p>');
+						if( key=='nick_name' )$('.signin input[name="nick_name"]').after('<p>*'+val+'</p>');
 						if( key=='password' )$('.signin input[name="password"]').after('<p>*'+val+'</p>');
 						if( key=='email' )$('.signin input[name="email"]').after('<p>*'+val+'</p>');
 						if( key=='phone' )$('.signin input[name="phone"]').after('<p>*'+val+'</p>');

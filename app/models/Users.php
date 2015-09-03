@@ -1,5 +1,5 @@
 <?php
 class Users extends Eloquent {
-	protected $table = 'users';
+	protected $table = 'mst_users';
 
 }
