@@ -57,8 +57,7 @@
 					$new->email=$data['email'];
 					$new->phone=$data['phone'];
 					$new->address=$data['address'];
-                    $new->join_at = "0000/00/00";
-					$new->save();
+                    $new->save();
 					echo 'success';
 				}
 			}
