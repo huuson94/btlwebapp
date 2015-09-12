@@ -6,7 +6,7 @@
 	<div class="pop-up">
 		<div class="wrapper">
 			<form action="{{url('home/do-login')}}" id="login-form">
-				<input type="text" name="nick_name" placeholder="Nhập tài khoản">
+				<input type="text" name="account" placeholder="Nhập tài khoản">
 				<input type="password" name="password" placeholder="Nhập mật khẩu">
 				<button>Đăng nhập</button>
 			</form>
@@ -15,12 +15,12 @@
 		</div>
 	</div>
 @stop
-@section('signin')
-	<div class="pop-up-signin">
+@section('signup')
+	<div class="pop-up-signup">
 		<div class="wrapper">
-			<form action="{{url('home/do-signin')}}" id="signin-form">
+			<form action="{{url('home/do-signup')}}" id="signup-form">
 				<div><input type="text" name="name" placeholder="Họ và tên"></div>
-				<div><input type="text" name="nick_name" placeholder="Nhập tài khoản"></div>
+				<div><input type="text" name="account" placeholder="Nhập tài khoản"></div>
 				<div><input type="password" name="password" placeholder="Nhập mật khẩu"></div>
 				<div><input type="text" name="email" placeholder="Email( example@gmail.com )"></div>
 				<div><input type="text" name="phone" placeholder="Nhập số điện thoại"></div>
@@ -134,15 +134,15 @@
 				},600);
 			})
 				
-			//Effect for Signin
-			$('.signin p').click(function(){
-				$('.pop-up-signin').removeClass("slideOutLeft").addClass("animated slideInDown");
-				$('.pop-up-signin').css("display","block");
+			//Effect for Signup
+			$('.signup p').click(function(){
+				$('.pop-up-signup').removeClass("slideOutLeft").addClass("animated slideInDown");
+				$('.pop-up-signup').css("display","block");
 			})
-			$('.pop-up-signin span').click(function(){
-				$('.pop-up-signin').addClass("slideOutLeft").removeClass("slideInDown");
+			$('.pop-up-signup span').click(function(){
+				$('.pop-up-signup').addClass("slideOutLeft").removeClass("slideInDown");
 				setTimeout(function(){
-					$('.pop-up-signin').css("display","none");
+					$('.pop-up-signup').css("display","none");
 				},600);
 			})
 			
@@ -171,33 +171,33 @@
 			})
 		})
 
-/*****************************SIGNIN FORM**************************/
-		$('#signin-form').submit(function(e) {
+/*****************************SINGUP FORM**************************/
+		$('#signup-form').submit(function(e) {
 			e.preventDefault();
 			$('.error').html('');
-			$('#signin-form div p').remove();
+			$('#signup-form div p').remove();
 			$.ajax({
 				url: $(this).attr('action'),
-				data: new FormData($('#signin-form')[0]),
+				data: new FormData($('#signup-form')[0]),
 				type: 'POST',
 				contentType: false,
 				processData: false,
 				cache: false,
 			}).done(function(data){
 				if(data=='success'){
-					$('.signin .error').append('<p>* Đăng ký thành công! Chuyển về trang chủ để đăng nhập</p>');
+					$('.signup .error').append('<p>* Đăng ký thành công! Chuyển về trang chủ để đăng nhập</p>');
 					window.location.reload();
 				}else if(data=='fail'){
-					$('.signin input[name="nick_name"]').after('<p>* Tài khoản đã tồn tại</p>');
+					$('.signup input[name="account"]').after('<p>* Tài khoản đã tồn tại</p>');
 				}else{
 					var msg=$.parseJSON(data);
 					$.each(msg,function(key,val){
-						if( key=='name' )$('.signin input[name="name"]').after('<p>*'+val+'</p>');
-						if( key=='nick_name' )$('.signin input[name="nick_name"]').after('<p>*'+val+'</p>');
-						if( key=='password' )$('.signin input[name="password"]').after('<p>*'+val+'</p>');
-						if( key=='email' )$('.signin input[name="email"]').after('<p>*'+val+'</p>');
-						if( key=='phone' )$('.signin input[name="phone"]').after('<p>*'+val+'</p>');
-						if( key=='address' )$('.signin input[name="address"]').after('<p>*'+val+'</p>');
+						if( key=='name' )$('.signup input[name="name"]').after('<p>*'+val+'</p>');
+						if( key=='account' )$('.signup input[name="account"]').after('<p>*'+val+'</p>');
+						if( key=='password' )$('.signup input[name="password"]').after('<p>*'+val+'</p>');
+						if( key=='email' )$('.signup input[name="email"]').after('<p>*'+val+'</p>');
+						if( key=='phone' )$('.signup input[name="phone"]').after('<p>*'+val+'</p>');
+						if( key=='address' )$('.signup input[name="address"]').after('<p>*'+val+'</p>');
 					})
 				}
 			}).fail(function(){

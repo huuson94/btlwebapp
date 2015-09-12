@@ -11,19 +11,21 @@ class CreateMstUsersTable extends Migration {
 	 * @return void
 	 */
 	public function up()
-	{
-		Schema::create('mst_users', function(Blueprint $table)
-		{
-			$table->increments('id');
-            $table->string('password');
-            $table->string('account')->unique();
-            $table->string('name');
-            $table->text('address');
-            $table->string('phone');
-            $table->string('email')->unique();
-            $table->string('is_admin');
-			$table->timestamps();
-		});
+	{   if(!Schema::hasTable('mst_users')){
+            Schema::create('mst_users', function(Blueprint $table)
+            {
+                $table->increments('id');
+                $table->string('password');
+                $table->string('account')->unique();
+                $table->string('name');
+                $table->text('address');
+                $table->string('phone');
+                $table->string('email')->unique();
+                $table->string('is_admin');
+                $table->timestamps();
+            });
+        
+        }
 	}
 
 	/**
@@ -32,8 +34,9 @@ class CreateMstUsersTable extends Migration {
 	 * @return void
 	 */
 	public function down()
-	{
-		Schema::drop('mst_users');
+	{   
+        DB::statement('ALTER TABLE mst_users MODIFY is_admin INT NOT NULL DEFAULT 0');
+		
 	}
 
 }

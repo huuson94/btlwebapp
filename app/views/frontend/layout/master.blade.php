@@ -29,9 +29,9 @@
 				</li>
 			</ul>
 			<ul class="login_singin_area">
-				@if(Session::has('my_user'))
+				@if(Session::has('current_user'))
 					<li class="login">
-						<a href=""><p>XIN CHÀO <span class="user_name">{{ Session::get('my_user')['name'] }}</span></p></a>
+						<a href=""><p>XIN CHÀO <span class="user_name">{{ Session::get('current_user')['name'] }}</span></p></a>
 					</li>
 					<li><a href="{{url('home/logout')}}">ĐĂNG XUẤT</a></li>
 				@else
@@ -72,7 +72,7 @@
 						<li><a href="">Liên Hệ</a></li>
 					</ul>
 				</div>
-				@if(Session::has('my_user'))
+				@if(Session::has('current_user'))
 					<a href="{{url('/home/upload')}}"><p class="upload_button"><i>â</i>Đăng ảnh</p></a>
 					<a href=""><p class="mypic_button">Ảnh của tôi</p></a>
 				@endif

@@ -10,5 +10,7 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-
-Route::controller('home','WebController');
+Route::get('login', 'UsersController@getLogin');
+Route::get('signup', 'UsersController@getSignup');
+Route::controller('home','HomeController');
+Route::controller('user','UsersController');
