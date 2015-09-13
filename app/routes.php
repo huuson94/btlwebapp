@@ -12,3 +12,4 @@
 */
 
 Route::controller('home','WebController');
+Route::get('index','UsersController@index');
