@@ -5,7 +5,7 @@
 @section('login')
 	<div class="pop-up">
 		<div class="wrapper">
-			<form action="{{url('home/do-login')}}" id="login-form">
+			<form action="{{url('user/do-login')}}" id="login-form">
 				<input type="text" name="account" placeholder="Nhập tài khoản">
 				<input type="password" name="password" placeholder="Nhập mật khẩu">
 				<button>Đăng nhập</button>
@@ -18,7 +18,7 @@
 @section('signup')
 	<div class="pop-up-signup">
 		<div class="wrapper">
-			<form action="{{url('home/do-signup')}}" id="signup-form">
+			<form action="{{url('user/do-signup')}}" id="signup-form">
 				<div><input type="text" name="name" placeholder="Họ và tên"></div>
 				<div><input type="text" name="account" placeholder="Nhập tài khoản"></div>
 				<div><input type="password" name="password" placeholder="Nhập mật khẩu"></div>

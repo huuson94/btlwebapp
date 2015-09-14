@@ -39,9 +39,9 @@
 						<a><p>ĐĂNG NHẬP</p></a>
 						@yield('login')
 					</li>
-					<li class="signin">
+					<li class="signup">
 						<a><p>ĐĂNG KÝ</p></a>
-						@yield('signin')
+						@yield('signup')
 					</li>
 				@endif
 			</ul>

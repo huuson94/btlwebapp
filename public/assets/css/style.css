@@ -100,7 +100,7 @@ header .icon-search{
 .login{
 	position: static;
 }
-.login p,.signin p{
+.login p,.signup p{
 	cursor: pointer;
 }
 .pop-up{
@@ -122,7 +122,7 @@ header .icon-search{
     padding: 20px;
     position: relative;
 }
-.pop-up-signin{
+.pop-up-signup{
 	width: 100%;
 	height: 100%;
 	background-color: rgba(81, 140, 74, 0.64);
@@ -132,7 +132,7 @@ header .icon-search{
 	left: 0;
 	z-index: 999;
 }
-.pop-up-signin .wrapper{
+.pop-up-signup .wrapper{
 	width: 745px;
     height: 465px;
     margin: 90px auto;
@@ -141,16 +141,16 @@ header .icon-search{
     padding: 20px;
     position: relative;
 }
-.pop-up-signin .wrapper form{
+.pop-up-signup .wrapper form{
 	margin: 35px auto 0;
 }
-.pop-up-signin .wrapper form div{
+.pop-up-signup .wrapper form div{
 	position: relative;
 	width: 40%;
     float: left;
     margin: 33px 28px 1px 40px;
 }
-.pop-up-signin .wrapper form div p{
+.pop-up-signup .wrapper form div p{
 	position: absolute;
     color: #fff;
     font-size: 10px;
@@ -158,7 +158,7 @@ header .icon-search{
     left: 0px;
     cursor: context-menu;
 }
-.pop-up-signin .wrapper input{
+.pop-up-signup .wrapper input{
     width: 100%;
     height: 45px;
     border-radius: 4px;
@@ -167,7 +167,7 @@ header .icon-search{
     font-size: 15px;
     color: #6B6B6B;
 }
-.pop-up-signin .wrapper button{
+.pop-up-signup .wrapper button{
 	width: 90px;
 	height: 40px;
 	margin: 35px 313px;
@@ -178,7 +178,7 @@ header .icon-search{
 	cursor: pointer;
 }
 
-.pop-up-signin .wrapper span{
+.pop-up-signup .wrapper span{
 	position: absolute;
     top: 10px;
     color: #fff;
@@ -467,7 +467,7 @@ section .wrapper{
     color: #fff;
     font-size: 12px;
 }
-.signin .error{
+.signup .error{
     color: #fff;
 }
 
