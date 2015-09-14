@@ -55,15 +55,12 @@
 				<div class="menu">
 					<ul>
 						<li><a href="">Ảnh hot nhất</a></li>
-						<li><a href="">Người đẹp</a></li>
+						<li><a href="">Mới Nhất</a></li>
 					</ul>
 					<ul>
-						<li><a href="">Mới nhất</a></li>
-						<li><a href="">Phong cảnh</a></li>
-						<li><a href="">Mùa cưới</a></li>
-						<li><a href="">Hài hước-giải trí</a></li>
-						<li><a href="">Thể loại khác</a></li>
-						<li><a href="">Con người & Cuộc sống</a></li>
+						@foreach($data['categories'] as $index => $category)
+                        <li><a href="{{Asset('category/view/'.$category->id)}}">{{$category->title}}</a></li>
+                        @endforeach
 					</ul>
 					<ul class="team_contact">
 						<li><a href="">Giới thiệu</a></li>
