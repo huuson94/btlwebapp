@@ -15,11 +15,12 @@
             echo App::make('UsersController')->postDoLogin();		
 		
 		}
-		public function getLogout(){
-			Session::flush();
-			return Redirect::to('/home');
-		}
 		
+		
+        public function getSearch(){
+            
+        }
+        
         public function postDoSignup(){
 			App::make('UsersController')->postDoSignUp();
 		}

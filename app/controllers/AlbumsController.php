@@ -8,4 +8,8 @@ class AlbumsController extends BaseController{
     public function postSave(){
         
     }
+    
+    public function getView($id){
+        
+    }
 }

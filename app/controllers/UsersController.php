@@ -9,12 +9,23 @@ class UsersController extends BaseController{
         return View::make('frontend/users/login');
     }
     
+    public function getList(){
+        $users = users::all();
+        return View::make('backend.users.list')->with('users',$users);
+        
+    }
+    
+    public function getLogout() {
+        Session::flush();
+        return Redirect::to('/home');
+    }
+    
     public function getUpload(){
         return View::make('frontend/users/upload');
     }
     
-    public function getViewImage(){
-        return View::make('frontend/users/view-image');
+    public function getViewImages(){
+        return View::make('frontend/users/view-images');
     }
     public function postDoLogin(){
         if(Input::get('account') && Input::get('password')){
@@ -86,10 +97,6 @@ class UsersController extends BaseController{
         
 
 
-	public function getList(){
-        $users = users::all();
-        return View::make('backend.users.list')->with('users',$users);
-        
-    }
+	
 
 }

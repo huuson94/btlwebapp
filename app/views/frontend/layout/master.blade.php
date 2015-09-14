@@ -33,7 +33,7 @@
 					<a href="{{url('/home')}}">HOME</a>
 				</li>
 				<li>
-                    <form action="{{url('category/search')}}" method="get">
+                    <form action="{{url('home/search')}}" method="get">
                         <input type="text" placeholder="Tìm kiếm ..." class="search form-control" name="title" style="display: inline">
                         <input type="submit" class="btn btn-default" value="Search">
                         <!--<button class="icon-search">\</button>-->
@@ -45,7 +45,7 @@
 					<li class="login">
 						<a href=""><p>XIN CHÀO <span class="user_name">{{ Session::get('current_user')['name'] }}</span></p></a>
 					</li>
-					<li><a href="{{url('home/logout')}}">ĐĂNG XUẤT</a></li>
+					<li><a href="{{url('user/logout')}}">ĐĂNG XUẤT</a></li>
 				@else
 					<li class="login">
 						<a><p>ĐĂNG NHẬP</p></a>
@@ -83,7 +83,7 @@
 				</div>
 				@if(Session::has('current_user'))
 					<a href="{{url('/user/upload')}}"><p class="upload_button"><i>â</i>Đăng ảnh</p></a>
-					<a href="{{url('/user/view-image')}}"><p class="mypic_button">Ảnh của tôi</p></a>
+					<a href="{{url('/user/view-images')}}"><p class="mypic_button">Ảnh của tôi</p></a>
 				@endif
 			</div>
 			@yield('content')
