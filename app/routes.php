@@ -15,3 +15,5 @@ Route::get('signup', 'UsersController@getSignup');
 Route::controller('home','HomeController');
 Route::controller('user','UsersController');
 Route::controller('category', 'CategoriesController');
+Route::controller('image', 'ImagesController');
+Route::controller('album', 'AlbumsController');

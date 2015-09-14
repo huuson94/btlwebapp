@@ -481,11 +481,11 @@ section .wrapper{
     background-color: #fff;
     margin-top: 80px;
 }
-.upload_left{
+.upload_left, .upload_right{
 	float: left;
     width: 65%;
 }
-.upload_left h1{
+.upload_left h1, .upload_right h1{
 	color: #EA6A48;
  	font-size: 23px;
 	font-weight: normal;
@@ -494,7 +494,7 @@ section .wrapper{
 	height: 70px;
 	padding: 20px;
 }
-.upload_left .note{
+.upload_left .note, .upload_right .note{
 	font-size: 14px;
 	font-weight: normal;
  	height: 70px;
@@ -504,11 +504,13 @@ section .wrapper{
 .note span{
 	font-weight: bold;
 }
-.upload_left ul li{
+.upload_left ul li, .upload_right ul li{
 	width: 90%;
     margin: 20px auto;
 }
-.upload_left ul li select,.upload_left ul li input,.upload_left ul li textarea{
+.upload_left ul li select,.upload_left ul li input,.upload_left ul li textarea, 
+.upload_right ul li select,.upload_right ul li input,.upload_right ul li textarea
+{
 	display: block;
     background-color: #F5F5F5;
     border: 1px solid #ddd;
@@ -522,6 +524,6 @@ section .wrapper{
     padding-left: 10px;
     margin-top: 5px;
 }
-.upload_left ul li textarea{
+.upload_left ul li textarea, .upload_right ul li textarea{
 	height: 120px;
 }

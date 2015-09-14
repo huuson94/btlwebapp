@@ -16,30 +16,63 @@
             
           </ul>
 		<div id='upload-image-tabs' class="upload_left">
-			<h1>Đăng ảnh</h1>
-			<p class="note">Sử dụng nút <span>Chọn ảnh</span> để chọn ảnh cho album của bạn. Đăng <span>tẹt ga thoải con gà mái nhé</span>!</p>
-			<ul>
-				<li>
-					<p>Thể loại</p>
-					<select>
-                        <option></option>
-                        @foreach($categories as $index => $category)
-                        <option>{{$category->title}}</option>
-                        @endforeach
-					</select>
-				</li>
-				<li>
-					<p>Tên Album</p>
-					<input type="text" name="" placeholder="Tên Album">
-				</li>
-				<li>
-					<p>Thông tin mô tả</p>
-					<textarea placeholder="Thông tin mô tả"></textarea>
-				</li>
-			</ul>
-		</div>
+            <form action="{{url('image/save')}}" method="POST">
+                <h1>Đăng ảnh</h1>
+                <p class="note">Sử dụng nút <span>Chọn ảnh</span> để chọn ảnh cho album của bạn. Đăng <span>tẹt ga thoải con gà mái nhé</span>!</p>
+                <div>
+                    <ul>
+                        <li>
+                            <p>Chọn ảnh</p>
+                            <input type="file" class="form-control" name="img"  accept="image/*">
+                        </li>
+                        <li>
+                            <p>Thể loại</p>
+                            <select>
+                                <option></option>
+                                @foreach($categories as $index => $category)
+                                <option>{{$category->title}}</option>
+                                @endforeach
+                            </select>
+                        </li>
+                        <li>
+                            <p>Thông tin mô tả</p>
+                            <textarea placeholder="Thông tin mô tả"></textarea>
+                        </li>
+                    </ul>
+                </div>
+                <p><input type="button" class="add-image-regist btn btn-default" value="Add image"></p>
+                <p><input type="submit" class="btn btn-default form-control" value="Upload"></p>
+            </form>
+        </div>
+		<!--Can kiem tra xem khi nguoi chuyen tab nguoi dung da submit chua-->
 		<div id='upload-album-tabs' class="upload_right">
-			
-		</div>
+            <form action="{{url('album/save')}}" method="POST">
+                <h1>Tạo album</h1>
+                <p class="note">Sử dụng nút <span>Chọn ảnh</span> để chọn ảnh cho album của bạn. Đăng <span>tẹt ga thoải con gà mái nhé</span>!</p>
+                <div>
+                    <ul>
+                        <li>
+                            <p>Chọn ảnh</p>
+                            <input type="file" class="form-control" name="img"  accept="image/*">
+                        </li>
+                        <li>
+                            <p>Thể loại</p>
+                            <select>
+                                <option></option>
+                                @foreach($categories as $index => $category)
+                                <option>{{$category->title}}</option>
+                                @endforeach
+                            </select>
+                        </li>
+                        <li>
+                            <p>Thông tin mô tả</p>
+                            <textarea placeholder="Thông tin mô tả"></textarea>
+                        </li>
+                    </ul>
+                </div>
+                <p><input type="button" class="add-image-regist btn btn-default" value="Add image"></p>
+                <p><input type="submit" class="btn btn-default form-control" value="Upload"></p>
+            </form>
+        </div>
 	</div>
 @stop
