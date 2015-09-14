@@ -9,6 +9,9 @@
 	<script type="text/javascript" src="{{url('public/assets/js/jquery-1.11.3.min.js')}}"></script>
 	<script type="text/javascript" src="{{url('public/assets/js/masonry.pkgd.min.js')}}"></script>
 	<script src="{{url('public/assets/js/jquery.nicescroll.js')}}" type='text/javascript'></script>
+    {{ HTML::style('public/assets/css/jquery-ui.min.css') }}
+    {{ HTML::script('public/assets/js/jquery-ui.min.js') }}
+    {{ HTML::script('public/assets/js/scripts.js') }}
 </head>
 <body>
 	<header>
