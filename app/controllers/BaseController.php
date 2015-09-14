@@ -14,5 +14,10 @@ class BaseController extends Controller {
 			$this->layout = View::make($this->layout);
 		}
 	}
+    
+    public function __construct() {
+        $data['categories'] = Category::all();
+        View::share('categories', $data['categories']);
+    }
 
 }

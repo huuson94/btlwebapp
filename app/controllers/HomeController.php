@@ -1,7 +1,7 @@
 <?php
 	class HomeController extends BaseController{
 		public function getIndex(){
-            $data['categories'] = Category::all();
+            $data = array();
 			return View::make('frontend/index')->with('data',$data);
 		}
 		public function getUpload(){

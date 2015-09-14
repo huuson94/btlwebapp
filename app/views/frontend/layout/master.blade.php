@@ -58,7 +58,7 @@
 						<li><a href="">Mới Nhất</a></li>
 					</ul>
 					<ul>
-						@foreach($data['categories'] as $index => $category)
+						@foreach($categories as $index => $category)
                         <li><a href="{{Asset('category/view/'.$category->id)}}">{{$category->title}}</a></li>
                         @endforeach
 					</ul>
@@ -70,8 +70,8 @@
 					</ul>
 				</div>
 				@if(Session::has('current_user'))
-					<a href="{{url('/home/upload')}}"><p class="upload_button"><i>â</i>Đăng ảnh</p></a>
-					<a href=""><p class="mypic_button">Ảnh của tôi</p></a>
+					<a href="{{url('/user/upload')}}"><p class="upload_button"><i>â</i>Đăng ảnh</p></a>
+					<a href="/user/view-image"><p class="mypic_button">Ảnh của tôi</p></a>
 				@endif
 			</div>
 			@yield('content')
