@@ -1,5 +1,3 @@
 $(document).ready(function(){
-   $(function() {
-    $( "#upload-image-tabs" ).tabs();
-  }); 
+   $( "#upload-image-tabs" ).tabs();
 });
