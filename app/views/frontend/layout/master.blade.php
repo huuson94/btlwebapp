@@ -33,7 +33,7 @@
 					<a href="{{url('/home')}}">HOME</a>
 				</li>
 				<li>
-                    <form action="category/search" method="get">
+                    <form action="{{url('category/search')}}" method="get">
                         <input type="text" placeholder="Tìm kiếm ..." class="search form-control" name="title" style="display: inline">
                         <input type="submit" class="btn btn-default" value="Search">
                         <!--<button class="icon-search">\</button>-->
