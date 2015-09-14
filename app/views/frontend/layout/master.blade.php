@@ -32,9 +32,11 @@
 					<a href="{{url('/home')}}">HOME</a>
 				</li>
 				<li>
-					<input type="text" placeholder="Tìm kiếm ..." class="search form-control" style="display: inline">
-                    <button type="submit" class="btn btn-default" name="search">Search</button>
-					<!--<button class="icon-search">\</button>-->
+                    <form action="category/search" method="get">
+                        <input type="text" placeholder="Tìm kiếm ..." class="search form-control" name="title" style="display: inline">
+                        <input type="submit" class="btn btn-default" value="Search">
+                        <!--<button class="icon-search">\</button>-->
+                    </form>
 				</li>
 			</ul>
 			<ul class="login_singin_area">

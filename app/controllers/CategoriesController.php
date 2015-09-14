@@ -7,4 +7,7 @@ class CategoriesController extends BaseController{
         return View::make('frontend/categories/view')->with('data', $data);
     }
     
+    public function getSearch($title){
+        
+    }
 }
