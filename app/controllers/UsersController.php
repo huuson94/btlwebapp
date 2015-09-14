@@ -8,6 +8,13 @@ class UsersController extends BaseController{
         return View::make('frontend/users/login');
     }
     
+    public function getUpload(){
+        return View::make('frontend/users/upload');
+    }
+    
+    public function getViewImage(){
+        return View::make('frontend/users/view-image');
+    }
     public function postDoLogin(){
         if(Input::get('account') && Input::get('password')){
             $data=Input::all();
