@@ -1,5 +1,6 @@
 <?php
 class UsersController extends BaseController{
+
     public function getLogin(){
         
         if(Session::get('current_user')){
@@ -83,4 +84,12 @@ class UsersController extends BaseController{
 			}
 		}
         
+
+
+	public function getList(){
+        $users = users::all();
+        return View::make('backend.users.list')->with('users',$users);
+        
+    }
+
 }
