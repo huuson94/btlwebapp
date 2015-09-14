@@ -4,16 +4,19 @@
 	<title>@yield('title')</title>
 	<meta charset="utf-8">
 	<link rel="shortcut icon" href="{{url('public/favicon.ico')}}">
-	
+	{{ HTML::style('public/assets/css/bootstrap.min.css') }}
     {{ HTML::style('public/assets/css/jquery-ui.min.css') }}
     {{ HTML::style('public/assets/css/animate.css') }}
     {{ HTML::style('public/assets/css/style.css') }}
+    
+    
     
     {{ HTML::script('public/assets/js/jquery-ui.min.js') }}
     {{ HTML::script('public/assets/js/jquery-1.11.3.min.js') }}
     {{ HTML::script('public/assets/js/masonry.pkgd.min.js') }}
     {{ HTML::script('public/assets/js/jquery.nicescroll.js') }}
     {{ HTML::script('public/assets/js/scripts.js') }}
+    {{ HTML::style('public/assets/css/bootstrap.min.js') }}
 </head>
 <body>
 	<header>
@@ -29,8 +32,9 @@
 					<a href="{{url('/home')}}">HOME</a>
 				</li>
 				<li>
-					<input type="text" placeholder="Tìm kiếm ..." class="search">
-					<button class="icon-search">\</button>
+					<input type="text" placeholder="Tìm kiếm ..." class="search form-control" style="display: inline">
+                    <button type="submit" class="btn btn-default" name="search">Search</button>
+					<!--<button class="icon-search">\</button>-->
 				</li>
 			</ul>
 			<ul class="login_singin_area">

@@ -36,9 +36,9 @@
 	<span class="category">Phong cảnh</span>
 @stop
 @section('content')
-	<div class="container">
+	<div class="container-div">
 		<ul>
-			<li class="item">
+			<li class="item-image">
 				<article>
 					<img src="{{url('public/upload/images/Chrisfr06_Blue galaxy_ak1nRw.jpg')}}" alt="">
 					<div class="photo_content">
@@ -51,7 +51,7 @@
 					</div>
 				</article>
 			</li>
-			<li class="item">
+			<li class="item-image">
 				<article>
 					<img src="{{url('public/upload/images/Fe Ilya_Voices_Z0RhQg.jpg')}}" alt="">
 					<div class="photo_content">
@@ -64,7 +64,7 @@
 					</div>
 				</article>
 			</li>
-			<li class="item">
+			<li class="item-image">
 				<article>
 					<img src="{{url('public/upload/images/photosteve101_Music Is My Life_YkxhQw.jpg')}}" alt="">
 					<div class="photo_content">
@@ -77,7 +77,7 @@
 					</div>
 				</article>
 			</li>
-			<li class="item">
+			<li class="item-image">
 				<article>
 					<img src="{{url('public/upload/images/photosteve101_Music Is My Life_YkxhQw.jpg')}}" alt="">
 					<div class="photo_content">
@@ -90,7 +90,7 @@
 					</div>
 				</article>
 			</li>
-			<li class="item">
+			<li class="item-image">
 				<article>
 					<img src="{{url('public/upload/images/Fe Ilya_Voices_Z0RhQg.jpg')}}" alt="">
 					<div class="photo_content">
@@ -109,44 +109,40 @@
 @section('script-bot')
 	<script>
 		$(document).ready(function() {
-			var $container = $('.container');
-				$container.masonry({
-					itemSelector: '.item',
-					columWidth:200
-			});
+			
 
 			//count like
 			$('.like').click(function(){
 				var x=$(this).find('span').text();
 				if($(this).find('i').text()=='d'){$(this).find('i').text('c');x++;$(this).find('span').text(x);}
 					else {$(this).find('i').text('d');x--;$(this).find('span').text(x);}
-			})
+			});
 
 			//Effect for Login
 			$('.login p').click(function(){
 				$('.pop-up').removeClass("zoomOut").addClass("animated bounceInLeft");
 				$('.pop-up').css("display","block");
-			})
+			});
 			$('.pop-up span').click(function(){
 				$('.pop-up').addClass("zoomOut").removeClass("bounceInLeft");
 				setTimeout(function(){
 					$('.pop-up').css("display","none");
 				},600);
-			})
+			});
 				
 			//Effect for Signup
 			$('.signup p').click(function(){
 				$('.pop-up-signup').removeClass("slideOutLeft").addClass("animated slideInDown");
 				$('.pop-up-signup').css("display","block");
-			})
+			});
 			$('.pop-up-signup span').click(function(){
 				$('.pop-up-signup').addClass("slideOutLeft").removeClass("slideInDown");
 				setTimeout(function(){
 					$('.pop-up-signup').css("display","none");
 				},600);
-			})
+			});
 			
-		})
+		});
 		
 /*****************************LOGIN FORM**************************/
 		$('#login-form').submit(function(e) {
@@ -168,8 +164,8 @@
 				}
 			}).fail(function(){
 				alert('Lỗi #TK01');
-			})
-		})
+			});
+		});
 
 /*****************************SINGUP FORM**************************/
 		$('#signup-form').submit(function(e) {
@@ -198,11 +194,17 @@
 						if( key=='email' )$('.signup input[name="email"]').after('<p>*'+val+'</p>');
 						if( key=='phone' )$('.signup input[name="phone"]').after('<p>*'+val+'</p>');
 						if( key=='address' )$('.signup input[name="address"]').after('<p>*'+val+'</p>');
-					})
+					});
 				}
 			}).fail(function(){
 				alert('Lỗi #TK01');
-			})
-		})
+			});
+		});
+        var $container = $('.container-div');
+        $container.masonry({
+            itemSelector: '.item-image',
+            columWidth:200
+        });
+        
 </script>
 @stop

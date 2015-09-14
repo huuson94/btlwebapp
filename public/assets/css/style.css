@@ -375,7 +375,7 @@ section .wrapper{
 .clicked_span{
 	background-color: rgb(234, 106, 72)!important;
 }
-.container ul .item img{
+.container-div ul .item-image img{
 	display: block;
 	max-width: 100%;
 	outline: none;
@@ -385,20 +385,20 @@ section .wrapper{
     border-top-right-radius: 4px;
     cursor: pointer;
 }
-.container {
+.container-div {
 	max-width: 1200px;
 	margin: 20px auto;
 }
-.container ul .item {
+.container-div ul .item-image {
 	border-radius: 10px;
 	display: block;
-	width: 32%;     /* chia layout ra làm 3 cột - mỗi cột chiếm 32% của container */
+	width: 32%;     /* chia layout ra làm 3 cột - mỗi cột chiếm 32% của container-div */
 	padding: 8px;
 	margin: 7px 5px;
 }
 /* Responsive design */
 @media screen and (max-width: 900px) {
-	.container ul .item {
+	.container-div ul .item-image {
 		width: 45%;
 	}
 }
@@ -420,7 +420,7 @@ section .wrapper{
 	}
 }
 @media screen and (max-width: 500px) {
-	.container ul .item {
+	.container-div ul .item-image {
 		width: 100%;
 	}
 	.top .search_area li:nth-child(3) {
@@ -432,32 +432,32 @@ section .wrapper{
 		width: 100%;
 	}
 }
-.item article{
+.item-image article{
 	background-color: #fff;
     border-radius: 4px;
     box-shadow: 0 2px #B4B4B4;
 }
-.item .photo_content{
+.item-image .photo_content{
 	padding: 10px
 }
-.item .photo_content:after{
+.item-image .photo_content:after{
 	content: '';
 	display: block;
 	clear: both;
 }
-.item .photo_content .title{
+.item-image .photo_content .title{
 	margin-bottom: 15px;
 	color: #333;
 }
-.item .photo_content .user_by{
+.item-image .photo_content .user_by{
 	float: left;
 	color: #8C8C8C;
 }
-.item .photo_content .view{
+.item-image .photo_content .view{
 	float: right;
 	font-size: 16px;
 }
-.item .photo_content .view .like{
+.item-image .photo_content .view .like{
 	margin-right: 10px;
     color: rgb(236, 107, 73);
 }
