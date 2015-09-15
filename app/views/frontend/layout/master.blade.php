@@ -12,85 +12,16 @@
     
     {{ HTML::script('public/assets/js/jquery-1.11.3.min.js') }}
     {{ HTML::script('public/assets/js/jquery-ui.min.js') }}
-    {{ HTML::script('public/assets/js/masonry.pkgd.min.js') }}
     {{ HTML::script('public/assets/js/jquery.nicescroll.js') }}
     {{ HTML::script('public/assets/js/scripts.js') }}
     {{ HTML::script('public/assets/css/bootstrap.min.js') }}
-    
+    {{ HTML::script('public/assets/js/masonry.pkgd.min.js') }}
     
 </head>
 <body>
-	<header>
-		<div class="top">
-			<h1>Photo</h1>
-			<ul class="search_area">
-				<li>
-					<div class="logo">
-						<img src="{{url('public/assets/images/logo.png')}}" alt="logo">
-					</div>
-				</li>
-				<li>
-					<a href="{{url('/home')}}">HOME</a>
-				</li>
-				<li>
-                    <form action="{{url('home/search')}}" method="get">
-                        <input type="text" placeholder="Tìm kiếm ..." class="search form-control" name="title" style="display: inline">
-                        <input type="submit" class="btn btn-default" value="Search">
-                        <!--<button class="icon-search">\</button>-->
-                    </form>
-				</li>
-			</ul>
-			<ul class="login_singin_area">
-				@if(Session::has('current_user'))
-					<li class="login">
-						<a href=""><p>XIN CHÀO <span class="user_name">{{ Session::get('current_user')['name'] }}</span></p></a>
-					</li>
-					<li><a href="{{url('user/logout')}}">ĐĂNG XUẤT</a></li>
-				@else
-					<li class="login">
-						<a><p>ĐĂNG NHẬP</p></a>
-						@yield('login')
-					</li>
-					<li class="signup">
-						<a><p>ĐĂNG KÝ</p></a>
-						@yield('signup')
-					</li>
-				@endif
-			</ul>
-		</div>
-	</header>
-	<section>
-		<div class="wrapper @yield('width_70per')">
-			@yield('category')
-			<div class="categories @yield('width_70per')">
-				<p class="menu_button"><span></span>Danh mục</p>
-				<div class="menu">
-					<ul>
-						<li><a href="">Ảnh hot nhất</a></li>
-						<li><a href="">Mới Nhất</a></li>
-					</ul>
-					<ul>
-						@foreach($categories as $index => $category)
-                        <li><a href="{{Asset('category/view/'.$category->id)}}">{{$category->title}}</a></li>
-                        @endforeach
-					</ul>
-					<ul class="team_contact">
-						<li><a href="">Giới thiệu</a></li>
-						<li><a href="">Chính Sách Riêng Tư</a></li>
-						<li><a href="">Hỗ Trợ</a></li>
-						<li><a href="">Liên Hệ</a></li>
-					</ul>
-				</div>
-				@if(Session::has('current_user'))
-					<a href="{{url('/user/upload')}}"><p class="upload_button"><i>â</i>Đăng ảnh</p></a>
-					<a href="{{url('/user/view-images')}}"><p class="mypic_button">Ảnh của tôi</p></a>
-				@endif
-			</div>
-			@yield('content')
-		</div>
-	</section>
-	@yield('script-bot')
-	<script type="text/javascript">
+    @yield('script-bot')
+	
+    <script type="text/javascript">
 		$(document).ready(function(){
 			//Effect for Menu
 			var stt=0;
@@ -121,15 +52,88 @@
 
 			$(window).scroll(function(){
 				var x=$(window).scrollTop();
-				if(x>40){
-					if($('.categories').is(':visible'))
-						$('.categories').fadeOut(300);
-				}else{
-					if(!$('.categories').is(':visible'))
-						$('.categories').fadeIn(300);
-				}
+//				if(x>40){
+//					if($('.categories').is(':visible'))
+//						$('.categories').fadeOut(300);
+//				}else{
+//					if(!$('.categories').is(':visible'))
+//						$('.categories').fadeIn(300);
+//				}
 			});
 		})
 	</script>
+    <header class='col-md-12'>
+		<div class="top">
+			<div class="col-md-3 logo">
+                <h1  style='display: none;'>Photo</h1>
+                <h4 class='col-md-8'><img src="{{url('public/assets/images/logo.png')}}" alt="logo"></h4>
+                <h4 id='link-to-home' class='col-md-4'><a href="{{url('/home')}}">HOME</a><h4>
+            </div>
+			<ul class="col-md-6 search_area">
+				
+				<li>
+                    <form action="{{url('home/search')}}" method="get">
+                        <p class='col-md-10'><input type="text" placeholder="Tìm kiếm ..." class="search form-control" name="title" style="display: inline"><p>
+                        <input type="submit" class="col-md-2 btn btn-default" value="Search">
+                        <!--<button class="icon-search">\</button>-->
+                    </form>
+				</li>
+			</ul>
+			<ul class="col-md-3 login_singin_area">
+				@if(Session::has('current_user'))
+					<li class="col-md-7 login">
+						<a href=""><p>XIN CHÀO <span class="user_name">{{ Session::get('current_user')['name'] }}</span></p></a>
+					</li>
+					<li class='col-md-5'><a href="{{url('user/logout')}}">ĐĂNG XUẤT</a></li>
+				@else
+					<li class="col-md-7 login">
+						<a><p>ĐĂNG NHẬP</p></a>
+						@yield('login')
+					</li>
+					<li class="col-md-5 signup" >
+						<a><p>ĐĂNG KÝ</p></a>
+						@yield('signup')
+					</li>
+				@endif
+			</ul>
+		</div>
+	</header>
+    <div class="clearfix"></div>
+    <nav>
+        <div class="categories col-md-8">
+            <p class="menu_button"><span></span>Danh mục</p>
+            <div class="menu">
+                <ul>
+                    <li><a href="">Ảnh hot nhất</a></li>
+                    <li><a href="">Mới Nhất</a></li>
+                </ul>
+                <ul>
+                    @foreach($categories as $index => $category)
+                    <li><a href="{{Asset('category/view/'.$category->id)}}">{{$category->title}}</a></li>
+                    @endforeach
+                </ul>
+                <ul class="team_contact">
+                    <li><a href="">Giới thiệu</a></li>
+                    <li><a href="">Chính Sách Riêng Tư</a></li>
+                    <li><a href="">Hỗ Trợ</a></li>
+                    <li><a href="">Liên Hệ</a></li>
+                </ul>
+            </div>
+        </div>
+        @if(Session::has('current_user'))
+        <div class='images-manage-buttons col-md-4 '>
+            <p class="col-md-6 pull-right"><a  class="btn btn-default upload_button" href="{{url('/user/upload')}}">Đăng ảnh</a></p>
+            <p class="col-md-3 pull-right"><a class="btn btn-default mypic_button" href="{{url('/user/view-images')}}">Ảnh của tôi</a></p>
+        </div>
+        @endif
+    </nav>
+    <section>
+        <div class="wrapper">
+            @yield('content')
+        </div>
+    </section>
+    <aside>
+
+    </aside>
 </body>
 </html>

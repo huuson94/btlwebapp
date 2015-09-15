@@ -1,115 +1,12 @@
 @extends('frontend/layout/master')
-@section('title')
-	Chia sẻ ảnh trực tuyến
-@stop
-@section('login')
-	<div class="pop-up">
-		<div class="wrapper">
-			<form action="{{url('user/do-login')}}" id="login-form">
-				<input type="text" name="account" placeholder="Nhập tài khoản">
-				<input type="password" name="password" placeholder="Nhập mật khẩu">
-				<button>Đăng nhập</button>
-			</form>
-			<p class="error"></p>
-			<span title="Click to close">x</span>
-		</div>
-	</div>
-@stop
-@section('signup')
-	<div class="pop-up-signup">
-		<div class="wrapper">
-			<form action="{{url('user/do-signup')}}" id="signup-form">
-				<div><input type="text" name="name" placeholder="Họ và tên"></div>
-				<div><input type="text" name="account" placeholder="Nhập tài khoản"></div>
-				<div><input type="password" name="password" placeholder="Nhập mật khẩu"></div>
-				<div><input type="text" name="email" placeholder="Email( example@gmail.com )"></div>
-				<div><input type="text" name="phone" placeholder="Nhập số điện thoại"></div>
-				<div><input type="text" name="address" placeholder="Nhập địa chỉ"></div>
-				<button>Đăng Ký</button>
-			</form>
-			<p class="error"></p>
-			<span title="Click to close">x</span>
-		</div>
-	</div>
-@stop
-@section('category')
-	<span class="category">Phong cảnh</span>
-@stop
-@section('content')
-	<div class="container-div">
-		<ul>
-			<li class="item-image">
-				<article>
-					<img src="{{url('public/upload/images/Chrisfr06_Blue galaxy_ak1nRw.jpg')}}" alt="">
-					<div class="photo_content">
-						<a href="/home/detail/1"><p class="title">Vietnamese Girl Washing Car</p></a>
-						<p class="user_by">Bao Huy Bao Huy</p>
-						<div class="view">
-							<span class="like"><i>d</i> <span>16</span></span>
-							<span><i>„</i> 8000</span>
-						</div>
-					</div>
-				</article>
-			</li>
-			<li class="item-image">
-				<article>
-					<img src="{{url('public/upload/images/Fe Ilya_Voices_Z0RhQg.jpg')}}" alt="">
-					<div class="photo_content">
-						<p class="title">Vietnamese Girl Washing Car</p>
-						<p class="user_by">Bao Huy Bao Huy</p>
-						<div class="view">
-							<span class="like"><i>d</i> <span>16</span></span>
-							<span><i>„</i> 8000</span>
-						</div>
-					</div>
-				</article>
-			</li>
-			<li class="item-image">
-				<article>
-					<img src="{{url('public/upload/images/photosteve101_Music Is My Life_YkxhQw.jpg')}}" alt="">
-					<div class="photo_content">
-						<p class="title">Vietnamese Girl Washing Car</p>
-						<p class="user_by">Bao Huy Bao Huy</p>
-						<div class="view">
-							<span class="like"><i>d</i> <span>16</span></span>
-							<span><i>„</i> 8000</span>
-						</div>
-					</div>
-				</article>
-			</li>
-			<li class="item-image">
-				<article>
-					<img src="{{url('public/upload/images/photosteve101_Music Is My Life_YkxhQw.jpg')}}" alt="">
-					<div class="photo_content">
-						<p class="title">Vietnamese Girl Washing Car</p>
-						<p class="user_by">Bao Huy Bao Huy</p>
-						<div class="view">
-							<span class="like"><i>d</i> <span>16</span></span>
-							<span><i>„</i> 8000</span>
-						</div>
-					</div>
-				</article>
-			</li>
-			<li class="item-image">
-				<article>
-					<img src="{{url('public/upload/images/Fe Ilya_Voices_Z0RhQg.jpg')}}" alt="">
-					<div class="photo_content">
-						<p class="title">Vietnamese Girl Washing Car</p>
-						<p class="user_by">Bao Huy Bao Huy</p>
-						<div class="view">
-							<span class="like"><i>d</i> <span>16</span></span>
-							<span><i>„</i> 8000</span>
-						</div>
-					</div>
-				</article>
-			</li>
-		</ul>
-	</div>
-@stop
 @section('script-bot')
 	<script>
 		$(document).ready(function() {
-			
+			var $container = $('.container-div');
+            $container.masonry({
+                itemSelector: '.item-image',
+                columWidth:200
+            });
 
 			//count like
 			$('.like').click(function(){
@@ -200,11 +97,115 @@
 				alert('Lỗi #TK01');
 			});
 		});
-        var $container = $('.container-div');
-        $container.masonry({
-            itemSelector: '.item-image',
-            columWidth:200
-        });
+        
+        
         
 </script>
+@stop
+@section('title')
+	Chia sẻ ảnh trực tuyến
+@stop
+@section('login')
+	<div class="pop-up">
+		<div class="wrapper">
+            <form action="{{url('user/do-login')}}" id="login-form" method="POST">
+				<input type="text" name="account" placeholder="Nhập tài khoản">
+				<input type="password" name="password" placeholder="Nhập mật khẩu">
+				<button>Đăng nhập</button>
+			</form>
+			<p class="error"></p>
+			<span title="Click to close">x</span>
+		</div>
+	</div>
+@stop
+@section('signup')
+	<div class="pop-up-signup">
+		<div class="wrapper">
+			<form action="{{url('user/do-signup')}}" id="signup-form" method="POST">
+				<div><input type="text" name="name" placeholder="Họ và tên"></div>
+				<div><input type="text" name="account" placeholder="Nhập tài khoản"></div>
+				<div><input type="password" name="password" placeholder="Nhập mật khẩu"></div>
+				<div><input type="text" name="email" placeholder="Email( example@gmail.com )"></div>
+				<div><input type="text" name="phone" placeholder="Nhập số điện thoại"></div>
+				<div><input type="text" name="address" placeholder="Nhập địa chỉ"></div>
+				<button>Đăng Ký</button>
+			</form>
+			<p class="error"></p>
+			<span title="Click to close">x</span>
+		</div>
+	</div>
+@stop
+@section('category')
+	<span class="category">Phong cảnh</span>
+@stop
+@section('content')
+	<div class="container-div">
+		<ul>
+			<li class="item-image">
+				<article>
+					<img src="{{url('public/upload/images/Chrisfr06_Blue galaxy_ak1nRw.jpg')}}" alt="">
+					<div class="photo_content">
+						<a href="/home/detail/1"><p class="title">Vietnamese Girl Washing Car</p></a>
+						<p class="user_by">Bao Huy Bao Huy</p>
+						<div class="view">
+							<span class="like"><i>d</i> <span>16</span></span>
+							<span><i>„</i> 8000</span>
+						</div>
+					</div>
+				</article>
+			</li>
+			<li class="item-image">
+				<article>
+					<img src="{{url('public/upload/images/Fe Ilya_Voices_Z0RhQg.jpg')}}" alt="">
+					<div class="photo_content">
+						<p class="title">Vietnamese Girl Washing Car</p>
+						<p class="user_by">Bao Huy Bao Huy</p>
+						<div class="view">
+							<span class="like"><i>d</i> <span>16</span></span>
+							<span><i>„</i> 8000</span>
+						</div>
+					</div>
+				</article>
+			</li>
+			<li class="item-image">
+				<article>
+					<img src="{{url('public/upload/images/photosteve101_Music Is My Life_YkxhQw.jpg')}}" alt="">
+					<div class="photo_content">
+						<p class="title">Vietnamese Girl Washing Car</p>
+						<p class="user_by">Bao Huy Bao Huy</p>
+						<div class="view">
+							<span class="like"><i>d</i> <span>16</span></span>
+							<span><i>„</i> 8000</span>
+						</div>
+					</div>
+				</article>
+			</li>
+			<li class="item-image">
+				<article>
+					<img src="{{url('public/upload/images/photosteve101_Music Is My Life_YkxhQw.jpg')}}" alt="">
+					<div class="photo_content">
+						<p class="title">Vietnamese Girl Washing Car</p>
+						<p class="user_by">Bao Huy Bao Huy</p>
+						<div class="view">
+							<span class="like"><i>d</i> <span>16</span></span>
+							<span><i>„</i> 8000</span>
+						</div>
+					</div>
+				</article>
+			</li>
+			<li class="item-image">
+				<article>
+					<img src="{{url('public/upload/images/Fe Ilya_Voices_Z0RhQg.jpg')}}" alt="">
+					<div class="photo_content">
+						<p class="title">Vietnamese Girl Washing Car</p>
+						<p class="user_by">Bao Huy Bao Huy</p>
+						<div class="view">
+							<span class="like"><i>d</i> <span>16</span></span>
+							<span><i>„</i> 8000</span>
+						</div>
+					</div>
+				</article>
+			</li>
+		</ul>
+	</div>
 @stop

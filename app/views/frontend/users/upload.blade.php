@@ -6,9 +6,19 @@
 	Photo Upload
 @stop
 @section('content')
-  <script>
+@section('script-bot')
+<script>
+  $(document).ready(function(){
+     $( "#upload-image-tabs" ).tabs();
+     $(".add-image-regist").click(function(){
+        var thumb = $(this);
+        thumb.before("<div class='upload-image-form'>"+$("div.upload-image-form").html()+"</div>");
+        
+     });
+  });
+</script>
+@stop
   
-  </script>
 	<div id='upload-image-tabs' class="upload_content">
           <ul>
             <li><a href="#upload-image-tabs">Đăng Ảnh</a></li>
@@ -19,7 +29,7 @@
             <form action="{{url('image/save')}}" method="POST">
                 <h1>Đăng ảnh</h1>
                 <p class="note">Sử dụng nút <span>Chọn ảnh</span> để chọn ảnh cho album của bạn. Đăng <span>tẹt ga thoải con gà mái nhé</span>!</p>
-                <div>
+                <div class='upload-image-form'>
                     <ul>
                         <li>
                             <p>Chọn ảnh</p>
