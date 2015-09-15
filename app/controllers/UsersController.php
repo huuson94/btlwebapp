@@ -33,9 +33,9 @@ class UsersController extends BaseController{
             $user=Users::where('account',$data['account'])->where('password',$data['password'])->first();
             if($user){
                 Session::put('current_user',$user->toArray());
-                return 'success';
+                return Redirect::to('home/index')->with('user', $user);
             } else{
-                return 'fail';
+                return Redirect::to('home/index');
             }			
         }
     }
@@ -53,6 +53,7 @@ class UsersController extends BaseController{
 			$validator = Validator::make(
 				array(
                     'password' => $data['password'],
+                    'password_confirm' => $data['password_confirm'],
                     'account' => $data['account'],
 					'name' => $data['name'],
 					'address' => $data['address'],
@@ -64,6 +65,7 @@ class UsersController extends BaseController{
 					'name' => 'required|min:5',
 					'account' => 'required|min:5',
 					'password' => 'required|min:5',
+                    'password_confirm' => 'same:password',
 					'email' => 'email|required|min:5',
 					'phone' => 'numeric|required',
 					'address' => 'required',
@@ -80,6 +82,66 @@ class UsersController extends BaseController{
 			}else{
 				$user=Users::where('account',$data['account'])->first();
 				if($user){
+					return Redirect::to('home/index');
+				} else{
+					$new= new Users;
+					$new->name=$data['name'];
+					$new->account=$data['account'];
+					$new->password=$data['password'];
+					$new->email=$data['email'];
+					$new->phone=$data['phone'];
+					$new->address=$data['address'];
+                    $new->save();
+					return Redirect::to('home/index')->with('user',$new);
+				}
+			}
+		}
+    public function postAjaxLogin(){
+        if(Input::get('account') && Input::get('password')){
+            $data=Input::all();
+            $user=Users::where('account',$data['account'])->where('password',$data['password'])->first();
+            if($user){
+                Session::put('current_user',$user->toArray());
+                echo 'success';
+            } else{
+                echo 'fail';
+            }			
+        }
+    }
+    public function postAjaxSignup(){
+        $data=Input::all();
+			$validator = Validator::make(
+				array(
+                    'password' => $data['password'],
+                    'password_confirm' => $data['password_confirm'],
+                    'account' => $data['account'],
+					'name' => $data['name'],
+					'address' => $data['address'],
+                    'phone' => $data['phone'],
+					'email' => $data['email'],
+                    'is_admin' => 0
+					),
+				array(
+					'name' => 'required|min:5',
+					'account' => 'required|min:5',
+					'password' => 'required|min:5',
+                    'password_confirm' => 'same:password',
+					'email' => 'email|required|min:5',
+					'phone' => 'numeric|required',
+					'address' => 'required',
+					)
+				// array(
+				// 	'required' => 'Yêu cầu bắt buộc.',
+				// 	//'min:5' => 'Tối thiểu 5 ký tự',
+				// 	)
+				);
+			if($validator->fails()){
+				$messages = $validator->messages();
+				// $messages
+				echo 'not valid info';
+			}else{
+				$user=Users::where('account',$data['account'])->first();
+				if($user){
 					echo 'fail';
 				} else{
 					$new= new Users;
@@ -90,13 +152,9 @@ class UsersController extends BaseController{
 					$new->phone=$data['phone'];
 					$new->address=$data['address'];
                     $new->save();
+                    Session::put('current_user',$new->toArray());
 					echo 'success';
 				}
 			}
-		}
-        
-
-
-	
-
+    }
 }

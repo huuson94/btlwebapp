@@ -279,7 +279,7 @@ header .icon-search{
 }
 .pop-up .wrapper{
     width: 400px;
-    height: 400px;
+    height: 500px;
     margin: 90px auto;
     background-color: #8282C1;
     border-radius: 5px;
@@ -298,7 +298,7 @@ header .icon-search{
 }
 .pop-up-signup .wrapper{
     width: 745px;
-    height: 465px;
+    height: 565px;
     margin: 90px auto;
     background-color: #8282C1;
     border-radius: 5px;
