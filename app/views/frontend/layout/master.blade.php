@@ -9,18 +9,16 @@
     {{ HTML::style('public/assets/css/bootstrap.min.css') }}
     {{ HTML::style('public/assets/css/jquery-ui.min.css') }}
     {{ HTML::style('public/assets/css/animate.css') }}
-    
+    @yield('style-bot')
     {{ HTML::script('public/assets/js/jquery-1.11.3.min.js') }}
     {{ HTML::script('public/assets/js/jquery-ui.min.js') }}
     {{ HTML::script('public/assets/js/jquery.nicescroll.js') }}
     {{ HTML::script('public/assets/js/scripts.js') }}
     {{ HTML::script('public/assets/css/bootstrap.min.js') }}
     {{ HTML::script('public/assets/js/masonry.pkgd.min.js') }}
-    
+    @yield('script-bot')
 </head>
 <body>
-    @yield('script-bot')
-	
     <script type="text/javascript">
 		$(document).ready(function(){
 			//Effect for Menu
@@ -112,18 +110,12 @@
                     <li><a href="{{Asset('category/view/'.$category->id)}}">{{$category->title}}</a></li>
                     @endforeach
                 </ul>
-                <ul class="team_contact">
-                    <li><a href="">Giới thiệu</a></li>
-                    <li><a href="">Chính Sách Riêng Tư</a></li>
-                    <li><a href="">Hỗ Trợ</a></li>
-                    <li><a href="">Liên Hệ</a></li>
-                </ul>
             </div>
         </div>
         @if(Session::has('current_user'))
         <div class='images-manage-buttons col-md-4 '>
-            <p class="col-md-6 pull-right"><a  class="btn btn-default upload_button" href="{{url('/user/upload')}}">Đăng ảnh</a></p>
-            <p class="col-md-3 pull-right"><a class="btn btn-default mypic_button" href="{{url('/user/view-images')}}">Ảnh của tôi</a></p>
+            <p class="col-md-6 pull-right"><a  class="btn btn-primary upload_button" href="{{url('/user/upload')}}">Đăng ảnh</a></p>
+            <p class="col-md-3 pull-right"><a class="btn btn-primary mypic_button" href="{{url('/user/view-images')}}">Ảnh của tôi</a></p>
         </div>
         @endif
     </nav>
@@ -131,9 +123,18 @@
         <div class="wrapper">
             @yield('content')
         </div>
-    </section>
-    <aside>
+        <aside>
 
-    </aside>
+        </aside>
+    </section>
+    
+    <footer>
+        <ul class="team_contact">
+            <li><a href="">Giới thiệu</a></li>
+            <li><a href="">Chính Sách Riêng Tư</a></li>
+            <li><a href="">Hỗ Trợ</a></li>
+            <li><a href="">Liên Hệ</a></li>
+        </ul>
+    </footer>
 </body>
 </html>
