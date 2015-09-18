@@ -19,17 +19,17 @@
     <p class="alert-danger">Can't save</p>
     @endif
     
-	<div id='upload-image-tabs' class="upload_content col-md-10 center-block">
+	<div id='upload-tabs' class="upload_content col-md-10 center-block">
           <ul>
-            <li><a href="#upload-image-tabs">Đăng Ảnh</a></li>
-            <li><a href="#upload-album-tabs">Đăng album</a></li>
+            <li><a href="#upload-image-tabs">Upload Images</a></li>
+            <li><a href="#upload-album-tabs">Upload Album</a></li>
           </ul>
         <div class='upload-image-form-template'>
             <ul>
                 <li>
-                    <p>Chọn ảnh</p>
-                    <p>{{Form::file('path[]', array("accept" => "image/*", "class" => "single form-control"))}}</p>
-                    <p><img class='img-rounded img-thumbnail'></p>
+                    <p class="control-label">Chọn ảnh</p>
+                    <p>{{Form::file('path[]', array("accept" => "image/*", "class" => "file single form-control"))}}</p>
+<!--                    <p><img class='img-rounded img-thumbnail'></p>-->
                 </li>
                 <li>
                     <p>Thể loại</p>
@@ -55,17 +55,18 @@
 		<div id='upload-image-tabs' class="upload_left">
             
                 {{ Form::open(array('url'=>'image/save','files'=>true, 'method' => 'POST')) }}
+                <div id="images-description" style="display: none"></div>
                 <h1>Đăng ảnh</h1>
-                <p class="note">Sử dụng nút <span>Chọn ảnh</span> để chọn ảnh cho album của bạn. Đăng <span>tẹt ga thoải con gà mái nhé</span>!</p>
+                <p class="note">Sử dụng nút <span>Add image</span> để chọn ảnh của bạn. Đăng <span>tẹt ga thoải con gà mái nhé</span>!</p>
                 <p>
                     <input type="button" class="add-image btn btn-default" value="Add image">
                 </p>
                 <div class='upload-image-form'>
                     <ul>
                         <li>
-                            <p>Chọn ảnh</p>
+                            <p class="control-label">Chọn ảnh</p>
                             <p>{{Form::file('path[]', array("accept" => "image/*", "class" => "single form-control"))}}</p>
-                            <p><img class='img-rounded img-thumbnail'></p>
+                            <!--<p><img class='img-rounded img-thumbnail'></p>-->
                         </li>
                         <li>
                             <p>Thể loại</p>
@@ -92,7 +93,6 @@
                 <p><input type="submit" class="btn btn-default form-control" value="Upload"></p>
             {{Form::close()}}
         </div>
-		<!--Can kiem tra xem khi nguoi chuyen tab nguoi dung da submit chua-->
 		<div id='upload-album-tabs' class="upload_right">
             <form action="{{url('album/save')}}" method="POST">
                 <h1>Tạo album</h1>
@@ -101,8 +101,8 @@
                     <ul>
                         <li>
                             <p>Chọn ảnh</p>
-                            <p>{{Form::file('path[]', array("accept" => "image/*", "class" => "single form-control", 'multiple' => 'true'))}}</p>
-                            <p><img class='img-rounded img-thumbnail'></p>
+                            <p>{{Form::file('path[]', array("accept" => "image/*", "class" => "multiple form-control", 'multiple' => 'true'))}}</p>
+                            <div class='album-preview'></div>
                         </li>
                         <li>
                             <p>Thể loại</p>
@@ -118,7 +118,7 @@
                         </li>
                         <li>
                             <p>Thông tin mô tả</p>
-                            <textarea class="form-control" placeholder="Thông tin mô tả"></textarea>
+                            <textarea class="form-control" placeholder="Thông tin mô tả" name='description'></textarea>
                         </li>
                     </ul>
                 </div>

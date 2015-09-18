@@ -6,7 +6,7 @@
 	<link rel="shortcut icon" href="{{url('public/favicon.ico')}}">
 	
     {{ HTML::style('public/assets/css/style.css') }}
-    {{ HTML::style('public/assets/css/bootstrap.min.css') }}
+    {{ HTML::style('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css') }}
     {{ HTML::style('public/assets/css/jquery-ui.min.css') }}
     {{ HTML::style('public/assets/css/animate.css') }}
     @yield('style-bot')
@@ -14,9 +14,15 @@
     {{ HTML::script('public/assets/js/jquery-ui.min.js') }}
     {{ HTML::script('public/assets/js/jquery.nicescroll.js') }}
     {{ HTML::script('public/assets/js/scripts.js') }}
-    {{ HTML::script('public/assets/css/bootstrap.min.js') }}
+    {{ HTML::script('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js') }}
     {{ HTML::script('public/assets/js/masonry.pkgd.min.js') }}
     @yield('script-bot')
+    {{ HTML::style("vendor/kartik-v/bootstrap-fileinput/css/fileinput.min.css")}}
+    {{ HTML::script("vendor/kartik-v/bootstrap-fileinput/js/plugins/canvas-to-blob.min.js")}}
+    {{ HTML::script("vendor/kartik-v/bootstrap-fileinput/js/fileinput.min.js")}}
+    {{ HTML::script("vendor/kartik-v/bootstrap-fileinput/js/fileinput_locale_<lang>.js")}}
+    
+    
 </head>
 <body>
     <script type="text/javascript">

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $("#upload-image-tabs").tabs();
+    $("#upload-tabs").tabs();
 
 //    $(document).on('click', "#upload-image-tabs form .add-image", function () {
     $('.add-image').click(function(){
@@ -14,23 +14,91 @@ $(document).ready(function () {
             div.remove();
         }
     });
-
-
-    function readURL(input, preview) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                preview.attr('src', e.target.result);
-            }
-
-            reader.readAsDataURL(input.files[0]);
+    
+    $("form input[type='file'].single").fileinput({
+        'showUpload':false,
+        'showRemove':false,
+        uploadUrl: "#",
+        layoutTemplates: {
+            actions: '<div class="file-actions">\n' +
+                        '    <div class="file-footer-buttons">\n' +
+                        '        {delete}' +
+                        '    </div>\n' +
+                        '    <div class="file-upload-indicator" tabindex="-1" title="{indicatorTitle}">{indicator}</div>\n' +
+                        '    <div class="clearfix"></div>\n' +
+                        '</div>'
         }
-    }
-
-    $(document).on('change', "form input[type='file'].single", function () {
-        var preview = $(this).parent().next().find('img');
-        readURL(this, preview);
     });
+    
+    $("form input[type='file'].multiple").fileinput({
+        showUpload: false,
+        showRemove: false,
+        uploadUrl: "#",
+        minFileCount: 1,
+        maxFileCount: 20,
+        layoutTemplates: {
+            actions: '<div class="file-actions">\n' +
+                    '    <div class="file-footer-buttons">\n' +
+                    '        {delete}' +
+                    '    </div>\n' +
+                    '    <div class="file-upload-indicator" tabindex="-1" title="{indicatorTitle}">{indicator}</div>\n' +
+                    '    <div class="clearfix"></div>\n' +
+                    '</div>',
+            footer: '<div class="file-thumbnail-footer">\n' +
+                    '    <div class="file-caption-name" style="width:50%">{caption}</div>\n' +
+                    '       <div>'+
+                    '           <label class="control-label">Description</label><textarea class="form-control img-desc" placeholder="Description for image" name="image_description[]"></textarea>'+
+                    '       </div>' +
+                    '    {actions}\n' +
+                    '</div>'
+        },
+        fileActionSettings:{
+            indicatorNew: ""
+        },
+    });
+    
+    $("input[type='file']").on("filepredelete", function(jqXHR) {
+        console.log('aa');
+        var abort = true;
+        if (confirm("Are you sure you want to delete this image?")) {
+            abort = false;
+        }
+        return abort; // you can also send any data/object that you can receive on `filecustomerror` event
+     });
 
+
+//    function previewSingle(input, preview) {
+//        if (input.files && input.files[0]) {
+//            var reader = new FileReader();
+//
+//            reader.onload = function (e) {
+//                preview.attr('src', e.target.result);
+//            }
+//
+//            reader.readAsDataURL(input.files[0]);
+//        }
+//    }
+//    
+//    $(document).on('change', "form input[type='file'].single", function () {
+//        var preview = $(this).parent().next().find('img');
+////        previewSingle(this, preview);
+//    });
+//    
+    
+//    $(document).on('change', "form input[type='file'].multiple", function(evt){
+//        var files = evt.target.files; // FileList object
+//        var anyWindow = window.URL || window.webkitURL;
+//        for(var i = 0; i < files.length; i++){
+//          var objectUrl = anyWindow.createObjectURL(files[i]);
+//          console.log(objectUrl);
+//          $('div.album-preview').append("<p class='preview'><img class='preview img-rounded' src='"+objectUrl+"'></p>");
+//          // get rid of the blob
+//          window.URL.revokeObjectURL(files[i]);
+//        }
+//    });
+//    
+//    $(document).on('click', "p.preview", function(){
+//       $(this).remove(); 
+////       /$("form input[type='file'].multiple").files  
+//    });
 });

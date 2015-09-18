@@ -495,9 +495,7 @@ section .wrapper{
     margin-right: 10px;
     color: rgb(236, 107, 73);
 }
-#upload-image-tabs, #upload-album-tabs{
-    margin: 0px 100px;
-}
+
 /*
 .login .error{
     width: 100%;
