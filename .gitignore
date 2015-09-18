@@ -8,3 +8,4 @@ private.xml
 private.properties
 btl_web_app.sql
 public/upload/images/*
+public/upload/albums/*

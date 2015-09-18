@@ -2,7 +2,7 @@
 	class HomeController extends BaseController{
 		public function getIndex(){
             $data = array();
-			return View::make('frontend/index')->with('data',$data);
+            return View::make('frontend/index')->with('data',$data);
 		}
 		public function getUpload(){
 			return View::make('frontend/upload');

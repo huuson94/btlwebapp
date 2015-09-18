@@ -18,6 +18,10 @@ class BaseController extends Controller {
     public function __construct() {
         $data['categories'] = Category::all();
         View::share('categories', $data['categories']);
+        if(Session::has('current_user')){
+            $data['user_name'] = Users::find(Session::get('current_user'))->name;
+            View::share('user_name', $data['user_name']);
+        }
     }
 
 }

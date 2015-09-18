@@ -1,5 +1,15 @@
 <?php
 class UsersController extends BaseController{
+    
+    private function checkLogged(){
+        if(Session::has('current_user')){
+            return true;
+        }else{
+            Session::flash('not_logged', 'true');
+            return Redirect::to('home/index');
+        }
+    }
+
 
     public function getLogin(){
         
@@ -21,7 +31,9 @@ class UsersController extends BaseController{
     }
     
     public function getUpload(){
+        $this->checkLogged();
         return View::make('frontend/users/upload');
+        
     }
     
     public function getViewImages(){
@@ -32,7 +44,7 @@ class UsersController extends BaseController{
             $data=Input::all();
             $user=Users::where('account',$data['account'])->where('password',$data['password'])->first();
             if($user){
-                Session::put('current_user',$user->toArray());
+                Session::put('current_user',$user->id);
                 return Redirect::to('home/index')->with('user', $user);
             } else{
                 return Redirect::to('home/index');
@@ -101,7 +113,7 @@ class UsersController extends BaseController{
             $data=Input::all();
             $user=Users::where('account',$data['account'])->where('password',$data['password'])->first();
             if($user){
-                Session::put('current_user',$user->toArray());
+                Session::put('current_user',$user->id);
                 echo 'success';
             } else{
                 echo 'fail';

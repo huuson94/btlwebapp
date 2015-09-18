@@ -12,10 +12,10 @@ class ImagesController extends BaseController{
         foreach($files as $index => $file){
             if($file->isValid()) {
                 $image = new Image;
-                $name= $file->getFilename().uniqid().$file->getExtension();
-                $file->move(public_path() . $upload_folder,$name);
-                $image->user_id = Session::get('current_user')['id'];
-                $image->path='public/upload/'.$name;
+                $name= $file->getFilename().uniqid().".".$file->getClientOriginalExtension();
+                $file->move(public_path() ."/". $upload_folder,$name);
+                $image->user_id = Session::get('current_user');
+                $image->path= $upload_folder.$name;
                 $image->title = $titles[$index];
                 $image->description = $descriptions[$index];
                 $image->category_id = $categories[$index];

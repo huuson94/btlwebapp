@@ -1,11 +1,33 @@
 $(document).ready(function () {
     $("#upload-tabs").tabs();
-
+    function addSingleFileInput(input){
+        input.fileinput({
+        'showUpload':false,
+        'showRemove':false,
+         minFileCount: 0,
+        maxFileCount: 20,
+        uploadUrl: "#",
+        layoutTemplates: {
+            actions: '<div class="file-actions">\n' +
+                        '    <div class="file-footer-buttons">\n' +
+                        '        {delete}' +
+                        '    </div>\n' +
+                        '    <div class="file-upload-indicator" tabindex="-1" title="{indicatorTitle}">{indicator}</div>\n' +
+                        '    <div class="clearfix"></div>\n' +
+                        '</div>',
+            footer: '<div class="file-thumbnail-footer">\n' +
+                    '    <div class="file-caption-name" style="width:50%">{caption}</div>\n' +
+                    $("div.upload-image-form-template").html()+
+                    '    {actions}\n' +
+                    '</div>'
+        }
+    });
+    }
 //    $(document).on('click', "#upload-image-tabs form .add-image", function () {
     $('.add-image').click(function(){
-        console.log($(this));
         var thumb = $("#upload-image-tabs form input[type='submit']").closest('p');
         thumb.before("<div class='upload-image-form'>" + $("div.upload-image-form-template").html() + "</div>");
+        addSingleFileInput(thumb.prev().find("form ul li p > input[type='file'].single").first());
     });
     
     $(document).on('click', "form .delete-image", function () {
@@ -15,20 +37,7 @@ $(document).ready(function () {
         }
     });
     
-    $("form input[type='file'].single").fileinput({
-        'showUpload':false,
-        'showRemove':false,
-        uploadUrl: "#",
-        layoutTemplates: {
-            actions: '<div class="file-actions">\n' +
-                        '    <div class="file-footer-buttons">\n' +
-                        '        {delete}' +
-                        '    </div>\n' +
-                        '    <div class="file-upload-indicator" tabindex="-1" title="{indicatorTitle}">{indicator}</div>\n' +
-                        '    <div class="clearfix"></div>\n' +
-                        '</div>'
-        }
-    });
+    addSingleFileInput($("form input[type='file'].single"));
     
     $("form input[type='file'].multiple").fileinput({
         showUpload: false,
@@ -58,7 +67,6 @@ $(document).ready(function () {
     });
     
     $("input[type='file']").on("filepredelete", function(jqXHR) {
-        console.log('aa');
         var abort = true;
         if (confirm("Are you sure you want to delete this image?")) {
             abort = false;
