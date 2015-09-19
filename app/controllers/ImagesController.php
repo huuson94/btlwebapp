@@ -7,7 +7,7 @@ class ImagesController extends BaseController{
         $titles = Input::get('title');
         $descriptions = Input::get('description');
         $files = Input::file('path');
-        $upload_folder = "/upload/images/";
+        $upload_folder = "upload/images/";
         $status = 'success';
         foreach($files as $index => $file){
             if($file->isValid()) {

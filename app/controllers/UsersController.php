@@ -5,8 +5,7 @@ class UsersController extends BaseController{
         if(Session::has('current_user')){
             return true;
         }else{
-            Session::flash('not_logged', 'true');
-            return Redirect::to('home/index');
+            return false;
         }
     }
 
@@ -31,14 +30,24 @@ class UsersController extends BaseController{
     }
     
     public function getUpload(){
-        $this->checkLogged();
-        return View::make('frontend/users/upload');
+        if($this->checkLogged()){
+            return View::make('frontend/users/upload');
+        }else{
+            return Redirect::to('home/index');
+        }
         
     }
     
     public function getViewImages(){
-        return View::make('frontend/users/view-images');
+        if($this->checkLogged()){
+            $data['images']=Image::where('user_id',Session::get('current_user'));
+            $data['albums']=Album::where('user_id',Session::get('current_user'));
+            return View::make('frontend/users/view-images', $data);
+        }else{
+            return Redirect::to('home/index');
+        }
     }
+    
     public function postDoLogin(){
         if(Input::get('account') && Input::get('password')){
             $data=Input::all();
