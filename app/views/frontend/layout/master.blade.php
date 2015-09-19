@@ -70,7 +70,7 @@
 		<div class="top">
 			<div class="col-md-3 logo">
                 <h1  style='display: none;'>Photo</h1>
-                <h4 class='col-md-8'><img src="{{url('public/assets/images/logo.png')}}" alt="logo"></h4>
+                <h4 class='col-md-8'><a href="{{url('/home')}}"><img src="{{url('public/assets/images/logo.png')}}" alt="logo"/></a></h4>
                 <h4 id='link-to-home' class='col-md-4'><a href="{{url('/home')}}">HOME</a><h4>
             </div>
 			<ul class="col-md-6 search_area">
@@ -91,11 +91,11 @@
 					<li class='col-md-5'><a href="{{url('user/logout')}}">ĐĂNG XUẤT</a></li>
 				@else
 					<li class="col-md-7 login">
-						<a><p>ĐĂNG NHẬP</p></a>
+						<a><p class="btn btn-default">ĐĂNG NHẬP</p></a>
 						@yield('login')
 					</li>
 					<li class="col-md-5 signup" >
-						<a><p>ĐĂNG KÝ</p></a>
+						<a><p class="btn btn-default">ĐĂNG KÝ</p></a>
 						@yield('signup')
 					</li>
 				@endif
