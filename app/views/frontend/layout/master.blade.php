@@ -6,25 +6,21 @@
 	<link rel="shortcut icon" href="{{url('public/favicon.ico')}}">
 	
     {{ HTML::style('public/assets/css/style.css') }}
-    {{ HTML::style('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css') }}
+    {{ HTML::style('public/assets/css/bootstrap.min.css') }}
     {{ HTML::style('public/assets/css/jquery-ui.min.css') }}
     {{ HTML::style('public/assets/css/animate.css') }}
-    @yield('style-bot')
+    
     {{ HTML::script('public/assets/js/jquery-1.11.3.min.js') }}
     {{ HTML::script('public/assets/js/jquery-ui.min.js') }}
     {{ HTML::script('public/assets/js/jquery.nicescroll.js') }}
     {{ HTML::script('public/assets/js/scripts.js') }}
-    {{ HTML::script('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js') }}
+    {{ HTML::script('public/assets/css/bootstrap.min.js') }}
     {{ HTML::script('public/assets/js/masonry.pkgd.min.js') }}
-    @yield('script-bot')
-    {{ HTML::style("vendor/kartik-v/bootstrap-fileinput/css/fileinput.min.css")}}
-    {{ HTML::script("vendor/kartik-v/bootstrap-fileinput/js/plugins/canvas-to-blob.min.js")}}
-    {{ HTML::script("vendor/kartik-v/bootstrap-fileinput/js/fileinput.min.js")}}
-    {{ HTML::script("vendor/kartik-v/bootstrap-fileinput/js/fileinput_locale_<lang>.js")}}
-    
     
 </head>
 <body>
+    @yield('script-bot')
+	
     <script type="text/javascript">
 		$(document).ready(function(){
 			//Effect for Menu
@@ -33,15 +29,11 @@
 				if(stt == 0){
 					$('.menu').fadeIn();//addClass("animated fadeInDown");
 					stt=1;
-					//$('.menu').css("display","block").removeClass("fadeOutLeft");
+					$('.menu').css("display","block").removeClass("fadeOutLeft");
 					$(this).addClass("clicked").find('span').addClass("clicked_span");
 				}else{
 					$('.menu').fadeOut();//addClass("fadeOutLeft");
 					stt=0;
-					// $('.menu').removeClass("fadeInDown");
-					// setTimeout(function(){
-					// 	$('.menu').css("display","none");
-					// },600);
 					$(this).removeClass("clicked").find('span').removeClass("clicked_span");
 				}
 			})
@@ -71,7 +63,7 @@
 			<div class="col-md-3 logo">
                 <h1  style='display: none;'>Photo</h1>
                 <h4 class='col-md-8'><a href="{{url('/home')}}"><img src="{{url('public/assets/images/logo.png')}}" alt="logo"/></a></h4>
-                <h4 id='link-to-home' class='col-md-4'><a href="{{url('/home')}}">HOME</a><h4>
+                <h4 id='link-to-home' class='col-md-4'><a href="{{url('/home')}}">HOME</a></h4>
             </div>
 			<ul class="col-md-6 search_area">
 				
@@ -86,7 +78,7 @@
 			<ul class="col-md-3 login_singin_area">
 				@if(Session::has('current_user'))
 					<li class="col-md-7 login">
-						<a href=""><p>XIN CHÀO <span class="user_name">{{ $user_name }}</span></p></a>
+						<a href=""><p>XIN CHÀO <span class="user_name">{{ Session::get('current_user')['name'] }}</span></p></a>
 					</li>
 					<li class='col-md-5'><a href="{{url('user/logout')}}">ĐĂNG XUẤT</a></li>
 				@else
@@ -116,12 +108,18 @@
                     <li><a href="{{Asset('category/view/'.$category->id)}}">{{$category->title}}</a></li>
                     @endforeach
                 </ul>
+                <ul class="team_contact">
+                    <li><a href="">Giới thiệu</a></li>
+                    <li><a href="">Chính Sách Riêng Tư</a></li>
+                    <li><a href="">Hỗ Trợ</a></li>
+                    <li><a href="">Liên Hệ</a></li>
+                </ul>
             </div>
         </div>
         @if(Session::has('current_user'))
         <div class='images-manage-buttons col-md-4 '>
-            <p class="col-md-6 pull-right"><a  class="btn btn-primary upload_button" href="{{url('/user/upload')}}">Đăng ảnh</a></p>
-            <p class="col-md-3 pull-right"><a class="btn btn-primary mypic_button" href="{{url('/user/view-images')}}">Ảnh của tôi</a></p>
+            <p class="col-md-6 pull-right"><a  class="btn btn-default upload_button" href="{{url('/user/upload')}}">Đăng ảnh</a></p>
+            <p class="col-md-3 pull-right"><a class="btn btn-default mypic_button" href="{{url('/user/view-images')}}">Ảnh của tôi</a></p>
         </div>
         @endif
     </nav>
@@ -129,18 +127,9 @@
         <div class="wrapper">
             @yield('content')
         </div>
-        <aside>
-
-        </aside>
     </section>
-    
-    <footer>
-        <ul class="team_contact">
-            <li><a href="">Giới thiệu</a></li>
-            <li><a href="">Chính Sách Riêng Tư</a></li>
-            <li><a href="">Hỗ Trợ</a></li>
-            <li><a href="">Liên Hệ</a></li>
-        </ul>
-    </footer>
+    <aside>
+
+    </aside>
 </body>
 </html>
