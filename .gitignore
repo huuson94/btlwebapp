@@ -9,4 +9,4 @@ private.properties
 btl_web_app.sql
 public/upload/images/*
 public/upload/albums/*
-config/database.php
+app/config/database.php
