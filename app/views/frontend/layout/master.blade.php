@@ -6,17 +6,22 @@
 	<link rel="shortcut icon" href="{{url('public/favicon.ico')}}">
 	
     {{ HTML::style('public/assets/css/style.css') }}
-    {{ HTML::style('public/assets/css/bootstrap.min.css') }}
+    {{ HTML::style('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css') }}
     {{ HTML::style('public/assets/css/jquery-ui.min.css') }}
     {{ HTML::style('public/assets/css/animate.css') }}
-    
+    @yield('style-bot')
     {{ HTML::script('public/assets/js/jquery-1.11.3.min.js') }}
     {{ HTML::script('public/assets/js/jquery-ui.min.js') }}
     {{ HTML::script('public/assets/js/jquery.nicescroll.js') }}
     {{ HTML::script('public/assets/js/scripts.js') }}
     {{ HTML::script('public/assets/css/bootstrap.min.js') }}
     {{ HTML::script('public/assets/js/masonry.pkgd.min.js') }}
-    
+    @yield('script-bot')
+    {{ HTML::style("vendor/kartik-v/bootstrap-fileinput/css/fileinput.min.css")}}
+    {{ HTML::script("vendor/kartik-v/bootstrap-fileinput/js/plugins/canvas-to-blob.min.js")}}
+    {{ HTML::script("vendor/kartik-v/bootstrap-fileinput/js/fileinput.min.js")}}
+    {{ HTML::script("vendor/kartik-v/bootstrap-fileinput/js/fileinput_locale_<lang>.js")}}
+
 </head>
 <body>
     @yield('script-bot')
@@ -78,7 +83,7 @@
 			<ul class="col-md-3 login_singin_area">
 				@if(Session::has('current_user'))
 					<li class="col-md-7 login">
-						<a href=""><p>XIN CHÀO <span class="user_name">{{ Session::get('current_user')['name'] }}</span></p></a>
+						<a href=""><p>XIN CHÀO <span class="user_name">{{ $user_name }}</span></p></a>
 					</li>
 					<li class='col-md-5'><a href="{{url('user/logout')}}">ĐĂNG XUẤT</a></li>
 				@else
@@ -108,12 +113,7 @@
                     <li><a href="{{Asset('category/view/'.$category->id)}}">{{$category->title}}</a></li>
                     @endforeach
                 </ul>
-                <ul class="team_contact">
-                    <li><a href="">Giới thiệu</a></li>
-                    <li><a href="">Chính Sách Riêng Tư</a></li>
-                    <li><a href="">Hỗ Trợ</a></li>
-                    <li><a href="">Liên Hệ</a></li>
-                </ul>
+                
             </div>
         </div>
         @if(Session::has('current_user'))
@@ -127,9 +127,21 @@
         <div class="wrapper">
             @yield('content')
         </div>
-    </section>
-    <aside>
+        <aside>
 
-    </aside>
+        </aside>
+    </section>
+
+    <footer>
+        <ul class="team_contact">
+            <li><a href="">Giới thiệu</a></li>
+            <li><a href="">Chính Sách Riêng Tư</a></li>
+            <li><a href="">Hỗ Trợ</a></li>
+            <li><a href="">Liên Hệ</a></li>
+        </ul>
+    </footer>
+
+    </section>
+   
 </body>
 </html>
