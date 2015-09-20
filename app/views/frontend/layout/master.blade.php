@@ -131,7 +131,7 @@
 
         </aside>
     </section>
-
+    <div class="clearfix"></div>
     <footer>
         <ul class="team_contact">
             <li><a href="">Giới thiệu</a></li>
