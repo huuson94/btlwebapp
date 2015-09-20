@@ -51,7 +51,7 @@ class UsersController extends BaseController{
     public function postDoLogin(){
         if(Input::get('account') && Input::get('password')){
             $data=Input::all();
-            $user=Users::where('account',$data['account'])->where('password',$data['password'])->first();
+            $user=User::where('account',$data['account'])->where('password',$data['password'])->first();
             if($user){
                 Session::put('current_user',$user->id);
                 return Redirect::to('home/index')->with('user', $user);
@@ -101,11 +101,11 @@ class UsersController extends BaseController{
 				// $messages
 				echo json_encode($messages);
 			}else{
-				$user=Users::where('account',$data['account'])->first();
+				$user=User::where('account',$data['account'])->first();
 				if($user){
 					return Redirect::to('home/index');
 				} else{
-					$new= new Users;
+					$new= new User;
 					$new->name=$data['name'];
 					$new->account=$data['account'];
 					$new->password=$data['password'];
@@ -120,7 +120,7 @@ class UsersController extends BaseController{
     public function postAjaxLogin(){
         if(Input::get('account') && Input::get('password')){
             $data=Input::all();
-            $user=Users::where('account',$data['account'])->where('password',$data['password'])->first();
+            $user=User::where('account',$data['account'])->where('password',$data['password'])->first();
             if($user){
                 Session::put('current_user',$user->id);
                 echo 'success';
@@ -161,11 +161,11 @@ class UsersController extends BaseController{
 				// $messages
 				echo 'not valid info';
 			}else{
-				$user=Users::where('account',$data['account'])->first();
+				$user=User::where('account',$data['account'])->first();
 				if($user){
 					echo 'fail';
 				} else{
-					$new= new Users;
+					$new= new User;
 					$new->name=$data['name'];
 					$new->account=$data['account'];
 					$new->password=$data['password'];
