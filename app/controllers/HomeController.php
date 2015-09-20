@@ -1,7 +1,10 @@
 <?php
 	class HomeController extends BaseController{
 		public function getIndex(){
-            $data = array();
+            $data['images'] = Image::where('album_id', '=', 0)->get();
+            foreach($data['images'] as $index => $image){
+                $data['user_name'][$image->id] = $image->user()->get()->first()->name;
+            }
             return View::make('frontend/index')->with('data',$data);
 		}
 		public function getUpload(){

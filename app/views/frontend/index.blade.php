@@ -147,71 +147,23 @@
 @section('content')
 	<div class="container-div">
 		<ul>
-			<li class="item-image">
+			@foreach($data['images'] as $index => $image)
+            <li class="item-image">
 				<article>
-					<img src="{{url('public/upload/images/Chrisfr06_Blue galaxy_ak1nRw.jpg')}}" alt="">
+                    <a href='{{Asset('image/view/'.$image->id)}}'><img src="{{url('public/'.$image->path)}}" alt="{{$image->title}}"><a>
 					<div class="photo_content">
-						<a href="/home/detail/1"><p class="title">Vietnamese Girl Washing Car</p></a>
-						<p class="user_by">Bao Huy Bao Huy</p>
+						<p class="title"></p>
+						<p class="user_by">{{$data['user_name'][$image->id]}}</p>
 						<div class="view">
-							<span class="like"><i>d</i> <span>16</span></span>
-							<span><i>„</i> 8000</span>
+							<span class="like"><i>d</i> <span>{{$image->count_like}}</span></span>
+							<span><i class='glyphicon glyphicon-share'></i>{{$image->count_share}}</span>
 						</div>
 					</div>
 				</article>
 			</li>
-			<li class="item-image">
-				<article>
-					<img src="{{url('public/upload/images/Fe Ilya_Voices_Z0RhQg.jpg')}}" alt="">
-					<div class="photo_content">
-						<p class="title">Vietnamese Girl Washing Car</p>
-						<p class="user_by">Bao Huy Bao Huy</p>
-						<div class="view">
-							<span class="like"><i>d</i> <span>16</span></span>
-							<span><i>„</i> 8000</span>
-						</div>
-					</div>
-				</article>
-			</li>
-			<li class="item-image">
-				<article>
-					<img src="{{url('public/upload/images/photosteve101_Music Is My Life_YkxhQw.jpg')}}" alt="">
-					<div class="photo_content">
-						<p class="title">Vietnamese Girl Washing Car</p>
-						<p class="user_by">Bao Huy Bao Huy</p>
-						<div class="view">
-							<span class="like"><i>d</i> <span>16</span></span>
-							<span><i>„</i> 8000</span>
-						</div>
-					</div>
-				</article>
-			</li>
-			<li class="item-image">
-				<article>
-					<img src="{{url('public/upload/images/photosteve101_Music Is My Life_YkxhQw.jpg')}}" alt="">
-					<div class="photo_content">
-						<p class="title">Vietnamese Girl Washing Car</p>
-						<p class="user_by">Bao Huy Bao Huy</p>
-						<div class="view">
-							<span class="like"><i>d</i> <span>16</span></span>
-							<span><i>„</i> 8000</span>
-						</div>
-					</div>
-				</article>
-			</li>
-			<li class="item-image">
-				<article>
-					<img src="{{url('public/upload/images/Fe Ilya_Voices_Z0RhQg.jpg')}}" alt="">
-					<div class="photo_content">
-						<p class="title">Vietnamese Girl Washing Car</p>
-						<p class="user_by">Bao Huy Bao Huy</p>
-						<div class="view">
-							<span class="like"><i>d</i> <span>16</span></span>
-							<span><i>„</i> 8000</span>
-						</div>
-					</div>
-				</article>
-			</li>
+            @endforeach
+			
+			
 		</ul>
 	</div>
 @stop
