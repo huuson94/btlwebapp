@@ -88,11 +88,11 @@
 					<li class='col-md-5'><a href="{{url('user/logout')}}">ĐĂNG XUẤT</a></li>
 				@else
 					<li class="col-md-7 login">
-						<a><p class="btn btn-default">ĐĂNG NHẬP</p></a>
+						<a><p>ĐĂNG NHẬP</p></a>
 						@yield('login')
 					</li>
 					<li class="col-md-5 signup" >
-						<a><p class="btn btn-default">ĐĂNG KÝ</p></a>
+						<a><p>ĐĂNG KÝ</p></a>
 						@yield('signup')
 					</li>
 				@endif
@@ -101,27 +101,29 @@
 	</header>
     <div class="clearfix"></div>
     <nav>
-        <div class="categories col-md-8">
-            <p class="menu_button"><span></span>Danh mục</p>
-            <div class="menu">
-                <ul>
-                    <li><a href="">Ảnh hot nhất</a></li>
-                    <li><a href="">Mới Nhất</a></li>
-                </ul>
-                <ul>
-                    @foreach($categories as $index => $category)
-                    <li><a href="{{Asset('category/view/'.$category->id)}}">{{$category->title}}</a></li>
-                    @endforeach
-                </ul>
-                
-            </div>
+        <div class="navi">
+        	<div class="categories col-md-8">
+	            <p class="menu_button"><span></span>Danh mục</p>
+	            <div class="menu">
+	                <ul>
+	                    <li><a href="">Ảnh hot nhất</a></li>
+	                    <li><a href="">Mới Nhất</a></li>
+	                </ul>
+	                <ul>
+	                    @foreach($categories as $index => $category)
+	                    <li><a href="{{Asset('category/view/'.$category->id)}}">{{$category->title}}</a></li>
+	                    @endforeach
+	                </ul>
+	                
+	            </div>
+	        </div>
+	        @if(Session::has('current_user'))
+	        <div class='images-manage-buttons col-md-4 '>
+	            <p class="col-md-6 pull-right"><a  class="btn btn-danger upload_button" href="{{url('/user/upload')}}">Đăng ảnh</a></p>
+	            <p class="col-md-3 pull-right"><a class="btn btn-danger mypic_button" href="{{url('/user/view-images')}}">Ảnh của tôi</a></p>
+	        </div>
+        	@endif
         </div>
-        @if(Session::has('current_user'))
-        <div class='images-manage-buttons col-md-4 '>
-            <p class="col-md-6 pull-right"><a  class="btn btn-default upload_button" href="{{url('/user/upload')}}">Đăng ảnh</a></p>
-            <p class="col-md-3 pull-right"><a class="btn btn-default mypic_button" href="{{url('/user/view-images')}}">Ảnh của tôi</a></p>
-        </div>
-        @endif
     </nav>
     <section>
         <div class="wrapper">
