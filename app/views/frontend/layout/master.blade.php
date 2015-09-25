@@ -6,7 +6,7 @@
 	<link rel="shortcut icon" href="{{url('public/favicon.ico')}}">
 	
     {{ HTML::style('public/assets/css/style.css') }}
-    {{ HTML::style('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css') }}
+    {{ HTML::style('public/assets/css/bootstrap.min.css') }}
     {{ HTML::style('public/assets/css/jquery-ui.min.css') }}
     {{ HTML::style('public/assets/css/animate.css') }}
     @yield('style-bot')

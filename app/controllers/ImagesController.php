@@ -50,15 +50,14 @@ class ImagesController extends BaseController{
         $files = Input::file('path');
         $captions = Input::get('caption');
         $file = $files[$index];
-        $upload_folder = "upload/images/". uniqid(date('ymdHisu'));
         $name = $file->getFilename().uniqid().".".$file->getClientOriginalExtension();
-        
+        $upload_folder = "upload/images/". uniqid(date('ymdHisu'));
         $image = new Image;
-        $image->path = $upload_folder.$name;
+        $image->path = $upload_folder."/".$name;
         $image->album_id = $album_id;
         $image->caption = $captions[$index];
         $image->count_like = $image->count_share = $image->count_unlike = 0;
-        $upload_folder = "upload/images/". uniqid(date('ymdHisu'));
+        
         $file->move(public_path() ."/". $upload_folder,$name);
         if($image->save() == false){
             return false;
@@ -68,7 +67,6 @@ class ImagesController extends BaseController{
     }
     
     public function getView($id){
-        $image = Image::where('id', $id)->first();
-        return View::make('frontend/images/view')->with('image',$image);
+        
     }
 }

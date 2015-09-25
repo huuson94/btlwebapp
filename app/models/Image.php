@@ -3,7 +3,8 @@
 class Image extends Eloquent{
     protected $table = 'images';
     
-    public function user(){
-        return $this->belongsTo('User','user_id');
+    public function album(){
+        return $this->belongsTo('Album', 'album_id');
     }
+    
 }

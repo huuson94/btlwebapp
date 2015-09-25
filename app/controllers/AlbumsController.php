@@ -21,7 +21,7 @@ class AlbumsController extends BaseController{
                 $image = new Image;
                 $name= $file->getFilename().uniqid().".".$file->getClientOriginalExtension();
                 $file->move(public_path() ."/". $upload_folder,$name);
-                $image->path= $upload_folder.$name;
+                $image->path= $upload_folder."/".$name;
                 $image->caption = $captions[$index];
                 $image->album_id = $album->id;
                 $image->count_share = 0;
@@ -39,6 +39,7 @@ class AlbumsController extends BaseController{
     }
     
     public function getView($id){
-        
+        $album = Album::where('id', $id)->first();
+        return View::make('frontend/album/view')->with('album',$album);
     }
 }

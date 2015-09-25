@@ -5,4 +5,8 @@ class User extends Eloquent {
     public function image(){
         return $this->hasMany('Image','user_id');
     }
+    
+    public function album(){
+        return $this->hasMany('Album','user_id');
+    }
 }

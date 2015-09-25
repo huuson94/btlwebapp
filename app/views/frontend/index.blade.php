@@ -147,16 +147,16 @@
 @section('content')
 	<div class="container-div">
 		<ul>
-			@foreach($data['images'] as $index => $image)
+			@foreach($data['albums'] as $index => $album)
             <li class="item-image">
 				<article>
-                    <a href='{{Asset('image/view/'.$image->id)}}'><img src="{{url('public/'.$image->path)}}" alt="{{$image->title}}"><a>
+                    <a href='{{Asset('album/view/'.$album->id)}}'><img src="{{url('public/'.$album->image->first()->path)}}" alt="{{$album->title}}"><a>
 					<div class="photo_content">
 						<p class="title"></p>
-						<p class="user_by">{{$data['user_name'][$image->id]}}</p>
+						<p class="user_by">{{$album->user->name}}</p>
 						<div class="view">
-							<span class="like"><i>d</i> <span>{{$image->count_like}}</span></span>
-							<span><i class='glyphicon glyphicon-share'></i>{{$image->count_share}}</span>
+							<span class="like"><i>d</i> <span>{{$album->sum_like}}</span></span>
+							<span><i class='glyphicon glyphicon-share'></i>{{$album->sum_share}}</span>
 						</div>
 					</div>
 				</article>
