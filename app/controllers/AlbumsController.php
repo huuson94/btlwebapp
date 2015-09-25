@@ -14,18 +14,15 @@ class AlbumsController extends BaseController{
         $album->save();
         $upload_folder = "upload/albums/". uniqid(date('ymdHisu'));
         $files = Input::file('path');
-        $images_description = Input::get('image_description');
+        $captions = Input::get('caption');
         $status = 'success';
         foreach($files as $index => $file){
             if($file->isValid()) {
                 $image = new Image;
                 $name= $file->getFilename().uniqid().".".$file->getClientOriginalExtension();
                 $file->move(public_path() ."/". $upload_folder,$name);
-                $image->user_id = Session::get('current_user');
                 $image->path= $upload_folder.$name;
-                $image->title = '';
-                $image->description = $images_description[$index];
-                $image->category_id = $album->category_id;
+                $image->caption = $captions[$index];
                 $image->album_id = $album->id;
                 $image->count_share = 0;
                 $image->count_like = 0;
