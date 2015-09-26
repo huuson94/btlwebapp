@@ -147,7 +147,8 @@
 				<article>
                     <a href='{{Asset('album/view/'.$album->id)}}'><img src="{{url('public/'.$album->image->first()->path)}}" alt="{{$album->title}}"><a>
 					<div class="photo_content">
-						<p class="title"></p>
+                        <p class="sum-images">{{$album->image->count()}}</p>
+						<p class="title">{{$album->title}}</p>
 						<p class="user_by">{{$album->user->name}}</p>
 						<div class="view">
 							<span class="like"><i>d</i> <span>{{$album->sum_like}}</span></span>
