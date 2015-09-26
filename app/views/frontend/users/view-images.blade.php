@@ -3,6 +3,7 @@
     <div class="container-div">
 		<ul>
 			@foreach($data['albums'] as $index => $album)
+            @if($album->image->count() > 0)
             <li class="item-image">
 				<article>
                     <a href='{{Asset('album/view/'.$album->id)}}'><img src="{{url('public/'.$album->image->first()->path)}}" alt="{{$album->title}}"></a>
@@ -17,6 +18,7 @@
 					</div>
 				</article>
 			</li>
+            @endif
             @endforeach
 		</ul>
 	</div>
