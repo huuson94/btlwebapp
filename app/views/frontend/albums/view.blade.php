@@ -24,11 +24,26 @@
                     <li class="detail_image_info_count_share"><span><i class='glyphicon glyphicon-share'></i>{{$album->count_share}}</span></li>
                 </ul>
                 <div class="photo_content">
-                    <a href='{{Asset('image/view/'.$album->id)}}'>
-                        <img class="img-rounded image-view" src="{{url('public/'.$album->path)}}" alt="{{$album->title}}">
+                    <a href='{{Asset('image/view/'.$album->image->first()->id)}}'>
+                        <img class="img-rounded image-view" src="{{url('public/'.$album->image->first()->path)}}" alt="{{$album->title}}">
                     </a>
                 </div>
             </article>
+            <!--Cái phần này c làm thành 1 cái slide ngang được thì tốt quá-->
+            <p>Same album images</p> 
+            <div class="same-album-images container-div">
+                <ul>
+                    @foreach($album->image as $index => $image)
+                    @if($index != 0)
+                    <li class="item-image">
+                        <a href='{{Asset('image/view/'.$image->id)}}'>
+                            <img class="img-rounded image-view" src="{{url('public/'.$image->path)}}" alt="{{$image->title}}">
+                        </a>
+                    </li>
+                    @endif
+                    @endforeach
+                </ul>
+            </div>
 		</div>
 		<div class="image_right col-md-4">
 			<ul>
