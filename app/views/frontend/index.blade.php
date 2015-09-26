@@ -136,30 +136,25 @@
 		</div>
 	</div>
 @stop
-@section('category')
-	<span class="category">Phong cảnh</span>
-@stop
 @section('content')
 	<div class="container-div">
 		<ul>
 			@foreach($data['albums'] as $index => $album)
             <li class="item-image">
 				<article>
-                    <a href='{{Asset('album/view/'.$album->id)}}'><img src="{{url('public/'.$album->image->first()->path)}}" alt="{{$album->title}}"><a>
+                    <a href='{{Asset('album/view/'.$album->id)}}'><img src="{{url('public/'.$album->image->first()->path)}}" alt="{{$album->title}}"></a>
 					<div class="photo_content">
-                        <p class="sum-images">{{$album->image->count()}}</p>
-						<p class="title">{{$album->title}}</p>
+                        <p class="sum-images">Số ảnh: {{$album->image->count()}}</p>
+						<p class="title">Title: {{$album->title}}</p>
 						<p class="user_by">{{$album->user->name}}</p>
 						<div class="view">
-							<span class="like"><i>d</i> <span>{{$album->sum_like}}</span></span>
+							<span class="like"><i class="glyphicon glyphicon-heart"></i> <span>{{$album->sum_like}}</span></span>
 							<span><i class='glyphicon glyphicon-share'></i>{{$album->sum_share}}</span>
 						</div>
 					</div>
 				</article>
 			</li>
             @endforeach
-			
-			
 		</ul>
 	</div>
 @stop

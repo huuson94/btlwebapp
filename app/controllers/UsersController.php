@@ -40,9 +40,8 @@ class UsersController extends BaseController{
     
     public function getViewImages(){
         if($this->checkLogged()){
-            $data['images']=Image::where('user_id',Session::get('current_user'));
-            $data['albums']=Album::where('user_id',Session::get('current_user'));
-            return View::make('frontend/users/view-images', $data);
+            $data['albums']=Album::where('user_id',Session::get('current_user'))->get();
+            return View::make('frontend/users/view-images')->with('data',$data);
         }else{
             return Redirect::to('home/index');
         }

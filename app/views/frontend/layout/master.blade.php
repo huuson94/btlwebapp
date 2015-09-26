@@ -141,8 +141,5 @@
             <li><a href="">Liên Hệ</a></li>
         </ul>
     </footer>
-
-    </section>
-   
 </body>
 </html>

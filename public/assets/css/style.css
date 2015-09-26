@@ -436,7 +436,11 @@ section{
 }
 
 section .wrapper{
-    padding: 0 7% 0 7%;
+    padding: 0 7% 2% 7%;
+}
+
+.sum-images{
+        
 }
 /*
 .width_70per{
@@ -463,9 +467,9 @@ section .wrapper{
 .container-div ul .item-image {
     border-radius: 10px;
     display: block;
-    width: 32%;     // chia layout ra làm 3 cột - mỗi cột chiếm 32% của container-div 
+    width: 23%;     // chia layout ra làm 3 cột - mỗi cột chiếm 32% của container-div 
     padding: 8px;
-    margin: 7px 5px;
+    margin: 15px 10px;
 }
 .container-div ul .item-image img{
     display: block;
