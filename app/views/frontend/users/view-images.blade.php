@@ -12,8 +12,8 @@
 						<p class="title">Title: {{$album->title}}</p>
 						<p class="user_by">{{$album->user->name}}</p>
 						<div class="view">
-							<span class="like"><i class="glyphicon glyphicon-heart"></i> <span>{{$album->sum_like}}</span></span>
-							<span><i class='glyphicon glyphicon-share'></i>{{$album->sum_share}}</span>
+							<span class="like"><i class="glyphicon glyphicon-heart"></i> <span>{{$album->image->sum('count_like')}}</span></span>
+							<span><i class='glyphicon glyphicon-share'></i>{{$album->image->sum('count_share')}}</span>
 						</div>
 					</div>
 				</article>

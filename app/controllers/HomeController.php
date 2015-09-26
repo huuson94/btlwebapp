@@ -2,14 +2,6 @@
 	class HomeController extends BaseController{
 		public function getIndex(){
             $data['albums'] = Album::all();
-            foreach($data['albums'] as $index => $album){
-                if($album->image->count() >0){
-                    $album->setAttribute('sum_like',$album->image->sum('count_like'));
-                    $album->setAttribute('sum_share',$album->image->sum('count_share'));
-                }else{
-                    $data['albums']->forget($index);
-                }
-            }
             return View::make('frontend/index')->with('data',$data);
 		}
 		public function getUpload(){
