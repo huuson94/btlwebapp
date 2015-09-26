@@ -57,7 +57,7 @@
 			<ul>
 				<li>
 					<p>ĐĂNG BỞI</p>
-					<a href="#" class="user_name">{{$user_name}}</a>
+					<a href="#" class="user_name">{{$album->user->name}}</a>
 				</li>
 				<li>
 					<p>GIỚI THIỆU</p>
