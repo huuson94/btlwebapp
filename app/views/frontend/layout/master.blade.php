@@ -14,18 +14,17 @@
     {{ HTML::script('public/assets/js/jquery-ui.min.js') }}
     {{ HTML::script('public/assets/js/jquery.nicescroll.js') }}
     {{ HTML::script('public/assets/js/scripts.js') }}
-    {{ HTML::script('public/assets/css/bootstrap.min.js') }}
+    {{ HTML::script('public/assets/js/bootstrap.min.js') }}
+    {{ HTML::script('public/assets/js/imagesloaded.js') }}
     {{ HTML::script('public/assets/js/masonry.pkgd.min.js') }}
     @yield('script-bot')
     {{ HTML::style("vendor/kartik-v/bootstrap-fileinput/css/fileinput.min.css")}}
     {{ HTML::script("vendor/kartik-v/bootstrap-fileinput/js/plugins/canvas-to-blob.min.js")}}
     {{ HTML::script("vendor/kartik-v/bootstrap-fileinput/js/fileinput.min.js")}}
-    {{ HTML::script("vendor/kartik-v/bootstrap-fileinput/js/fileinput_locale_<lang>.js")}}
+    {{ HTML::script("vendor/kartik-v/bootstrap-fileinput/js/fileinput_locale_LANG.js")}}
 
 </head>
 <body>
-    @yield('script-bot')
-	
     <script type="text/javascript">
 		$(document).ready(function(){
 			//Effect for Menu

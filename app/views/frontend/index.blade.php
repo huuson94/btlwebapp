@@ -3,11 +3,12 @@
 	<script>
 		$(document).ready(function() {
 			var $container = $('.container-div');
-            $container.masonry({
-                itemSelector: '.item-image',
-                columWidth:200
-            });
-           
+            $container.imagesLoaded( function() {
+                $container.masonry({
+                    itemSelector: '.item-image',
+                    columWidth:200
+                });
+           });
 //			//count like
 //			$('.like').click(function(){
 //				var x=$(this).find('span').text();
