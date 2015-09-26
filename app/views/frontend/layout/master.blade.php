@@ -60,7 +60,9 @@
 //						$('.categories').fadeIn(300);
 //				}
 			});
-		})
+            
+            
+		});
 	</script>
     <header class='col-md-12'>
 		<div class="top">
@@ -90,8 +92,8 @@
 						<a><p>ĐĂNG NHẬP</p></a>
 						@yield('login')
 					</li>
-					<li class="col-md-5 signup" >
-						<a><p>ĐĂNG KÝ</p></a>
+					<li class="col-md-5" >
+						<a href="{{Asset('signup')}}"><p>ĐĂNG KÝ</p></a>
 						@yield('signup')
 					</li>
 				@endif

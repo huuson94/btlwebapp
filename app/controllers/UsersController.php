@@ -68,7 +68,7 @@ class UsersController extends BaseController{
         return View::make('frontend/users/signup');
     }
     
-    public function postDoSignup(){
+    public function postSignup(){
 			$data=Input::all();
 			$validator = Validator::make(
 				array(
@@ -82,11 +82,11 @@ class UsersController extends BaseController{
                     'is_admin' => 0
 					),
 				array(
-					'name' => 'required|min:5',
-					'account' => 'required|min:5',
-					'password' => 'required|min:5',
+					'name' => 'required|min:6',
+					'account' => 'required|min:6',
+					'password' => 'required|min:6',
                     'password_confirm' => 'same:password',
-					'email' => 'email|required|min:5',
+					'email' => 'email|required',
 					'phone' => 'numeric|required',
 					'address' => 'required',
 					)
@@ -98,10 +98,12 @@ class UsersController extends BaseController{
 			if($validator->fails()){
 				$messages = $validator->messages();
 				// $messages
-				echo json_encode($messages);
+				Session::flash('signup_status', false);
+                return Redirect::to('user/signup');
 			}else{
 				$user=User::where('account',$data['account'])->first();
 				if($user){
+                    Session::flash('signup_status', false);
 					return Redirect::to('home/index');
 				} else{
 					$new= new User;
@@ -111,7 +113,11 @@ class UsersController extends BaseController{
 					$new->email=$data['email'];
 					$new->phone=$data['phone'];
 					$new->address=$data['address'];
-                    $new->save();
+                    $status = $new->save();
+                    Session::flash('signup_status', $status);
+                    if($status == true){
+                        Session::set("current_user", $new->id);
+                    }
 					return Redirect::to('home/index')->with('user',$new);
 				}
 			}
