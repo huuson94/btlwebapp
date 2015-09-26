@@ -40,6 +40,6 @@ class AlbumsController extends BaseController{
     
     public function getView($id){
         $album = Album::where('id', $id)->first();
-        return View::make('frontend/album/view')->with('album',$album);
+        return View::make('frontend/albums/view')->with('album',$album);
     }
 }
