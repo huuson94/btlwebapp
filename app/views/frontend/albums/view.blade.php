@@ -27,6 +27,10 @@
                     <a href='{{Asset('image/view/'.$album->image->first()->id)}}'>
                         <img class="img-rounded image-view" src="{{url('public/'.$album->image->first()->path)}}" alt="{{$album->title}}">
                     </a>
+                    <p>
+                        <label>caption</label>
+                        <span>{{$album->image->first()->caption}}</span>
+                    </p>
                 </div>
             </article>
             <!--Cái phần này c làm thành 1 cái slide ngang được thì tốt quá-->
@@ -39,6 +43,10 @@
                         <a href='{{Asset('image/view/'.$image->id)}}'>
                             <img class="img-rounded image-view" src="{{url('public/'.$image->path)}}" alt="{{$image->title}}">
                         </a>
+                        <p>
+                            <label>caption</label>
+                            <span>{{$image->caption}}</span>
+                        </p>
                     </li>
                     @endif
                     @endforeach
