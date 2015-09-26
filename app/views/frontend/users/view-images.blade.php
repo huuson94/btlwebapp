@@ -2,19 +2,22 @@
 @section('content')
     <div class="container-div">
 		<ul>
-			<li class="item-image">
+			@foreach($data['albums'] as $index => $album)
+            <li class="item-image">
 				<article>
-					<img src="{{url($images)}}" alt="">
+                    <a href='{{Asset('album/view/'.$album->id)}}'><img src="{{url('public/'.$album->image->first()->path)}}" alt="{{$album->title}}"></a>
 					<div class="photo_content">
-						<a href="/home/detail/1"><p class="title">Vietnamese Girl Washing Car</p></a>
-						<p class="user_by">Bao Huy Bao Huy</p>
+                        <p class="sum-images">Số ảnh: {{$album->image->count()}}</p>
+						<p class="title">Title: {{$album->title}}</p>
+						<p class="user_by">{{$album->user->name}}</p>
 						<div class="view">
-							<span class="like"><i>d</i> <span>16</span></span>
-							<span><i>„</i> 8000</span>
+							<span class="like"><i class="glyphicon glyphicon-heart"></i> <span>{{$album->sum_like}}</span></span>
+							<span><i class='glyphicon glyphicon-share'></i>{{$album->sum_share}}</span>
 						</div>
 					</div>
 				</article>
 			</li>
-        </ul>
-    </div>
+            @endforeach
+		</ul>
+	</div>
 @stop

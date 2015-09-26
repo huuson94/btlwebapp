@@ -10,5 +10,9 @@ class Album extends Eloquent{
     public function image(){
         return $this->hasMany('Image', 'album_id');
     }
+
+    public function category(){
+    	return $this->belongsTo('Category','category_id');
+    }
     
 }
