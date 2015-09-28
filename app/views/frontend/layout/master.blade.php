@@ -60,8 +60,40 @@
 //						$('.categories').fadeIn(300);
 //				}
 			});
-            
-            
+			//Effect for Login
+			$('.login p').click(function(){
+				$('.pop-up').removeClass("zoomOut").addClass("animated bounceInLeft");
+				$('.pop-up').css("display","block");
+			});
+			$('.pop-up span').click(function(){
+				$('.pop-up').addClass("zoomOut").removeClass("bounceInLeft");
+				setTimeout(function(){
+					$('.pop-up').css("display","none");
+				},600);
+			});		
+/*****************************LOGIN FORM**************************/
+        $('#login-form').submit(function(e) {
+            e.preventDefault();
+            var obj = $(this);
+			obj.next().html('');
+			$.ajax({
+				url: $(this).attr('action'),
+				data: new FormData($('#login-form')[0]),
+				type: 'POST',
+				contentType: false,
+				processData: false,
+				cache: false,
+			}).done(function(data){
+				if(data=='success'){
+					obj.next().html('<p>* Đăng nhập thành công</p>');
+					window.location.reload();
+				}else{
+					obj.next().html('<p>* Sai tài khoản hoặc mật khẩu</p>');
+				}
+			}).fail(function(){
+				alert('* Sai tài khoản hoặc mật khẩu');
+			});
+		});        
 		});
 	</script>
     <header class='col-md-12'>
@@ -83,7 +115,7 @@
 			</ul>
 			<ul class="col-md-3 login_singin_area">
 				@if(Session::has('current_user'))
-					<li class="col-md-7 login">
+					<li class="col-md-7">
 						<a href=""><p>XIN CHÀO <span class="user_name">{{ $user_name }}</span></p></a>
 					</li>
 					<li class='col-md-5'><a href="{{url('user/logout')}}">ĐĂNG XUẤT</a></li>
@@ -98,6 +130,17 @@
 					</li>
 				@endif
 			</ul>
+		</div>
+		<div class="pop-up">
+			<div class="wrapper">
+	            <form action="{{url('user/ajax-login')}}" id="login-form" method="POST">
+					<input type="text" name="account" placeholder="Nhập tài khoản">
+					<input type="password" name="password" placeholder="Nhập mật khẩu">
+	                <button class="submit">Đăng nhập</button>
+				</form>
+				<p class="error" style="text-align: center"></p>
+				<span title="Click to close">x</span>
+			</div>
 		</div>
 	</header>
     <div class="clearfix"></div>

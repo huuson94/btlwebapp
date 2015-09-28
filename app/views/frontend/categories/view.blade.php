@@ -1,7 +1,4 @@
 @extends('frontend/layout/master')
-@section('title')
-	Chuyên mục {{ $data['category']->title }}
-@stop
 @section('content')
 <h1>Chuyên mục {{ $data['category']->title }}</h1>
 	<div class="container-div">

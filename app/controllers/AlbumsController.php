@@ -14,6 +14,7 @@ class AlbumsController extends BaseController{
         $album->save();
         $upload_folder = "upload/albums/". uniqid(date('ymdHisu'));
         $files = Input::file('path');
+        var_dump($files);die;
         $captions = Input::get('caption');
         $status = 'success';
         foreach($files as $index => $file){

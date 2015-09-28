@@ -25,7 +25,7 @@
                     <li class="detail_image_info_count_share"><span><i class='glyphicon glyphicon-share'></i>{{$image->count_share}}</span></li>
                 </ul>
                 <div class="photo_content">
-                    <a href='{{Asset('image/view/'.$album->image->first()->id)}}'>
+                    <a href='{{Asset('image/view/'.$image->id)}}'>
                         <img class="img-rounded image-view" src="{{url('public/'.$image->path)}}" alt="{{$album->title}}">
                     </a>
                     <p>
@@ -69,6 +69,7 @@
 					<p>CHUYÊN MỤC</p>
 					<p>{{ $album->category->title}}</p>
 				</li>
+                @if(Session::has('current_user'))
 				<li>
 					<p>BÌNH LUẬN</p>
                     <textarea class="form-control" placeholder="Viết bình luận của bạn..."></textarea>
@@ -76,6 +77,11 @@
 				<li>
 					<button class="btn btn-danger">Bình luận</button>
 				</li>
+                @else
+                <li>
+                    <p>(Đăng nhập để có thể bình luận ...)</p>
+                </li>
+                @endif
                 <li>
                     <div class="detailBox">
                         <div class="titleBox">

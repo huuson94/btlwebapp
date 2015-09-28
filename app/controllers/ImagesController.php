@@ -3,9 +3,10 @@ class ImagesController extends BaseController{
     public function postSave(){
 //      $status =   $this->saveImagesToDB();
         $files = Input::file('path');
+        $filesStatus = Input::get('file_status');
         $status = 'success';
         foreach($files as $index => $file){
-            if($file->isValid()) {
+            if($file->isValid() && $filesStatus[$index] != 0) {
                 $album = $this->saveAlbum($index);
                 if($album){
                     if(!$this->saveImage($index, $album->id)){
@@ -67,6 +68,7 @@ class ImagesController extends BaseController{
     }
     
     public function getView($id){
-        
+        $image = Image::where('id',$id)->first();
+        return View::make('frontend/images/view')->with('image',$image);
     }
 }
