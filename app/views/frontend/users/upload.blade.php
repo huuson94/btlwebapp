@@ -53,7 +53,7 @@
         </div>
 		<div id='upload-image-tabs' class="upload_left">
             
-                {{ Form::open(array('url'=>'image/save','files'=>true, 'method' => 'POST')) }}
+                {{ Form::open(array('url'=>'image/save','files'=>true, 'method' => 'POST', 'id' => 'upload-image-form')) }}
                 <div id="images-description" style="display: none"></div>
                 <h1>Upload images</h1>
                 <!--<p class="note">Use <span>Select image</span> to s Đăng <span>tẹt ga thoải con gà mái nhé</span>!</p>-->
@@ -68,7 +68,7 @@
                     </ul>
                     
                 </div>
-                
+                <div id="files-array" class="hidden"></div>
                 <p><input type="submit" class="btn btn-default" value="Upload"></p>
             {{Form::close()}}
         </div>
