@@ -88,10 +88,14 @@ $(document).ready(function () {
     }
     
     function updateListName(){
-        if(count_image() == 1){
+        var count_images = count_image();
+        if(count_images == 0){
+            $("div.show-file-names").html('<span class="glyphicon glyphicon-file kv-caption-icon"></span>');
+        }
+        if(count_images == 1){
             $("div.show-file-names").html('<span class="glyphicon glyphicon-file kv-caption-icon"></span>'+$("#files-array").find('input.file-count[value=1]').attr('title'));
-        }else if(count_image() > 1){
-            $("div.show-file-names").html('<span class="glyphicon glyphicon-file kv-caption-icon"></span>'+count_image()+' files selected');
+        }else if(count_images > 1){
+            $("div.show-file-names").html('<span class="glyphicon glyphicon-file kv-caption-icon"></span>'+count_images+' files selected');
         }
 //            var filesCount  = 0;
 //            for(filesCount = 0; filesCount < singleFilesList.length; filesCount++){
