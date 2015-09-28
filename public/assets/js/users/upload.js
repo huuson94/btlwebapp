@@ -103,7 +103,7 @@ $(document).ready(function () {
     $(document).on('click','span.delete-image', function(){
         var div = $(this).closest('div.file-preview-frame');
         remove_image(div.attr('data-fileindex'));
-        div.remove();
+        div.hide();
         updateListName();
     });
     
