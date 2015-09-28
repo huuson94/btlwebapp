@@ -19,23 +19,15 @@
 		
         public function getSearch(){
         	$key = Input::get('title');
-        	// $images1 = Image::select('*')->where('title','like','%'.$key.'%')->get()->toArray();
-        	// $albums = Album::select('id')->where('title','like','%'.$key.'%')->get();
-        	// $images2= array();
-        	// // if($album_id){
-        	// foreach($albums as $index => $album){
-        	// 	$images2 = Image::select('*')->where('album_id','=',$album->id)->get()->toArray();
-        	// }
-        	// $data = "";
-        	// return View::make('frontend/index')->with('data',array_merge($images1, $images2));
-        	$data= DB::table('images')->where('title','like','%'.$key.'%')
-        							  ->orwhereIn('images.album_id',function($query)
-        							  {
-        							  	$query->select(DB::raw('id'))
-        							  		  ->from('albums')
-        							  		  ->where('title','like','%'.Input::get('title').'%');
-        							  })
-        							  ->get();
+        	// $data= DB::table('images')->where('title','like','%'.$key.'%')
+        	// 						  ->orwhereIn('images.album_id',function($query)
+        	// 						  {
+        	// 						  	$query->select(DB::raw('id'))
+        	// 						  		  ->from('albums')
+        	// 						  		  ->where('title','like','%'.Input::get('title').'%');
+        	// 						  })
+        	// 						  ->get();
+            $data['albums'] = Album::select('*')->where('title','like','%'.$key.'%')->get();
         	return View::make('frontend/index')->with('data',$data);
 
 
