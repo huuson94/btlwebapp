@@ -56,7 +56,7 @@ $(document).ready(function () {
             footer: '<div class="file-thumbnail-footer">\n' +
                     '    <div class="file-caption-name" style="width:50%">{caption}</div>\n' +
                     '       <div>'+
-                    '           <label class="control-label">Description</label><textarea class="form-control img-desc" placeholder="Description for image" name="image_description[]"></textarea>'+
+                    '           <label class="control-label">Caption</label><textarea class="form-control img-desc" placeholder="Caption for image" name="caption[]"></textarea>'+
                     '       </div>' +
                     '    {actions}\n' +
                     '</div>'

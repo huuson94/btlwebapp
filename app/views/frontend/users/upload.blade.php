@@ -26,7 +26,7 @@
         <div class='upload-image-form-template'>
             <ul>
                 <li>
-                    <p>Thể loại</p>
+                    <p>Category</p>
                     <select name="category[]">
                         @foreach($categories as $index => $category)
                         <option value="{{$category->id}}">{{$category->title}}</option>
@@ -34,12 +34,19 @@
                     </select>
                 </li>
                 <li>
-                    <p>Tiêu đề</p>
-                    <input class="form-control" placeholder="Tiêu đề" name="title[]">
+                    <p>Title</p>
+                    <input class="form-control" placeholder="Title" name="title[]">
                 </li>
                 <li>
-                    <p>Thông tin mô tả</p>
-                    <textarea class="form-control" placeholder="Thông tin mô tả" name="description[]"></textarea>
+                    <p>Caption</p>
+                    <textarea class="form-control" placeholder="Caption for image" name="caption[]"></textarea>
+                </li>
+                <li>
+                    <p>Public</p>
+                    <select name='public[]'>
+                        <option value='1' selected='true'>Yes</option>
+                        <option value='2'>No</option>
+                    </select>
                 </li>
             </ul>
             
@@ -48,12 +55,12 @@
             
                 {{ Form::open(array('url'=>'image/save','files'=>true, 'method' => 'POST')) }}
                 <div id="images-description" style="display: none"></div>
-                <h1>Đăng ảnh</h1>
-                <p class="note">Sử dụng nút <span>Add image</span> để chọn ảnh của bạn. Đăng <span>tẹt ga thoải con gà mái nhé</span>!</p>
+                <h1>Upload images</h1>
+                <!--<p class="note">Use <span>Select image</span> to s Đăng <span>tẹt ga thoải con gà mái nhé</span>!</p>-->
                 <div class='upload-image-form'>
                     <ul>
                         <li>
-                            <p class="control-label">Chọn ảnh</p>
+                            <p class="control-label">Select image</p>
                             <p>{{Form::file('path[]', array("accept" => "image/*", "class" => "single form-control", 'multiple' => 'true'))}}</p>
                             <!--<p><img class='img-rounded img-thumbnail'></p>-->
                         </li>
@@ -67,17 +74,17 @@
         </div>
 		<div id='upload-album-tabs' class="upload_right">
             {{ Form::open(array('url'=>'album/save','files'=>true, 'method' => 'POST')) }}
-                <h1>Tạo album</h1>
-                <p class="note">Sử dụng nút <span>Chọn ảnh</span> để chọn ảnh cho album của bạn. Đăng <span>tẹt ga thoải con gà mái nhé</span>!</p>
+                <h1>Upload album</h1>
+                <!--<p class="note">Sử dụng nút <span>Chọn ảnh</span> để chọn ảnh cho album của bạn. Đăng <span>tẹt ga thoải con gà mái nhé</span>!</p>-->
                 <div>
                     <ul>
                         <li>
-                            <p>Chọn ảnh</p>
+                            <p>Select image</p>
                             <p>{{Form::file('path[]', array("accept" => "image/*", "class" => "multiple form-control", 'multiple' => 'true'))}}</p>
                             <div class='album-preview'></div>
                         </li>
                         <li>
-                            <p>Thể loại</p>
+                            <p>Category</p>
                             <select name="category">
                                 @foreach($categories as $index => $category)
                                 <option value="{{$category->id}}">{{$category->title}}</option>
@@ -85,12 +92,19 @@
                             </select>
                         </li>
                         <li>
-                            <p>Tiêu đề</p>
-                            <input class="form-control" placeholder="Tiêu đề" name="title">
+                            <p>Title</p>
+                            <input class="form-control" placeholder="Title" name="title">
                         </li>
                         <li>
-                            <p>Thông tin mô tả</p>
-                            <textarea class="form-control" placeholder="Thông tin mô tả" name='description'></textarea>
+                            <p>Description</p>
+                            <textarea class="form-control" placeholder="Description" name='description'></textarea>
+                        </li>
+                        <li>
+                            <p>Public</p>
+                            <select name='public'>
+                                <option value='1' selected='true'>Yes</option>
+                                <option value='2'>No</option>
+                            </select>
                         </li>
                     </ul>
                 </div>

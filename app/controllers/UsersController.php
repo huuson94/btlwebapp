@@ -5,8 +5,7 @@ class UsersController extends BaseController{
         if(Session::has('current_user')){
             return true;
         }else{
-            Session::flash('not_logged', 'true');
-            return Redirect::to('home/index');
+            return false;
         }
     }
 
@@ -31,18 +30,27 @@ class UsersController extends BaseController{
     }
     
     public function getUpload(){
-        $this->checkLogged();
-        return View::make('frontend/users/upload');
+        if($this->checkLogged()){
+            return View::make('frontend/users/upload');
+        }else{
+            return Redirect::to('home/index');
+        }
         
     }
     
     public function getViewImages(){
-        return View::make('frontend/users/view-images');
+        if($this->checkLogged()){
+            $data['albums']=Album::where('user_id',Session::get('current_user'))->get();
+            return View::make('frontend/users/view-images')->with('data',$data);
+        }else{
+            return Redirect::to('home/index');
+        }
     }
+    
     public function postDoLogin(){
         if(Input::get('account') && Input::get('password')){
             $data=Input::all();
-            $user=Users::where('account',$data['account'])->where('password',$data['password'])->first();
+            $user=User::where('account',$data['account'])->where('password',$data['password'])->first();
             if($user){
                 Session::put('current_user',$user->id);
                 return Redirect::to('home/index')->with('user', $user);
@@ -60,7 +68,7 @@ class UsersController extends BaseController{
         return View::make('frontend/users/signup');
     }
     
-    public function postDoSignup(){
+    public function postSignup(){
 			$data=Input::all();
 			$validator = Validator::make(
 				array(
@@ -74,11 +82,11 @@ class UsersController extends BaseController{
                     'is_admin' => 0
 					),
 				array(
-					'name' => 'required|min:5',
-					'account' => 'required|min:5',
-					'password' => 'required|min:5',
+					'name' => 'required|min:6',
+					'account' => 'required|min:6',
+					'password' => 'required|min:6',
                     'password_confirm' => 'same:password',
-					'email' => 'email|required|min:5',
+					'email' => 'email|required',
 					'phone' => 'numeric|required',
 					'address' => 'required',
 					)
@@ -90,20 +98,26 @@ class UsersController extends BaseController{
 			if($validator->fails()){
 				$messages = $validator->messages();
 				// $messages
-				echo json_encode($messages);
+				Session::flash('signup_status', false);
+                return Redirect::to('user/signup');
 			}else{
-				$user=Users::where('account',$data['account'])->first();
+				$user=User::where('account',$data['account'])->first();
 				if($user){
+                    Session::flash('signup_status', false);
 					return Redirect::to('home/index');
 				} else{
-					$new= new Users;
+					$new= new User;
 					$new->name=$data['name'];
 					$new->account=$data['account'];
 					$new->password=$data['password'];
 					$new->email=$data['email'];
 					$new->phone=$data['phone'];
 					$new->address=$data['address'];
-                    $new->save();
+                    $status = $new->save();
+                    Session::flash('signup_status', $status);
+                    if($status == true){
+                        Session::set("current_user", $new->id);
+                    }
 					return Redirect::to('home/index')->with('user',$new);
 				}
 			}
@@ -111,7 +125,7 @@ class UsersController extends BaseController{
     public function postAjaxLogin(){
         if(Input::get('account') && Input::get('password')){
             $data=Input::all();
-            $user=Users::where('account',$data['account'])->where('password',$data['password'])->first();
+            $user=User::where('account',$data['account'])->where('password',$data['password'])->first();
             if($user){
                 Session::put('current_user',$user->id);
                 echo 'success';
@@ -152,11 +166,11 @@ class UsersController extends BaseController{
 				// $messages
 				echo 'not valid info';
 			}else{
-				$user=Users::where('account',$data['account'])->first();
+				$user=User::where('account',$data['account'])->first();
 				if($user){
 					echo 'fail';
 				} else{
-					$new= new Users;
+					$new= new User;
 					$new->name=$data['name'];
 					$new->account=$data['account'];
 					$new->password=$data['password'];

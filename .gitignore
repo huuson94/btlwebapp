@@ -10,3 +10,4 @@ btl_web_app.sql
 public/upload/images/*
 public/upload/albums/*
 .idea/*
+app/config/database.php

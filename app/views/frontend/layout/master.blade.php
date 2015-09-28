@@ -6,7 +6,7 @@
 	<link rel="shortcut icon" href="{{url('public/favicon.ico')}}">
 	
     {{ HTML::style('public/assets/css/style.css') }}
-    {{ HTML::style('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css') }}
+    {{ HTML::style('public/assets/css/bootstrap.min.css') }}
     {{ HTML::style('public/assets/css/jquery-ui.min.css') }}
     {{ HTML::style('public/assets/css/animate.css') }}
     @yield('style-bot')
@@ -14,15 +14,15 @@
     {{ HTML::script('public/assets/js/jquery-ui.min.js') }}
     {{ HTML::script('public/assets/js/jquery.nicescroll.js') }}
     {{ HTML::script('public/assets/js/scripts.js') }}
-    {{ HTML::script('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js') }}
+    {{ HTML::script('public/assets/js/bootstrap.min.js') }}
+    {{ HTML::script('public/assets/js/imagesloaded.js') }}
     {{ HTML::script('public/assets/js/masonry.pkgd.min.js') }}
     @yield('script-bot')
     {{ HTML::style("vendor/kartik-v/bootstrap-fileinput/css/fileinput.min.css")}}
     {{ HTML::script("vendor/kartik-v/bootstrap-fileinput/js/plugins/canvas-to-blob.min.js")}}
     {{ HTML::script("vendor/kartik-v/bootstrap-fileinput/js/fileinput.min.js")}}
-    {{ HTML::script("vendor/kartik-v/bootstrap-fileinput/js/fileinput_locale_<lang>.js")}}
-    
-    
+    {{ HTML::script("vendor/kartik-v/bootstrap-fileinput/js/fileinput_locale_LANG.js")}}
+
 </head>
 <body>
     <script type="text/javascript">
@@ -33,15 +33,11 @@
 				if(stt == 0){
 					$('.menu').fadeIn();//addClass("animated fadeInDown");
 					stt=1;
-					//$('.menu').css("display","block").removeClass("fadeOutLeft");
+					$('.menu').css("display","block").removeClass("fadeOutLeft");
 					$(this).addClass("clicked").find('span').addClass("clicked_span");
 				}else{
 					$('.menu').fadeOut();//addClass("fadeOutLeft");
 					stt=0;
-					// $('.menu').removeClass("fadeInDown");
-					// setTimeout(function(){
-					// 	$('.menu').css("display","none");
-					// },600);
 					$(this).removeClass("clicked").find('span').removeClass("clicked_span");
 				}
 			})
@@ -64,14 +60,16 @@
 //						$('.categories').fadeIn(300);
 //				}
 			});
-		})
+            
+            
+		});
 	</script>
     <header class='col-md-12'>
 		<div class="top">
 			<div class="col-md-3 logo">
                 <h1  style='display: none;'>Photo</h1>
                 <h4 class='col-md-8'><a href="{{url('/home')}}"><img src="{{url('public/assets/images/logo.png')}}" alt="logo"/></a></h4>
-                <h4 id='link-to-home' class='col-md-4'><a href="{{url('/home')}}">HOME</a><h4>
+                <h4 id='link-to-home' class='col-md-4'><a href="{{url('/home')}}">HOME</a></h4>
             </div>
 			<ul class="col-md-6 search_area">
 				
@@ -91,11 +89,11 @@
 					<li class='col-md-5'><a href="{{url('user/logout')}}">ĐĂNG XUẤT</a></li>
 				@else
 					<li class="col-md-7 login">
-						<a><p class="btn btn-default">ĐĂNG NHẬP</p></a>
+						<a><p>ĐĂNG NHẬP</p></a>
 						@yield('login')
 					</li>
-					<li class="col-md-5 signup" >
-						<a><p class="btn btn-default">ĐĂNG KÝ</p></a>
+					<li class="col-md-5" >
+						<a href="{{Asset('signup')}}"><p>ĐĂNG KÝ</p></a>
 						@yield('signup')
 					</li>
 				@endif
@@ -104,26 +102,29 @@
 	</header>
     <div class="clearfix"></div>
     <nav>
-        <div class="categories col-md-8">
-            <p class="menu_button"><span></span>Danh mục</p>
-            <div class="menu">
-                <ul>
-                    <li><a href="">Ảnh hot nhất</a></li>
-                    <li><a href="">Mới Nhất</a></li>
-                </ul>
-                <ul>
-                    @foreach($categories as $index => $category)
-                    <li><a href="{{Asset('category/view/'.$category->id)}}">{{$category->title}}</a></li>
-                    @endforeach
-                </ul>
-            </div>
+        <div class="navi">
+        	<div class="categories col-md-8">
+	            <p class="menu_button"><span></span>Danh mục</p>
+	            <div class="menu">
+	                <ul>
+	                    <li><a href="">Ảnh hot nhất</a></li>
+	                    <li><a href="">Mới Nhất</a></li>
+	                </ul>
+	                <ul>
+	                    @foreach($categories as $index => $category)
+	                    <li><a href="{{Asset('category/view/'.$category->id)}}">{{$category->title}}</a></li>
+	                    @endforeach
+	                </ul>
+	                
+	            </div>
+	        </div>
+	        @if(Session::has('current_user'))
+	        <div class='images-manage-buttons col-md-4 '>
+	            <p class="col-md-6 pull-right"><a  class="btn btn-danger upload_button" href="{{url('/user/upload')}}">Đăng ảnh</a></p>
+	            <p class="col-md-3 pull-right"><a class="btn btn-danger mypic_button" href="{{url('/user/view-images')}}">Ảnh của tôi</a></p>
+	        </div>
+        	@endif
         </div>
-        @if(Session::has('current_user'))
-        <div class='images-manage-buttons col-md-4 '>
-            <p class="col-md-6 pull-right"><a  class="btn btn-primary upload_button" href="{{url('/user/upload')}}">Đăng ảnh</a></p>
-            <p class="col-md-3 pull-right"><a class="btn btn-primary mypic_button" href="{{url('/user/view-images')}}">Ảnh của tôi</a></p>
-        </div>
-        @endif
     </nav>
     <section>
         <div class="wrapper">
@@ -133,7 +134,7 @@
 
         </aside>
     </section>
-    
+    <div class="clearfix"></div>
     <footer>
         <ul class="team_contact">
             <li><a href="">Giới thiệu</a></li>

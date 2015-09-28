@@ -20,11 +20,11 @@ i{
     font-family: 'iconFont';
     font-style: normal;
     cursor: pointer;
-}body{
+}
+body{
     font-family: 'Roboto',sans-serif;
     color: #666;
     font-size: 14px;
-    max-width: 90%;
     margin: 0px auto !important;
     
 }
@@ -32,7 +32,7 @@ a{
     text-decoration: none;
     color: #666;
     -moz-transition: color 0.3s
-        -webkit-transition: color 0.3s;
+    -webkit-transition: color 0.3s;
     transition: color 0.3s;
 }
 li{
@@ -46,12 +46,21 @@ header{
     height: 100px;
     position: fixed;
     z-index: 3;
-    background-color: #99ffcc;
+    background-color: #fff;
 }
 
+header a{
+    color: #666;
+    text-decoration: none;
+}
+
+header a:hover{
+    color: #ec6440;
+    text-decoration: none;
+}
 
 header .top{
-    max-width: 100%;
+    max-width: 90%;
     height: 100%;
     position: relative;
     margin: 20px auto;
@@ -60,31 +69,35 @@ header .top #link-to-home{
     margin-top: 17px;
 }
 header .top .login_singin_area{
-    margin-top: 10px;
+    margin-top: 15px;
 }
 header .top .login_singin_area{
     float: right;
 }
-
 header .top .logo .col-md-4 a{
     font-size: 15px;
     color: #666;
 }
-
 header .top .logo .col-md-4 a:hover{
     text-decoration: none;
     color: #ec6440;
 }
-
+footer{
+    height: 50px;
+    background-color: #DAD9D9;
+}
 nav {
+    background-color: #EAEAEA;
     width: 100%;
     height: 80px;
     margin: auto;
-    padding: 10px 0px;
+    padding: 28px 0px;
 }
-
+nav .navi{
+    padding: 0 7% 0 7%;
+}
 nav div{
-    padding: 0px !important;
+    /*padding: 0px !important;*/
     margin: 0px !important;
 }
 nav .images-manage-buttons{
@@ -138,7 +151,17 @@ nav .images-manage-buttons p{
     clear: both;
 }
 .team_contact{
-    font-size: 12px;
+    font-size: 20px;
+    padding-top: 0.8%;
+    padding-left: 32%;
+}
+.team_contact a{
+    color: #666;
+    text-decoration: none;
+}
+.team_contact a:hover{
+    color: #ec6440;
+    text-decoration: none;
 }
 .team_contact li{
     float: left;
@@ -152,8 +175,12 @@ nav .images-manage-buttons p{
     height: 3px;
     position: absolute;
     background-color: #666;
-    top: 5px;
-    right: -13px;
+    top: 13px;
+    right: -15px;
+}
+.team_contact li:last-child:after{
+    content: '';
+    background-color: #DAD9D9;
 }
 .team_contact:after{
     content: '';
@@ -279,7 +306,8 @@ header .icon-search{
     top: 7px;
     left: 5px;
 }
-*/.login{
+*/
+.login{
     position: static;
 }
 .login p,.signup p{
@@ -297,7 +325,7 @@ header .icon-search{
 }
 .pop-up .wrapper{
     width: 400px;
-    height: 500px;
+    height: 400px;
     margin: 90px auto;
     background-color: #8282C1;
     border-radius: 5px;
@@ -386,7 +414,7 @@ header .icon-search{
 .pop-up .wrapper button{
     width: 90px;
     height: 40px;
-    margin: 20px 100px;
+    margin: 40px 100px;
     border: none;
     background-color: #F17575;
     color: #fff;
@@ -405,7 +433,16 @@ section{
     background-color: #EAEAEA;
     padding-top: 5px;
     width: 100%;
-}/*
+}
+
+section .wrapper{
+    padding: 0 7% 2% 7%;
+}
+
+.sum-images{
+        
+}
+/*
 .width_70per{
     max-width: 70%!important;
 }
@@ -430,9 +467,9 @@ section .wrapper{
 .container-div ul .item-image {
     border-radius: 10px;
     display: block;
-    width: 32%;     // chia layout ra làm 3 cột - mỗi cột chiếm 32% của container-div 
+    width: 23%;     // chia layout ra làm 3 cột - mỗi cột chiếm 32% của container-div 
     padding: 8px;
-    margin: 7px 5px;
+    margin: 15px 10px;
 }
 .container-div ul .item-image img{
     display: block;
@@ -513,9 +550,7 @@ section .wrapper{
 .item-image .photo_content .view .like{
     margin-right: 10px;
     color: rgb(236, 107, 73);
-}
-
-/*
+}/*
 .login .error{
     width: 100%;
     text-align: center;
@@ -526,4 +561,60 @@ section .wrapper{
     color: #fff;
 }
 
+********************************************************************************
+********************************** UPLOAD **************************************
+********************************************************************************
+
+.upload_content{
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    margin-top: 80px;
+}
+.upload_left, .upload_right{
+    float: left;
+    width: 65%;
+}
+.upload_left h1, .upload_right h1{
+    color: #EA6A48;
+    font-size: 23px;
+    font-weight: normal;
+    font-family: tahoma,sans-serif;
+    background-color: #F6F6F6;
+    height: 70px;
+    padding: 20px;
+}
+.upload_left .note, .upload_right .note{
+    font-size: 14px;
+    font-weight: normal;
+    height: 70px;
+    font-style: italic;
+    padding: 20px 20px 0;
+}
+.note span{
+    font-weight: bold;
+}
+.upload_left ul li, .upload_right ul li{
+    width: 90%;
+    margin: 20px auto;
+}
+.upload_left ul li select,.upload_left ul li input,.upload_left ul li textarea, 
+.upload_right ul li select,.upload_right ul li input,.upload_right ul li textarea
+{
+    display: block;
+    background-color: #F5F5F5;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 30px;
+    height: 40px;
+    width: 100%;
+    color: #656565;
+    outline: none;
+    padding-left: 10px;
+    margin-top: 5px;
+}
+.upload_left ul li textarea, .upload_right ul li textarea{
+    height: 120px;
+}
 */
