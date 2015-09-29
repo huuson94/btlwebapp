@@ -21,7 +21,7 @@ class ImagesController extends BaseController{
             }
         }
         Session::flash('status',$status);
-        return Redirect::to('user/upload');
+        return Redirect::to('user/upload')->header('Cache-Control', 'no-store, no-cache');;
 
     }
     
@@ -29,7 +29,6 @@ class ImagesController extends BaseController{
         $categories = Input::get('category');
         $publices = Input::get('public');
         $titles = Input::get('title');
-        $descriptions = Input::get('description');
         $files = Input::file('path');
         $file = $files[$index];
         if($file->isValid()) {
