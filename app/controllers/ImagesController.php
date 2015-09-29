@@ -1,5 +1,10 @@
 <?php
 class ImagesController extends BaseController{
+    public function getView($id){
+        $image = Image::where('id',$id)->first();
+        return View::make('frontend/images/view')->with('image',$image);
+    }
+    
     public function postSave(){
 //      $status =   $this->saveImagesToDB();
         $files = Input::file('path');
@@ -66,8 +71,5 @@ class ImagesController extends BaseController{
         }
     }
     
-    public function getView($id){
-        $image = Image::where('id',$id)->first();
-        return View::make('frontend/images/view')->with('image',$image);
-    }
+    
 }
