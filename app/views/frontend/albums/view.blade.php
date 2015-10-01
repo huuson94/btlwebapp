@@ -1,9 +1,9 @@
 @extends('frontend/layout/master')
 @section('style-bot')
-{{ HTML::style('public/assets/css/images/view.css') }}
+{{ HTML::style('public/assets/css/albums/view.css') }}
 @stop
 @section('script-bot')
-{{ HTML::script('public/assets/js/images/view.js') }}
+{{ HTML::script('public/assets/js/albums/view.js') }}
 @stop
 @section('width_70per')
 	width_70per
