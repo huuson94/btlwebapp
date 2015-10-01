@@ -20,8 +20,12 @@
 		<ul>
 			@foreach($data['albums'] as $index => $album)
             @if ($album->image->count() > 0)
-            <li class="item-image">
-				<article>
+            @if ($album->image->count() == 1)
+            <li class="item-image image">
+            @elseif ($album->image->count() > 1)
+            <li class="item-image album">
+            @endif
+            	<article>
 					@if($album->image->count()>1)
                     <a href='{{Asset('album/view/'.$album->id)}}'>
                     @else
