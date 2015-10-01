@@ -1,0 +1,18 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 26, 2015, 10:22:01 PM
+    Author     : hs
+*/
+.signup-form{
+	max-width: 70%;
+	background-color: #fff;
+	margin: auto;
+	border-radius: 10px;
+}
+.table tbody::nth-child(1){
+	
+}
