@@ -18,7 +18,7 @@
                 <ul class="detail_image_info">
                     <li class="detail_image_info_date"><span >{{$image->updated_at}}</span></li>
                     <li class="detail_image_info_count_like"><span class="like"><i class="glyphicon glyphicon-heart"></i> <span>{{$image->count_like}}</span></span></li>
-                    <li class="detail_image_info_count_share"><span><i class='glyphicon glyphicon-share'></i>{{$image->count_share}}</span></li>
+                    <li class="detail_image_info_count_share"><span class="share"><i class='glyphicon glyphicon-share'></i> <span>{{$image->count_share}}</span></span></li>
                 </ul>
                 <div class="photo_content">
                     <a href='{{Asset('image/view/'.$image->id)}}'>

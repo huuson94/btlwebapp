@@ -22,9 +22,6 @@ $(document).ready(function(){
 					$(this).removeClass("clicked").find('span').removeClass("clicked_span");
 				};
 			});
-			$('.categories .menu').click(function(){
-				return false;
-			});
 			//NiceScroll
 			$("html").niceScroll({ 
 				zindex: 1000000, 

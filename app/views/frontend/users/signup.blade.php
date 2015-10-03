@@ -13,40 +13,53 @@
 <p class="alert-danger">Can't Signup</p>
 @endif
 @endif
-{{ Form::open(array('url'=>'user/signup', 'method' => 'POST')) }}
-<table class="table">
-    <tr>
-        <th>Name</th>
-        <td><input type="text form-control" pattern=".{6,255}" name="name" placeholder="Họ và tên" required title="6 characters minimum"></td>
-    </tr>
-    <tr>
-        <th>User name</th>
-        <td><input type="text form-control" pattern=".{6,255}" name="account" placeholder="Nhập tài khoản" required title="6 characters minimum"></td>
-    </tr>
-    <tr>
-        <th>Password</th>
-        <td><input type="password" pattern=".{6,255}" name="password" placeholder="Nhập mật khẩu" required title="6 characters minimum"></td>
-    </tr>
-    <tr>
-        <th>Re-password</th>
-        <td><input type="password" pattern=".{6,255}" name="password_confirm" placeholder="Nhập lại mật khẩu" required title="6 characters minimum"></td>
-    </tr>
-    <tr>
-        <th>Email</th>
-        <td><input type="text form-control" name="email" placeholder="Email( example@gmail.com )"></td>
-    </tr>
-    <tr>
-        <th>Phone</th>
-        <td><input type="text form-control" name="phone" placeholder="Nhập số điện thoại"></td>
-    </tr>
-    <tr>
-        <th>Address</th>
-        <td><input type="text form-control" name="address" placeholder="Nhập địa chỉ"></td>
-    </tr>
-    <tr>
-        <th></th>
-        <td><input type="submit" class="btn btn-default" value="Singup"></td>
-    <tr>
-</table>
-{{Form::close()}}
+<div class="signup-form">
+    {{ Form::open(array('url'=>'user/signup', 'method' => 'POST')) }}
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Name</label>
+            <div class="col-sm-10">
+              <input class="form-control" type="text form-control" pattern=".{6,255}" name="name" placeholder="Họ và tên" required title="6 characters minimum">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">User name</label>
+            <div class="col-sm-10">
+              <input class="form-control" type="text form-control" pattern=".{6,255}" name="account" placeholder="Tên tài khoản" required title="6 characters minimum">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Password</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="password" pattern=".{6,255}" name="password" placeholder="Nhập mật khẩu" required title="6 characters minimum">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Re-Password</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="password" pattern=".{6,255}" name="password_confirm" placeholder="Nhập lại mật khẩu" required title="6 characters minimum">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text form-control" name="email" placeholder="Email( example@gmail.com )">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Phone</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text form-control" name="phone" placeholder="Nhập số điện thoại">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Address</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text form-control" name="address" placeholder="Nhập địa chỉ">
+            </div>
+        </div>
+        <input class="form-control submit" type="submit" class="btn btn-default" value="Signup">
+    </div> 
+    {{Form::close()}}
+</div>
 @stop

@@ -8,11 +8,15 @@ and open the template in the editor.
     Author     : hs
 */
 .signup-form{
-	max-width: 70%;
+	max-width: 45%;
 	background-color: #fff;
 	margin: auto;
 	border-radius: 10px;
 }
-.table tbody::nth-child(1){
-	
+.form-horizontal{
+	padding: 5% 5% 5% 5%;
+}
+.submit{
+	width: 100px;
+	margin: 7% 0 0 39%;
 }
