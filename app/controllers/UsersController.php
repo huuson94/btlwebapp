@@ -11,12 +11,16 @@ class UsersController extends BaseController{
 
     public function postAjaxComment(){
         if(Input::get('comment-content')){
+            var_dump(Input::get('comment-content'));die;
             $data=Input::all();
             $new = new Comment;
-            $new->image_id=$image_id;
+            $new->image_id=$data['id'];
             $new->user_id=Session::get('current_user')['id'];
             $new->content=$data['comment-content'];
             $new->save();
+            echo "success";
+        }else{
+            return Redirect::to('home/index');
         }
     }
 

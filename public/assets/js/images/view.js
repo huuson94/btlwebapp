@@ -19,7 +19,8 @@ $(document).ready(function(){
 		};
 	});
 	var formData = new FormData($('#comment-form')[0]);
-	formData.append('id', id)
+	formData.append('id', id);
+	alert(id);
 	$('#comment-form').submit(function(e){
 		e.preventDefault();
 		var obj = $(this);
@@ -32,13 +33,14 @@ $(document).ready(function(){
 				cache: false,
 			}).done(function(data){
 				if(data=='success'){
-					obj.next().html('<p>* comment thành công</p>');
-					window.location.reload();
+					var str=$('.form-control').val();
+
+					$('.commentList').prepend(str);
 				}else{
-					obj.next().html('<p>* Chưa comment được</p>');
+					obj.next().html('<p>* Chưa comment được 1</p>');
 				}
 			}).fail(function(){
-				alert('* Chưa comment được');
+				alert('* Chưa comment được 2');
 			});
 	});        
 })
