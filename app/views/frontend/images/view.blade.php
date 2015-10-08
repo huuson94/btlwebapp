@@ -51,10 +51,12 @@
 			</ul>
             @if(Session::has('current_user'))
             <form action="{{url('user/ajax-comment')}}" id="comment-form" method="POST">
+                <input type="hidden" name="post_id" value="{{$image->id}}">
+                <input type="hidden" name="type" value="2">
                 <ul>
                     <li>
                         <p>BÌNH LUẬN</p>
-                        <textarea class="form-control" name="comment-content" placeholder="Viết bình luận của bạn..."></textarea>
+                        <textarea class="form-control" name="commentContent" placeholder="Viết bình luận của bạn..."></textarea>
                     </li>
                     <li>
                         <button class="btn btn-danger" name="submit">Bình luận</button>
