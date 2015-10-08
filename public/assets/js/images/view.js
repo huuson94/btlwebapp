@@ -18,4 +18,27 @@ $(document).ready(function(){
 			kt=0;
 		};
 	});
+	var formData = new FormData($('#comment-form')[0]);
+	formData.append('id', id)
+	$('#comment-form').submit(function(e){
+		e.preventDefault();
+		var obj = $(this);
+		$.ajax({
+				url: $(this).attr('action'),
+				data: formData,
+				type: 'POST',
+				contentType: false,
+				processData: false,
+				cache: false,
+			}).done(function(data){
+				if(data=='success'){
+					obj.next().html('<p>* comment thành công</p>');
+					window.location.reload();
+				}else{
+					obj.next().html('<p>* Chưa comment được</p>');
+				}
+			}).fail(function(){
+				alert('* Chưa comment được');
+			});
+	});        
 })

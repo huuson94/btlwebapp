@@ -4,6 +4,9 @@
 @stop
 @section('script-bot')
 {{ HTML::script('public/assets/js/images/view.js') }}
+<script type="text/javascript">
+    var id={{ $image->id }};
+</script>
 @stop
 @section('title')
     Single Image Viewer
@@ -45,77 +48,54 @@
 					<p>CHUYÊN MỤC</p>
 					<p>{{ $image->album->category->title}}</p>
 				</li>
-                @if(Session::has('current_user'))
-				<li>
-					<p>BÌNH LUẬN</p>
-                    <textarea class="form-control" placeholder="Viết bình luận của bạn..."></textarea>
-				</li>
-				<li>
-					<button class="btn btn-danger">Bình luận</button>
-				</li>
-                @else
-                <li>
-                    <p>(Đăng nhập để có thể bình luận ...)</p>
-                </li>
-                @endif
-                <li>
-                    <div class="detailBox">
-                        <div class="titleBox">
-                            <label>Comment Box</label>
-                            <span>(Click để thu gọn)</span>
-                        </div>
-                        <div class="actionBox">
-                            <ul class="commentList">
-                                <li>
-                                    <div class="commenterImage">
-                                      <img src="http://lorempixel.com/50/50/people/6" />
-                                    </div>
-                                    <div class="commentText">
-                                        <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span>
-
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="commenterImage">
-                                      <img src="http://lorempixel.com/50/50/people/7" />
-                                    </div>
-                                    <div class="commentText">
-                                        <p class="">Hello this is a test comment and this comment is particularly very long and it goes on and on and on.</p> <span class="date sub-text">on March 5th, 2014</span>
-
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="commenterImage">
-                                      <img src="http://lorempixel.com/50/50/people/9" />
-                                    </div>
-                                    <div class="commentText">
-                                        <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span>
-
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="commenterImage">
-                                      <img src="http://lorempixel.com/50/50/people/8" />
-                                    </div>
-                                    <div class="commentText">
-                                        <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span>
-
-                                    </div>
-                                    <li>
-                                    <div class="commenterImage">
-                                      <img src="http://lorempixel.com/50/50/people/10" />
-                                    </div>
-                                    <div class="commentText">
-                                        <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span>
-
-                                    </div>
-                                </li>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
 			</ul>
+            @if(Session::has('current_user'))
+            <form action="{{url('user/ajax-comment')}}" id="comment-form" method="POST">
+                <ul>
+                    <li>
+                        <p>BÌNH LUẬN</p>
+                        <textarea class="form-control" name="comment-content" placeholder="Viết bình luận của bạn..."></textarea>
+                    </li>
+                    <li>
+                        <button class="btn btn-danger" name="submit">Bình luận</button>
+                    </li>
+                </ul>
+            </form>
+            @else
+                <ul>
+                    <li>
+                        <p>(Đăng nhập để có thể bình luận ...)</p>
+                    </li>
+                </ul>  
+            @endif
+            <div class="detailBox">
+                <div class="titleBox">
+                    <label>Comment Box</label>
+                    <span>(Click để thu gọn)</span>
+                </div>
+                <div class="actionBox">
+                    <ul class="commentList">
+                        <li>
+                            <!-- <div class="commenterImage">
+                                <img src="http://lorempixel.com/50/50/people/6" />
+                            </div> -->
+                            <p>User 1</p>
+                            <div class="commentText">
+                                <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span>
+                            </div>
+                        </li>
+                        <li>
+                            <!-- <div class="commenterImage">
+                                <img src="http://lorempixel.com/50/50/people/7" />
+                            </div> -->
+                            <p>User 2</p>
+                            <div class="commentText">
+                                <p class="">Hello this is a test comment and this comment is particularly very long and it goes on and on and on.</p> <span class="date sub-text">on March 5th, 2014</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 		</div>
 	</div>
 @stop

@@ -9,6 +9,16 @@ class UsersController extends BaseController{
         }
     }
 
+    public function postAjaxComment(){
+        if(Input::get('comment-content')){
+            $data=Input::all();
+            $new = new Comment;
+            $new->image_id=$image_id;
+            $new->user_id=Session::get('current_user')['id'];
+            $new->content=$data['comment-content'];
+            $new->save();
+        }
+    }
 
     public function getLogin(){
         
