@@ -77,24 +77,18 @@
                 </div>
                 <div class="actionBox">
                     <ul class="commentList">
+                        @foreach ($image->comments as $comment)
                         <li>
                             <!-- <div class="commenterImage">
                                 <img src="http://lorempixel.com/50/50/people/6" />
                             </div> -->
-                            <p>User 1</p>
+                            <p>{{$comment->user->name}}</p>
                             <div class="commentText">
-                                <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span>
+                                <p class="">{{$comment->content}}</p><span class="date sub-text">on {{$comment->created_at}}</span>
                             </div>
                         </li>
-                        <li>
-                            <!-- <div class="commenterImage">
-                                <img src="http://lorempixel.com/50/50/people/7" />
-                            </div> -->
-                            <p>User 2</p>
-                            <div class="commentText">
-                                <p class="">Hello this is a test comment and this comment is particularly very long and it goes on and on and on.</p> <span class="date sub-text">on March 5th, 2014</span>
-                            </div>
-                        </li>
+                        @endforeach
+                        
                     </ul>
                 </div>
             </div>

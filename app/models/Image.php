@@ -8,4 +8,8 @@ class Image extends Eloquent{
         return $this->belongsTo('Album', 'album_id');
     }
     
+    public function comments(){
+        return $this->hasMany('Comment', 'post_id')->where('type','=',2);
+    }
+    
 }
