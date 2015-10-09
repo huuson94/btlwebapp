@@ -19,7 +19,7 @@ $(document).ready(function () {
         }
         ;
     });
-
+    
     $('#comment-form').submit(function (e) {
         var formData = new FormData($('#comment-form')[0]);
         e.preventDefault();
@@ -31,16 +31,14 @@ $(document).ready(function () {
             contentType: false,
             processData: false,
             cache: false,
-        }).done(function (data) {
-            if (data == 'success') {
-                var str = $('.form-control').val();
-
-                $('.commentList').prepend(str);
-            } else {
-                obj.next().html('<p>* Chưa comment được 1</p>');
-            }
+        }).done(function () {
+        	// alert('comment thanh cong');
+        	var cmt_content=$('textarea.form-control').val();
+        	var str = "<li><p>"+username+"</p><div class=\"commentText\"><p>"+cmt_content+"</p><span class=\"date sub-text\">on"+post_time+"</span></div></li>";
+        	$('ul.commentList').prepend(str);
+         	$('.form-control').val('');
         }).fail(function () {
-            alert('* Chưa comment được 2');
+            alert('* Bạn không có quyền bình luận !');
         });
     });
 })

@@ -9,7 +9,7 @@ class Image extends Eloquent{
     }
     
     public function comments(){
-        return $this->hasMany('Comment', 'post_id')->where('type','=',2);
+        return $this->hasMany('Comment', 'post_id')->where('type','=',2)->orderBy('created_at', 'desc');
     }
     
 }

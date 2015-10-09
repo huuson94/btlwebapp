@@ -5,7 +5,8 @@
 @section('script-bot')
 {{ HTML::script('public/assets/js/images/view.js') }}
 <script type="text/javascript">
-    var id={{ $image->id }};
+    var username="{{User::where('id',Session::get('current_user'))->first()->name}}";
+    var post_time = "{{Comment::where('user_id',Session::get('current_user'))->orderBy('created_at', 'desc')->first()->created_at}}";// chỗ này chưa xử lý được
 </script>
 @stop
 @section('title')
@@ -84,11 +85,11 @@
                             </div> -->
                             <p>{{$comment->user->name}}</p>
                             <div class="commentText">
-                                <p class="">{{$comment->content}}</p><span class="date sub-text">on {{$comment->created_at}}</span>
+                                <p class="">{{$comment->content}}</p>
+                                <span class="date sub-text">on {{$comment->created_at}}</span>
                             </div>
                         </li>
                         @endforeach
-                        
                     </ul>
                 </div>
             </div>

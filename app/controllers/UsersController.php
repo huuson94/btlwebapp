@@ -18,7 +18,6 @@ class UsersController extends BaseController{
             $new->type = $data['type'];
             $new->content=$data['commentContent'];
             $new->save();
-            echo "success";
         }else{
             return Redirect::to('home/index');
         }
