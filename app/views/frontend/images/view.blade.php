@@ -4,6 +4,7 @@
 @stop
 @section('script-bot')
 {{ HTML::script('public/assets/js/images/view.js') }}
+{{ HTML::script('public/assets/js/albums-images/view.js') }}
 <script type="text/javascript">
 </script>
 @stop
@@ -37,7 +38,20 @@
 			<ul>
 				<li>
 					<p>ĐĂNG BỞI</p>
-					<a href="#" class="user_name">{{$image->album->user->name}}</a>
+					<p>
+                        <a href="#" class="user_name">{{$image->album->user->name}}</a>
+                        <input type='hidden' id='user_id' value='{{$image->album->user->id}}'>
+                        <input type='hidden' id='current_user' value='{{Session::get('current_user')}}'>
+                        @if($image->album->user->id != Session::get('current_user'))
+                            @if ($current_user->follow($image->album->user->id) == 0)
+                                <button class="btn btn-success follow-btn" itemid='{{url('/user/ajax-follow')}}'>Follow</button>
+                                <button class="btn btn-success unfollow-btn" itemid='{{url('/user/ajax-unfollow')}}' style='display: none'>Unfollow</button>
+                            @elseif ($current_user->follow($image->album->user->id) == 1)
+                                <button class="btn btn-success follow-btn" itemid='{{url('/user/ajax-follow')}}' style='display: none'>Follow</button>
+                                <button class="btn btn-success unfollow-btn" itemid='{{url('/user/ajax-unfollow')}}'>Unfollow</button>
+                            @endif
+                        @endif
+                    </p>
 				</li>
 				<li>
 					<p>GIỚI THIỆU</p>

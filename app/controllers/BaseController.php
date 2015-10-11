@@ -21,6 +21,7 @@ class BaseController extends Controller {
         if(Session::has('current_user')){
             $data['user_name'] = User::find(Session::get('current_user'))->name;
             View::share('user_name', $data['user_name']);
+            View::share('current_user', User::find(Session::get('current_user')));
         }
     }
 

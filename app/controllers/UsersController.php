@@ -8,7 +8,8 @@ class UsersController extends BaseController{
             return false;
         }
     }
-
+    
+    
     public function postAjaxComment(){
         if(Input::get('commentContent')){
             $data=Input::all();
@@ -25,7 +26,33 @@ class UsersController extends BaseController{
             echo json_encode('false');
         }
     }
-
+    
+    public function postAjaxFollow(){
+        if(!empty(Input::get('user_id')) && !empty(Input::get('current_user'))){
+            if(true){ 
+                $relation = new Relation;
+                $relation->user1_id = Input::get('current_user');
+                $relation->user2_id = Input::get('user_id');
+                $relation->type = 1;
+                $relation->save();
+                echo 'true';
+            }
+        }else{
+            echo 'false';
+        }
+    }
+    
+    public function postAjaxUnfollow(){
+        if(!empty(Input::get('user_id')) && !empty(Input::get('current_user'))){
+            if(true){ 
+                $relation = Relation::where('user1_id','=',Input::get('current_user'))->where('user2_id','=',Input::get('user_id'))->get()->first();
+                if($relation->delete() == 1) echo 'true';
+            }
+        }else{
+            echo 'false';
+        }
+    }
+    
     public function getLogin(){
         
         if(Session::get('current_user')){
