@@ -1,9 +1,9 @@
 @extends('frontend/layout/master')
 @section('style-bot')
-{{ HTML::style('public/assets/css/images/view.css') }}
+{{ HTML::style('public/assets/css/albums/view.css') }}
 @stop
 @section('script-bot')
-{{ HTML::script('public/assets/js/images/view.js') }}
+{{ HTML::script('public/assets/js/albums/view.js') }}
 @stop
 @section('width_70per')
 	width_70per
@@ -21,8 +21,8 @@
                 </div>
                 <ul class="detail_image_info">
                     <li class="detail_image_info_date"><span >{{$image->updated_at}}</span></li>
-                    <li class="detail_image_info_count_like"><span class="like"><i class="glyphicon glyphicon-heart"></i> <span>{{$image->count_like}}</span></span></li>
-                    <li class="detail_image_info_count_share"><span><i class='glyphicon glyphicon-share'></i>{{$image->count_share}}</span></li>
+                    <li class="detail_image_info_count_like"><span class="like"><i class="glyphicon glyphicon-heart"></i> {{$image->count_like}}</span></li>
+                    <li class="detail_image_info_count_share"><span class="share"><i class='glyphicon glyphicon-share'></i> {{$image->count_share}}</span></li>
                 </ul>
                 <div class="photo_content">
                     <a href='{{Asset('image/view/'.$image->id)}}'>
@@ -35,25 +35,6 @@
                 </div>
             </article>
             @endforeach
-            <!--Cái phần này c làm thành 1 cái slide ngang được thì tốt quá-->
-            <!-- <p>Same album images</p> 
-            <div class="same-album-images container-div">
-                <ul>
-                    @foreach($album->image as $index => $image)
-                    @if($index != 0)
-                    <li class="item-image">
-                        <a href='{{Asset('image/view/'.$image->id)}}'>
-                            <img class="img-rounded image-view" src="{{url('public/'.$image->path)}}" alt="{{$image->title}}">
-                        </a>
-                        <p>
-                            <label>caption</label>
-                            <span>{{$image->caption}}</span>
-                        </p>
-                    </li>
-                    @endif
-                    @endforeach
-                </ul>
-            </div> -->
 		</div>
 		<div class="image_right col-md-4">
 			<ul>

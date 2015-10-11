@@ -1,8 +1,10 @@
 <?php
 class CategoriesController extends BaseController{
     public function getView($id) {
-        $data['albums']=Album::where('category_id', $id)->get();
-        return View::make('frontend/users/view-images')->with('data',$data);
+        $data['category'] = Category::where('id', $id)->first();
+        $data['albums'] = Album::where('category_id', $id)->get();
+        return View::make('frontend/categories/view')->with('data', $data);
+
     }
     
     public function getSearch(){

@@ -560,7 +560,11 @@ section .wrapper{
 .item-image .photo_content .view .like{
     margin-right: 10px;
     color: rgb(236, 107, 73);
-}/*
+}
+.item-image .photo_content .view .share{
+    color: #2F50FB;
+}
+/*
 .login .error{
     width: 100%;
     text-align: center;

@@ -5,6 +5,7 @@ class ImagesController extends BaseController{
         return View::make('frontend/images/view')->with('image',$image);
     }
     
+    
     public function postSave(){
 //      $status =   $this->saveImagesToDB();
         $files = Input::file('path');
