@@ -41,8 +41,10 @@ class UsersController extends BaseController{
     }
     
     public function getLogout() {
-        Session::flush();
-        return Redirect::to('/home');
+        if(Session::has('current_user')){
+            Session::flush();
+            return Redirect::to('/home');
+        }
     }
     
     public function getUpload(){
