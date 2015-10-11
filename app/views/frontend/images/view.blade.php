@@ -5,8 +5,6 @@
 @section('script-bot')
 {{ HTML::script('public/assets/js/images/view.js') }}
 <script type="text/javascript">
-    var username="{{User::where('id',Session::get('current_user'))->first()->name}}";
-    var post_time = "{{Comment::where('user_id',Session::get('current_user'))->orderBy('created_at', 'desc')->first()->created_at}}";// chỗ này chưa xử lý được
 </script>
 @stop
 @section('title')

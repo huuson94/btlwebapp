@@ -27,14 +27,15 @@ $(document).ready(function () {
         $.ajax({
             url: $(this).attr('action'),
             data: formData,
+            dataType: 'JSON',
             type: 'POST',
             contentType: false,
             processData: false,
             cache: false,
-        }).done(function () {
+        }).done(function (data) {
         	// alert('comment thanh cong');
         	var cmt_content=$('textarea.form-control').val();
-        	var str = "<li><p>"+username+"</p><div class=\"commentText\"><p>"+cmt_content+"</p><span class=\"date sub-text\">on"+post_time+"</span></div></li>";
+        	var str = "<li><p>"+data.user_name+"</p><div class=\"commentText\"><p>"+data.content+"</p><span class=\"date sub-text\">on"+data.updated_at+"</span></div></li>";
         	$('ul.commentList').prepend(str);
          	$('.form-control').val('');
         }).fail(function () {

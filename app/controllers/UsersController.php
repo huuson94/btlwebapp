@@ -18,8 +18,11 @@ class UsersController extends BaseController{
             $new->type = $data['type'];
             $new->content=$data['commentContent'];
             $new->save();
+            $new = $new->toArray();
+            $new['user_name'] = User::where('id','=',$new['user_id'])->get()->first()->name;
+            echo json_encode($new);
         }else{
-            return Redirect::to('home/index');
+            echo json_encode('false');
         }
     }
 
