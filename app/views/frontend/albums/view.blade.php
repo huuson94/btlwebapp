@@ -1,5 +1,6 @@
 @extends('frontend/layout/master')
 @section('style-bot')
+{{ HTML::style('public/assets/css/albums-images/view.css') }}
 {{ HTML::style('public/assets/css/albums/view.css') }}
 @stop
 @section('script-bot')
