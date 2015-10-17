@@ -44,6 +44,7 @@ class ImagesController extends BaseController{
             $album->public = $publices[$index];
             $album->title = $titles[$index];
             $album->description = "";
+            $album->is_single = 1;
             if($album->save() == FALSE){
                 return false;
             }else{
