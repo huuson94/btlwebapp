@@ -9,4 +9,6 @@ class User extends Eloquent {
     public function album(){
         return $this->hasMany('Album','user_id');
     }
+
+    
 }

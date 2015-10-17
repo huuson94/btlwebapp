@@ -34,8 +34,15 @@
                                 {{ $item->phone }}
                             </td>
                             <td class="date">{{ e($item->updated_at) }}</td>
-                            <td class="action">
+                            {{-- <td class="action">
                                     
+                            </td> --}}
+                            <td>
+                            {{ link_to_route('admin.edit', 'Edit',array($item->id), array('class' => 'btn btn-info')) }}
+                            </td>
+                            <td>
+                            {{ Form::open(array('method' => 'DELETE', 'route' => array('admin.destroy', $item->id))) }}         {{ Form::submit('Delete', array('class'=> 'btn btn-danger delete-btn')) }}
+                            {{ Form::close() }}
                             </td>
                         </tr>
                     @endforeach
@@ -50,4 +57,16 @@
             </table>
         </div>
     </div>
+    <script>
+        $(document).ready(function(){
+            $(".delete-btn").click(function(e){
+                
+                if(confirm("Xoa khong?")){
+
+                }else{
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
 @stop
