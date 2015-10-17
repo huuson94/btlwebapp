@@ -13,7 +13,7 @@ class Image extends Eloquent{
     }
     
     public function actions(){
-        return $this->hasMany('Action', 'post_id')->where('type','=',2);
+        return $this->hasMany('Action', 'post_id')->where('a_type','=',2);
     }
     
 }

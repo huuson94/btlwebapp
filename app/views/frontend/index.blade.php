@@ -12,7 +12,7 @@
                 @if($album->is_single == 0)
                     @include('frontend/components/album', array('album' => $album))
                 @elseif($album->is_single == 1)
-                    @include('frontend/components/image', array('image' => $album))
+                    @include('frontend/components/image', array('image' => $album->images->first()))
                 @endif
             @endforeach
 		</ul>
