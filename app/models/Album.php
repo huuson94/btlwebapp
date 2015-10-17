@@ -14,4 +14,8 @@ class Album extends Eloquent{
     public function category(){
     	return $this->belongsTo('Category','category_id');
     }
+    
+    public function actions(){
+        return $this->hasMany('Action', 'post_id')->where('type','=',1);
+    }
 }
