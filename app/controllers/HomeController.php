@@ -4,6 +4,7 @@
             $data['albums'] = Album::where('public','=',1)->get();
             return View::make('frontend/index')->with('data',$data);
 		}
+        
 		public function getUpload(){
 			return View::make('frontend/upload');
 		}
