@@ -162,6 +162,9 @@ class UsersController extends BaseController{
                     Session::flash('signup_status', $status);
                     if($status == true){
                         Session::set("current_user", $new->id);
+                        $new_notification = new Notification;
+                        $new_notification->user_id = $new->id;
+                        $new_notification->save();
                     }
 					return Redirect::to('home/index')->with('user',$new);
 				}
