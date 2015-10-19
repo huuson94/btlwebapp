@@ -1,9 +1,14 @@
 @extends('frontend/layout/master')
 @section('style-bot')
-{{ HTML::style('public/assets/css/images/view.css') }}
+{{ HTML::style('public/assets/css/albums/view.css') }}
 @stop
 @section('script-bot')
-{{ HTML::script('public/assets/js/images/view.js') }}
+{{ HTML::script('public/assets/js/albums/jquery-ui-1.10.3.custom.min.js') }}
+{{ HTML::script('public/assets/js/albums/jquery.kinetic.min.js') }}
+{{ HTML::script('public/assets/js/albums/jquery.mousewheel.min.js') }}
+{{ HTML::script('public/assets/js/albums/jquery.smoothdivscroll-1.3-min.js') }}
+{{ HTML::script('public/assets/js/albums-images/view.js') }}
+{{ HTML::script('public/assets/js/albums/view.js') }}
 @stop
 @section('width_70per')
 	width_70per
@@ -12,6 +17,7 @@
 	Image Viewer
 @stop
 @section('content')
+
 	<div class="image_content row">
 		<div class="image_left col-md-8">
 			@foreach($album->image as $index => $image)
@@ -21,8 +27,8 @@
                 </div>
                 <ul class="detail_image_info">
                     <li class="detail_image_info_date"><span >{{$image->updated_at}}</span></li>
-                    <li class="detail_image_info_count_like"><span class="like"><i class="glyphicon glyphicon-heart"></i> <span>{{$image->count_like}}</span></span></li>
-                    <li class="detail_image_info_count_share"><span><i class='glyphicon glyphicon-share'></i>{{$image->count_share}}</span></li>
+                    <li class="detail_image_info_count_like"><span class="like"><i class="glyphicon glyphicon-heart"></i> {{$image->count_like}}</span></li>
+                    <li class="detail_image_info_count_share"><span class="share"><i class='glyphicon glyphicon-share'></i> {{$image->count_share}}</span></li>
                 </ul>
                 <div class="photo_content">
                     <a href='{{Asset('image/view/'.$image->id)}}'>
@@ -35,31 +41,26 @@
                 </div>
             </article>
             @endforeach
-            <!--Cái phần này c làm thành 1 cái slide ngang được thì tốt quá-->
-            <!-- <p>Same album images</p> 
-            <div class="same-album-images container-div">
-                <ul>
-                    @foreach($album->image as $index => $image)
-                    @if($index != 0)
-                    <li class="item-image">
-                        <a href='{{Asset('image/view/'.$image->id)}}'>
-                            <img class="img-rounded image-view" src="{{url('public/'.$image->path)}}" alt="{{$image->title}}">
-                        </a>
-                        <p>
-                            <label>caption</label>
-                            <span>{{$image->caption}}</span>
-                        </p>
-                    </li>
-                    @endif
-                    @endforeach
-                </ul>
-            </div> -->
 		</div>
 		<div class="image_right col-md-4">
 			<ul>
 				<li>
 					<p>ĐĂNG BỞI</p>
-					<a href="#" class="user_name">{{$album->user->name}}</a>
+					<p>
+                        <a href="#" class="user_name">{{$album->user->name}}</a>
+                        <input type='hidden' id='user_id' value='{{$image->album->user->id}}'>
+                        <input type='hidden' id='current_user' value='{{Session::get('current_user')}}'>
+                        @if($image->album->user->id != Session::get('current_user'))
+                            @if ($current_user->follow($album->user->id) == 0)
+                                <button class="btn btn-success follow-btn" itemid='{{url('/user/ajax-follow')}}'>Follow</button>
+                                <button class="btn btn-success unfollow-btn" itemid='{{url('/user/ajax-unfollow')}}' style='display: none'>Unfollow</button>
+                            @elseif ($current_user->follow($album->user->id) == 1)
+                            <button class="btn btn-success follow-btn" itemid='{{url('/user/ajax-follow')}}' style='display: none'>Follow</button>
+                                <button class="btn btn-success unfollow-btn" itemid='{{url('/user/ajax-unfollow')}}'>Unfollow</button>
+                            @endif
+                        @endif
+                        
+                    </p>
 				</li>
 				<li>
 					<p>GIỚI THIỆU</p>

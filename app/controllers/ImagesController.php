@@ -1,5 +1,11 @@
 <?php
 class ImagesController extends BaseController{
+    public function getView($id){
+        $image = Image::where('id',$id)->first();
+        return View::make('frontend/images/view')->with('image',$image);
+    }
+    
+    
     public function postSave(){
 //      $status =   $this->saveImagesToDB();
         $files = Input::file('path');
@@ -21,7 +27,7 @@ class ImagesController extends BaseController{
             }
         }
         Session::flash('status',$status);
-        return Redirect::to('user/upload');
+        return Redirect::to('user/upload')->header('Cache-Control', 'no-store, no-cache');;
 
     }
     
@@ -29,7 +35,6 @@ class ImagesController extends BaseController{
         $categories = Input::get('category');
         $publices = Input::get('public');
         $titles = Input::get('title');
-        $descriptions = Input::get('description');
         $files = Input::file('path');
         $file = $files[$index];
         if($file->isValid()) {
@@ -67,8 +72,5 @@ class ImagesController extends BaseController{
         }
     }
     
-    public function getView($id){
-        $image = Image::where('id',$id)->first();
-        return View::make('frontend/images/view')->with('image',$image);
-    }
+    
 }

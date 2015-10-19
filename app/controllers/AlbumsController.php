@@ -11,14 +11,15 @@ class AlbumsController extends BaseController{
         $album->description = Input::get('description');
         $album->user_id = Session::get('current_user');
         $album->title = Input::get('title');
+        $album->public = Input::get('public');
+        $filesStatus = Input::get('file_status');
         $album->save();
         $upload_folder = "upload/albums/". uniqid(date('ymdHisu'));
         $files = Input::file('path');
-        var_dump($files);die;
         $captions = Input::get('caption');
         $status = 'success';
         foreach($files as $index => $file){
-            if($file->isValid()) {
+            if($file->isValid() && $filesStatus[$index] != 0) {
                 $image = new Image;
                 $name= $file->getFilename().uniqid().".".$file->getClientOriginalExtension();
                 $file->move(public_path() ."/". $upload_folder,$name);

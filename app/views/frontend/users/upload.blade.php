@@ -68,7 +68,7 @@
                     </ul>
                     
                 </div>
-                <div id="files-array" class="hidden"></div>
+                <div id="files-array-single" class="hidden"></div>
                 <p><input type="submit" class="btn btn-default" value="Upload"></p>
             {{Form::close()}}
         </div>
@@ -109,6 +109,7 @@
                     </ul>
                 </div>
                 <p><input type="submit" class="btn btn-default" value="Upload"></p>
+                <div id="files-array-multiple" class="hidden"></div>
             {{Form::close()}}
         </div>
 	</div>

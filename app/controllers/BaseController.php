@@ -24,7 +24,7 @@ class BaseController extends Controller {
 	            $data['user_name'] =$current_user->name;
 	            View::share('user_name', $data['user_name']);
             }
-        }
     }
+}
 
 }
