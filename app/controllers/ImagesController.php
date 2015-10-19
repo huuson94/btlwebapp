@@ -48,6 +48,7 @@ class ImagesController extends BaseController{
             if($album->save() == FALSE){
                 return false;
             }else{
+                App::make('ActionsController')->createDefaultActions($album->id, 1);
                 return $album;
             }
         }
@@ -63,10 +64,10 @@ class ImagesController extends BaseController{
         $image->path = $upload_folder."/".$name;
         $image->album_id = $album_id;
         $image->caption = $captions[$index];
-        $image->count_like = $image->count_share = $image->count_unlike = 0;
         
         $file->move(public_path() ."/". $upload_folder,$name);
         if($image->save() == false){
+            App::make('ActionsController')->createDefaultActions($image->id, 2);
             return false;
         }else{
             return $image;
