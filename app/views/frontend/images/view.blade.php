@@ -43,7 +43,7 @@
                         <a href="#" class="user_name">{{$image->album->user->name}}</a>
                         <input type='hidden' id='user_id' value='{{$image->album->user->id}}'>
                         <input type='hidden' id='current_user' value='{{Session::get('current_user')}}'>
-                        @if($image->album->user->id != Session::get('current_user'))
+                        @if($image->album->user->id != Session::get('current_user') && Session::get('current_user'))
                             @if ($current_user->follow($image->album->user->id) == 0)
                                 <button class="btn btn-success follow-btn" itemid='{{url('/user/ajax-follow')}}'>Follow</button>
                                 <button class="btn btn-success unfollow-btn" itemid='{{url('/user/ajax-unfollow')}}' style='display: none'>Unfollow</button>

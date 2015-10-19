@@ -21,7 +21,7 @@
 
 	<div class="image_content row">
 		<div class="image_left col-md-8">
-			@foreach($album->image as $index => $image)
+			@foreach($album->images as $index => $image)
             <article>
                 <div class="detail_image_header">
                     <h2 class="detail_image_title">{{$image->title}}</h2>
