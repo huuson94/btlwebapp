@@ -21,24 +21,32 @@ $(document).ready(function () {
     });
     
     $('#comment-form').submit(function (e) {
-        var formData = new FormData($('#comment-form')[0]);
-        e.preventDefault();
-        var obj = $(this);
-        $.ajax({
-            url: $(this).attr('action'),
-            data: formData,
-            type: 'POST',
-            contentType: false,
-            processData: false,
-            cache: false,
-        }).done(function () {
-        	// alert('comment thanh cong');
-        	var cmt_content=$('textarea.form-control').val();
-        	var str = "<li><p>"+username+"</p><div class=\"commentText\"><p>"+cmt_content+"</p><span class=\"date sub-text\">on"+post_time+"</span></div></li>";
-        	$('ul.commentList').prepend(str);
-         	$('.form-control').val('');
-        }).fail(function () {
-            alert('* Bạn không có quyền bình luận !');
-        });
+        if ($('textarea.form-control').val()!='') {
+            var formData = new FormData($('#comment-form')[0]);
+            e.preventDefault();
+            var obj = $(this);
+            $.ajax({
+                url: $(this).attr('action'),
+                data: formData,
+                dataType: 'JSON',
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                cache: false,
+            }).done(function (data) {
+                // alert('comment thanh cong');
+                var cmt_content=$('textarea.form-control').val();
+                var str = "<li><p>"+data.user_name+"</p><div class=\"commentText\"><p>"+data.content+"</p><span class=\"date sub-text\">on"+data.updated_at+"</span></div></li>";
+                $('ul.commentList').prepend(str);
+                $('.form-control').attr('placeholder','Viết bình luận của bạn...');
+                $('.form-control').val('');
+            }).fail(function () {
+                alert('* Bạn không có quyền bình luận !');
+            });
+        }else{
+            $('.form-control').attr('placeholder','Bạn cần nhập nội dung trước khi bình luận !!!');
+            return false;
+        };
+        
     });
 })

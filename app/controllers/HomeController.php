@@ -1,7 +1,7 @@
 <?php
 	class HomeController extends BaseController{
 		public function getIndex(){
-            $data['albums'] = Album::all();
+            $data['albums'] = Album::where('public','=',1)->get();
             return View::make('frontend/index')->with('data',$data);
 		}
 		public function getUpload(){

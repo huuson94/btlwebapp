@@ -8,6 +8,15 @@ class UsersController extends BaseController{
             return false;
         }
     }
+    
+    public function getViewDetails(){
+        if($this->checkLogged()){
+            $data['albums']=Album::where('user_id',Session::get('current_user'))->get();
+            return View::make('frontend/users/details')->with('data',$data);
+        }else{
+            return Redirect::to('home/index');
+        }
+    }
 
     public function postAjaxComment(){
         if(Input::get('commentContent')){
@@ -18,11 +27,40 @@ class UsersController extends BaseController{
             $new->type = $data['type'];
             $new->content=$data['commentContent'];
             $new->save();
+            $new = $new->toArray();
+            $new['user_name'] = User::where('id','=',$new['user_id'])->get()->first()->name;
+            echo json_encode($new);
         }else{
-            return Redirect::to('home/index');
+            echo json_encode('false');
         }
     }
-
+    
+    public function postAjaxFollow(){
+        if(!empty(Input::get('user_id')) && !empty(Input::get('current_user'))){
+            if(true){ 
+                $relation = new Relation;
+                $relation->user1_id = Input::get('current_user');
+                $relation->user2_id = Input::get('user_id');
+                $relation->type = 1;
+                $relation->save();
+                echo 'true';
+            }
+        }else{
+            echo 'false';
+        }
+    }
+    
+    public function postAjaxUnfollow(){
+        if(!empty(Input::get('user_id')) && !empty(Input::get('current_user'))){
+            if(true){ 
+                $relation = Relation::where('user1_id','=',Input::get('current_user'))->where('user2_id','=',Input::get('user_id'))->get()->first();
+                if($relation->delete() == 1) echo 'true';
+            }
+        }else{
+            echo 'false';
+        }
+    }
+    
     public function getLogin(){
         
         if(Session::get('current_user')){
@@ -38,8 +76,10 @@ class UsersController extends BaseController{
     }
     
     public function getLogout() {
-        Session::flush();
-        return Redirect::to('/home');
+        if(Session::has('current_user')){
+            Session::flush();
+            return Redirect::to('/home');
+        }
     }
     
     public function getUpload(){

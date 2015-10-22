@@ -46,7 +46,7 @@
 			<ul class="col-md-3 login_singin_area">
 				@if(Session::has('current_user'))
 					<li class="col-md-7">
-						<a href=""><p>XIN CHÀO <span class="user_name">{{ $user_name }}</span></p></a>
+						<a href="{{url('/details')}}"><p>XIN CHÀO <span class="user_name">{{ $user_name }}</span></p></a>
 					</li>
 					<li class='col-md-5'><a href="{{url('user/logout')}}">ĐĂNG XUẤT</a></li>
 				@else
