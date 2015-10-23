@@ -13,12 +13,7 @@ class CategoriesController extends BaseController{
 
     public function index()
     {
-        // if($this->checkIsAdmin()) {
-        //     $users = User::all();
-        //     return View::make('backend.users.list')->with('users',$users);
-        // }else{
-        //     return Redirect::to('home/index');
-        // }
+        
         $categories = Category::all();
         return View::make('backend.category.list')->with('categories',$categories);
     }
