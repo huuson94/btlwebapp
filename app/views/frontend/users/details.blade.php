@@ -20,7 +20,7 @@
 				<a class="logo" href="#"><img src="{{'public/assets/images/logo1.png'}}"></a>
 			</li>
 			<li>
-				<a href="#">TRANG CHỦ</a>
+				<a href="{{url('home')}}">TRANG CHỦ</a>
 			</li>
 			<li>
 				<a href="#">ẢNH</a>
