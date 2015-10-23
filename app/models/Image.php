@@ -12,4 +12,8 @@ class Image extends Eloquent{
         return $this->hasMany('Comment', 'post_id')->where('type','=',2)->orderBy('created_at', 'desc');
     }
     
+    public function actions(){
+        return $this->hasMany('Action', 'post_id')->where('a_type','=',2);
+    }
+    
 }

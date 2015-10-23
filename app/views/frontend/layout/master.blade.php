@@ -33,7 +33,7 @@
                 <h4 class='col-md-8'><a href="{{url('/home')}}"><img src="{{url('public/assets/images/logo.png')}}" alt="logo"/></a></h4>
                 <h4 id='link-to-home' class='col-md-4'><a href="{{url('/home')}}">HOME</a></h4>
             </div>
-			<ul class="col-md-6 search_area">
+			<ul class="col-md-4 search_area">
 				
 				<li>
                     <form action="{{url('home/search')}}" method="get">
@@ -43,12 +43,25 @@
                     </form>
 				</li>
 			</ul>
-			<ul class="col-md-3 login_singin_area">
+			<ul class="col-md-5 login_singin_area">
 				@if(Session::has('current_user'))
 					<li class="col-md-7">
-						<a href=""><p>XIN CHÀO <span class="user_name">{{ $user_name }}</span></p></a>
+						<a href="{{url('/details')}}"><p>XIN CHÀO <span class="user_name">{{ $user_name }}</span></p></a>
+
 					</li>
-					<li class='col-md-5'><a href="{{url('user/logout')}}">ĐĂNG XUẤT</a></li>
+                    <li class="col-md-4">
+                        <span class="glyphicon glyphicon-bell"></span>
+                        <span>{{$notifications['count_notifications']}}</span>
+                        
+                        <ul class="notification hidden">
+                            <li>Test noti 1</li>
+                            <li>Test noti 2</li>
+                            <li>Test noti 3</li>
+                        </ul>
+                    </li>
+                        
+                    </li>
+					<li class='col-md-3'><a href="{{url('user/logout')}}">ĐĂNG XUẤT</a></li>
 				@else
 					<li class="col-md-7 login">
 						<a><p>ĐĂNG NHẬP</p></a>
@@ -76,7 +89,7 @@
     <div class="clearfix"></div>
     <nav>
         <div class="navi">
-        	<div class="categories col-md-8">
+        	<div class="categories col-md-6">
 	            <p class="menu_button"><span></span>Danh mục</p>
 	            <div class="menu">
 	                <ul>
@@ -92,9 +105,12 @@
 	            </div>
 	        </div>
 	        @if(Session::has('current_user'))
-	        <div class='images-manage-buttons col-md-4 '>
-	            <p class="col-md-6 pull-right"><a  class="btn btn-danger upload_button" href="{{url('/user/upload')}}">Đăng ảnh</a></p>
+	        <div class='images-manage-buttons col-md-6 '>
+                <p class="col-md-6 pull-right"><a  class="btn btn-danger upload_button" href="{{url('/user/upload')}}">Đăng ảnh</a></p>
 	            <p class="col-md-3 pull-right"><a class="btn btn-danger mypic_button" href="{{url('/user/view-images')}}">Ảnh của tôi</a></p>
+                @if(User::find(Session::get('current_user'))->is_admin == 1)
+                <p class="col-md-3 pull-right"><a href='{{url('admin')}}'><button class='btn btn-default'>Admin page</button></a></p>
+                @endif
 	        </div>
         	@endif
         </div>

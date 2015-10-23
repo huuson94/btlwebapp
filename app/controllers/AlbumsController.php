@@ -12,6 +12,7 @@ class AlbumsController extends BaseController{
         $album->user_id = Session::get('current_user');
         $album->title = Input::get('title');
         $album->public = Input::get('public');
+        $album->is_single = 0;
         $filesStatus = Input::get('file_status');
         $album->save();
         $upload_folder = "upload/albums/". uniqid(date('ymdHisu'));
@@ -26,9 +27,6 @@ class AlbumsController extends BaseController{
                 $image->path= $upload_folder."/".$name;
                 $image->caption = $captions[$index];
                 $image->album_id = $album->id;
-                $image->count_share = 0;
-                $image->count_like = 0;
-                $image->count_unlike = 0;
                 $status = $image->save();
                 if($status == FALSE){
                     $status = 'fail';

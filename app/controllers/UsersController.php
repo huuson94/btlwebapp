@@ -8,8 +8,16 @@ class UsersController extends BaseController{
             return false;
         }
     }
-    
-    
+
+    public function getViewDetails(){
+        if($this->checkLogged()){
+            $data['albums']=Album::where('user_id',Session::get('current_user'))->get();
+            return View::make('frontend/users/details')->with('data',$data);
+        }else{
+            return Redirect::to('home/index');
+        }
+    }
+
     public function postAjaxComment(){
         if(Input::get('commentContent')){
             $data=Input::all();
@@ -176,6 +184,9 @@ class UsersController extends BaseController{
                     Session::flash('signup_status', $status);
                     if($status == true){
                         Session::set("current_user", $new->id);
+                        $new_notification = new Notification;
+                        $new_notification->user_id = $new->id;
+                        $new_notification->save();
                     }
 					return Redirect::to('home/index')->with('user',$new);
 				}

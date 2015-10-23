@@ -7,11 +7,15 @@ class Album extends Eloquent{
         return $this->belongsTo('User','user_id');
     }
     
-    public function image(){
+    public function images(){
         return $this->hasMany('Image', 'album_id');
     }
 
     public function category(){
     	return $this->belongsTo('Category','category_id');
+    }
+    
+    public function actions(){
+        return $this->hasMany('Action', 'post_id')->where('a_type','=',1);
     }
 }
