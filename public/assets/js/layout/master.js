@@ -1,4 +1,13 @@
 $(document).ready(function(){
+			//add libnary css
+		    var $container = $('.container-div');
+		    $container.imagesLoaded(function () {
+		        $container.masonry({
+		            itemSelector: '.item-image',
+		            columWidth: 200
+		        });
+		    });
+
 			//Effect for Menu
 			var stt=0;
 			$('.categories .menu_button').click(function(){

@@ -26,7 +26,6 @@ body{
     color: #666;
     font-size: 14px;
     margin: 0px auto !important;
-    
 }
 a{
     text-decoration: none;
@@ -467,7 +466,7 @@ section .wrapper{
 .container-div ul .item-image {
     border-radius: 10px;
     display: block;
-    width: 23%;     // chia layout ra làm 3 cột - mỗi cột chiếm 32% của container-div 
+    width: 23.2%;     // chia layout ra làm 3 cột - mỗi cột chiếm 32% của container-div 
     padding: 8px;
     margin: 15px 10px;
 }

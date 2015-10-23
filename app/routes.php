@@ -21,3 +21,5 @@ Route::controller('album', 'AlbumsController');
 Route::get('/','HomeController@getIndex');
 Route::resource('admin', 'UsersController');
 Route::resource('admin-category', 'CategoriesController');
+Route::get('details','UsersController@getViewDetails');
+
