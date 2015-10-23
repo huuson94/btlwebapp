@@ -19,3 +19,5 @@ Route::controller('category', 'CategoriesController');
 Route::controller('image', 'ImagesController');
 Route::controller('album', 'AlbumsController');
 Route::get('/','HomeController@getIndex');
+Route::resource('admin', 'UsersController');
+Route::resource('admin-category', 'CategoriesController');

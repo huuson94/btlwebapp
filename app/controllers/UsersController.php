@@ -61,11 +61,20 @@ class UsersController extends BaseController{
         return View::make('frontend/users/login');
     }
     
-    public function getList(){
-        $users = users::all();
-        return View::make('backend.users.list')->with('users',$users);
+    // // public function getList(){
+    // //     $users = User::all();
+    // //     return View::make('backend.users.list')->with('users',$users);
         
-    }
+    // // }
+
+    // // public function getEdit($id){
+    // //     $user = User::select('*')->where('id','=',$id)->first();
+    // //     return View::make('backend.users.edit')->with('user',$user);
+    // // }
+
+    // public function postUpdate($id){
+        
+    // }
     
     public function getLogout() {
         if(Session::has('current_user')){
@@ -98,9 +107,14 @@ class UsersController extends BaseController{
             $user=User::where('account',$data['account'])->where('password',$data['password'])->first();
             if($user){
                 Session::put('current_user',$user->id);
-                return Redirect::to('home/index')->with('user', $user);
+                if($user->is_admin == 1){
+                    return Redirect::to('admin')->with('user', $user);
+                }else{
+                    return Redirect::to('home/index')->with('user', $user);
+                }
+                
             } else{
-                return Redirect::to('home/index');
+                return Redirect::to('home');
             }			
         }
     }
@@ -231,4 +245,151 @@ class UsersController extends BaseController{
 				}
 			}
     }
+
+    private function checkIsAdmin(){
+        $currrent_user_id = Session::get('current_user');
+        $current_user = User::find($currrent_user_id);
+        if($current_user->is_admin == 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        if($this->checkIsAdmin()) {
+            $users = User::all();
+            return View::make('backend.users.list')->with('users',$users);
+        }else{
+            return Redirect::to('home/index');
+        }
+    }
+
+  /**
+   * Show the form for creating a new resource.
+   *
+   * @return Response
+   */
+  public function create()
+      {
+        //
+      }
+
+  /**
+   * Store a newly created resource in storage.
+   *
+   * @return Response
+   */
+  public function store()
+      {
+        //
+      }
+
+  /**
+   * Display the specified resource.
+   *
+   * @param  int  $id
+   * @return Response
+   */
+  public function show($id)
+      {
+        //
+      }
+
+  /**
+   * Show the form for editing the specified resource.
+   *
+   * @param  int  $id
+   * @return Response
+   */
+  public function edit($id)
+  {
+    // $user = User::select('*')->where('id','=',$id)->first();
+    // return View::make('backend.users.edit')->with('user',$user);
+    $user = User::find($id);
+    if (is_null($user))
+    {
+        return Redirect::route('admin.index');
+    }
+        return View::make('backend.users.edit', compact('user'));
+  }
+
+  /**
+   * Update the specified resource in storage.
+   *
+   * @param  int  $id
+   * @return Response
+   */
+  public function update($id)
+  {
+    // $input = Input::all();
+    //     $validation = Validator::make($input, User::$rules);
+    //     if ($validation->passes())
+    //     {
+    //         $user = User::find($id);
+    //         $user->update($input);
+    //         return Redirect::route('users.index');
+    //     }
+    // return Redirect::route('users.edit', $id)
+    //         ->withInput()
+    //         ->withErrors($validation)
+    //         ->with('message', 'There were validation errors.');
+
+    $input = array(
+            'password' => Input::get('password'),
+            'password_confirmation' => Input::get('password_confirmation'),
+            'name' => Input::get('name'),
+            'address' => Input::get('address'),
+            'phone' => Input::get('phone'),
+            'is_admin' => Input::get('is_admin'),
+        );
+        $rule = array(
+            'password'              => 'min:4|confirmed',
+            'password_confirmation' => 'min:4',
+            'name' => 'required',
+            'address' => 'required'
+        );
+        $validator = \Validator::make($input,$rule);
+        if($validator->fails()){
+            return Redirect::route('admin.edit', $id)
+            ->withInput()
+            ->withErrors($validator)
+            ->with('message', 'There were validation errors.');
+        }
+        else{
+            $user = User::find($id);
+            
+            $name = Input::get('name');
+            $address = Input::get('address');
+            $phone = Input::get('phone');
+            $is_admin = Input::get('is_admin');
+
+            $user->name = $name;
+            $user->address = $address;
+            $user->phone = $phone;
+            $user->is_admin = $is_admin;
+
+            $user->save();
+            return Redirect::route('admin.index');
+        }
+  }
+
+  /**
+   * Remove the specified resource from storage.
+   *
+   * @param  int  $id
+   * @return Response
+   */
+  public function destroy($id)
+  {
+    //
+        User::find($id)->delete();
+        return Redirect::route('admin.index');
+  }
 }
