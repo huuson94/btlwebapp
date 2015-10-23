@@ -89,7 +89,7 @@
     <div class="clearfix"></div>
     <nav>
         <div class="navi">
-        	<div class="categories col-md-8">
+        	<div class="categories col-md-6">
 	            <p class="menu_button"><span></span>Danh mục</p>
 	            <div class="menu">
 	                <ul>
@@ -105,10 +105,12 @@
 	            </div>
 	        </div>
 	        @if(Session::has('current_user'))
-	        <div class='images-manage-buttons col-md-4 '>
+	        <div class='images-manage-buttons col-md-6 '>
                 <p class="col-md-6 pull-right"><a  class="btn btn-danger upload_button" href="{{url('/user/upload')}}">Đăng ảnh</a></p>
 	            <p class="col-md-3 pull-right"><a class="btn btn-danger mypic_button" href="{{url('/user/view-images')}}">Ảnh của tôi</a></p>
+                @if(User::find(Session::get('current_user'))->is_admin == 1)
                 <p class="col-md-3 pull-right"><a href='{{url('admin')}}'><button class='btn btn-default'>Admin page</button></a></p>
+                @endif
 	        </div>
         	@endif
         </div>
