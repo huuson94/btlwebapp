@@ -1,3 +1,4 @@
+@if($album)
 <li class="item-image album">
     <article>
         @if($album->images->count() > 1)
@@ -16,3 +17,4 @@
         @endif
     </article>
 </li>
+@endif
