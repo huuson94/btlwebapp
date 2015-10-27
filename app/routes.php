@@ -15,6 +15,7 @@ Route::get('login', 'UsersController@getLogin');
 Route::get('signup', 'UsersController@getSignup');
 Route::controller('home','HomeController');
 Route::controller('user','UsersController');
+Route::post('update',array('user'=>'UsersController@DetailsUpdate','as'=>'Details.update'));
 Route::controller('category', 'CategoriesController');
 Route::controller('image', 'ImagesController');
 Route::controller('album', 'AlbumsController');

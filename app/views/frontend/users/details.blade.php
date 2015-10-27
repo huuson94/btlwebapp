@@ -114,7 +114,7 @@
 						<ul class="myInfo-box">
 							<li>
 					            <b>Họ tên:</b>
-					            <span>Chưa cập nhật thông tin</span>
+					            <span>{{ $info->name }}</span>
 					        </li>
 					        <li>
 					            <b>Ngày sinh:</b>
@@ -126,11 +126,18 @@
 					        </li>
 					        <li>
 					            <b>Email:</b>
-					            <span>Thông tin email ở trạng thái bảo mật.</span>
+					            <span>{{ $info->email }}</span>
 					        </li>
 					        <li>
 					            <b>Điện thoại:</b>
-					            <span>phone number</span>
+					            <span>{{ $info->phone }}</span>
+					        </li>
+					        <li>
+					            <b>Avatar:</b>
+					            <img src="{{url('public/'.$info->avatar)}}" alt="">
+					        </li>
+					        <li>
+					        	<a href="{{ Asset('user/edit/'.$info->id) }}" class="">Edit</a>
 					        </li>
 					    </ul>
             		</div>

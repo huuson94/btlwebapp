@@ -11,6 +11,7 @@
                 <tr>
                     <th class="text-center row-number">#</th>
                     <th width="200">Title</th>
+                    <th width="200">Description</th>
                     <th width="200">Category parent</th>
                     <th class="text-center" width="200">Thời gian cập nhật</th>
                     <th class="action" width="150">Action</th>
@@ -26,6 +27,9 @@
                             <td class="text-center">{{ $i++ }}.</td>
                             <td>
                                 {{ $item->title }}
+                            </td>
+                            <td>
+                                {{ $item->description }}
                             </td>
                             <td>
                                 @if ($item->parent)
