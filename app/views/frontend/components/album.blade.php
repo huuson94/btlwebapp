@@ -1,5 +1,5 @@
 @if($album)
-<li class="item-image album">
+
     <article>
         @if($album->images->count() > 1)
         <a href='{{Asset('album/view/'.$album->id)}}'>
@@ -16,5 +16,5 @@
         </div>
         @endif
     </article>
-</li>
+
 @endif

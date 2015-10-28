@@ -1,5 +1,5 @@
 @if($image)
-<li class="item-image image">
+
     <article>
         <a href='{{Asset('image/view/'.$image->id)}}'>
             <img src="{{url('public/'.$image->path)}}" alt="">
@@ -13,5 +13,5 @@
             </div>
         </div>
     </article>
-</li>
+
 @endif
