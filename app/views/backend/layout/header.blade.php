@@ -13,7 +13,7 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <img src="{{ asset('/public/backend/dist/img/user2-160x160.jpg') }}" class="user-image" alt="User Image"/>
-                    <span class="hidden-xs">Alexander Pierce</span>
+                    <p>{{User::find(Session::get('current_user'))->name}}</p>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->

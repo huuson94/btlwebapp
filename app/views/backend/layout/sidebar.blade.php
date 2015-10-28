@@ -5,10 +5,10 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="{{ asset('public/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image" />
+                <img src="{{ asset('public/avatars/'.User::find(Session::get('current_user'))->avatar) }}" class="img-circle" alt="User Image" />
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
+                <p>{{User::find(Session::get('current_user'))->name}}</p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
