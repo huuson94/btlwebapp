@@ -24,7 +24,7 @@ class UsersController extends BaseController{
             $new = new Comment;
             $new->post_id=$data['post_id'];
             $new->user_id=Session::get('current_user');
-            $new->type = $data['type'];
+            $new->p_type = $data['type'];
             $new->content=$data['commentContent'];
             $new->save();
             $new = $new->toArray();
