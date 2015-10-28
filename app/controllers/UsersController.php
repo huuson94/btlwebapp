@@ -12,10 +12,50 @@ class UsersController extends BaseController{
     public function getViewDetails(){
         if($this->checkLogged()){
             $data['albums']=Album::where('user_id',Session::get('current_user'))->get();
-            return View::make('frontend/users/details')->with('data',$data);
+            $info = User::find(Session::get('current_user'));
+            return View::make('frontend/users/details')->with('data',$data)->with('info',$info);
         }else{
             return Redirect::to('home/index');
         }
+    }
+
+//Edit từ trang details 
+    public function getEdit($id){
+        $user = User::find(Session::get('current_user'));
+        return View::make('frontend/users/edit')->with('user',$user);
+    }
+
+    public function DetailsUpdate($id){
+        $input = array(
+            'name' => Input::get('name'),
+            'address' => Input::get('address'),
+            'phone' => Input::get('phone'),
+        );
+        $rule = array(
+            'name' => 'required',
+            'address' => 'required'
+        );
+        $validator = \Validator::make($input,$rule);
+        if($validator->fails()){
+            return Redirect::to('user/edit/'.$id)
+            ->withInput()
+            ->withErrors($validator)
+            ->with('message', 'There were validation errors.');
+        }
+        else{
+            $user = User::find($id);
+            
+            $name = Input::get('name');
+            $address = Input::get('address');
+            $phone = Input::get('phone');
+
+            $user->name = $name;
+            $user->address = $address;
+            $user->phone = $phone;
+
+            $user->save();
+        }
+
     }
 
     public function postAjaxComment(){
@@ -68,21 +108,6 @@ class UsersController extends BaseController{
         }
         return View::make('frontend/users/login');
     }
-    
-    // // public function getList(){
-    // //     $users = User::all();
-    // //     return View::make('backend.users.list')->with('users',$users);
-        
-    // // }
-
-    // // public function getEdit($id){
-    // //     $user = User::select('*')->where('id','=',$id)->first();
-    // //     return View::make('backend.users.edit')->with('user',$user);
-    // // }
-
-    // public function postUpdate($id){
-        
-    // }
     
     public function getLogout() {
         if(Session::has('current_user')){
@@ -137,6 +162,13 @@ class UsersController extends BaseController{
     
     public function postSignup(){
 			$data=Input::all();
+            $upload_folder = "upload/avatar/". uniqid(date('ymdHisu'));
+            if($data['path']){
+            $name=$data['path']->getFilename().uniqid().".".$data['path']->getClientOriginalExtension();
+            $data['path']->move(public_path() ."/". $upload_folder,$name);
+        }else{
+            $name= "default/default-avatar.jpg";
+        }
 			$validator = Validator::make(
 				array(
                     'password' => $data['password'],
@@ -180,6 +212,11 @@ class UsersController extends BaseController{
 					$new->email=$data['email'];
 					$new->phone=$data['phone'];
 					$new->address=$data['address'];
+                    if($data['path']){
+                    $new->avatar=$upload_folder."/".$name;
+                }else{
+                    $new->avatar="upload/avatar/".$name;
+                }
                     $status = $new->save();
                     Session::flash('signup_status', $status);
                     if($status == true){

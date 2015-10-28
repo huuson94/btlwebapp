@@ -14,7 +14,7 @@
 @endif
 @endif
 <div class="signup-form">
-    {{ Form::open(array('url'=>'user/signup', 'method' => 'POST')) }}
+    {{ Form::open(array('url'=>'user/signup', 'method' => 'POST','files'=>true)) }}
     <div class="form-horizontal">
         <div class="form-group">
             <label class="col-sm-2 control-label">Name</label>
@@ -58,6 +58,14 @@
                 <input class="form-control" type="text form-control" name="address" placeholder="Nhập địa chỉ">
             </div>
         </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Avatar</label>
+            <div class="col-sm-10">
+                {{Form::file('path', array("accept" => "image/*", "class" => "single form-control", 'multiple' => 'true'))}}
+            </div>
+        </div>
+
+
         <input class="form-control submit" type="submit" class="btn btn-default" value="Signup">
     </div> 
     {{Form::close()}}

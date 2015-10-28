@@ -48,6 +48,14 @@
                     <li><a href="{{route('admin-category.create')}}"><i class="fa fa-angle-double-right"></i> Create</a></li>
                 </ul>
             </li>
+            <li class="treeview">
+                <a href="{{route('admin-album.index')}}">
+                    <i class="fa fa-user text-red"></i>
+                    <span>Albums</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+            </li>
+
         </ul>
     </section>
     <!-- /.sidebar -->

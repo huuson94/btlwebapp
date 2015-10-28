@@ -1,3 +1,4 @@
+@if($image)
 <li class="item-image image">
     <article>
         <a href='{{Asset('image/view/'.$image->id)}}'>
@@ -13,3 +14,4 @@
         </div>
     </article>
 </li>
+@endif
