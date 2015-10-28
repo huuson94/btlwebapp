@@ -42,4 +42,17 @@ class AlbumsController extends BaseController{
         $album = Album::where('id', $id)->first();
         return View::make('frontend/albums/view')->with('album',$album);
     }
+
+    public function index()
+    {
+        
+        $sortby = Input::get('sortby');
+        $order = Input::get('order');
+        if ($sortby && $order) {
+            $albums = Album::select('*')->orderBy($sortby, $order)->paginate(10);
+        }else {
+            $albums = Album::paginate(10);
+        }
+            return View::make('backend.album.list', compact('albums', 'sortby', 'order'));
+    }
 }
