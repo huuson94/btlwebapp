@@ -61,7 +61,7 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">Avatar</label>
             <div class="col-sm-10">
-                {{Form::file('path', array("accept" => "image/*", "class" => "single form-control", 'multiple' => 'true'))}}
+                {{Form::file('avatar', array("accept" => "image/*", "class" => "single form-control"))}}
             </div>
         </div>
 
