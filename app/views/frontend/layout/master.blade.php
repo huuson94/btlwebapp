@@ -43,27 +43,15 @@
                     </form>
 				</li>
 			</ul>
-			<ul class="col-md-5 login_singin_area">
+			<ul class="col-md-3 login_singin_area pull-right">
 				@if(Session::has('current_user'))
 					<li class="col-md-7">
 						<a href="{{url('/details')}}"><p>XIN CHÀO <span class="user_name">{{ $user_name }}</span></p></a>
 
 					</li>
-                    <li class="col-md-4">
-                        <span class="glyphicon glyphicon-bell"></span>
-                        <span>{{$notifications['count_notifications']}}</span>
-                        
-                        <ul class="notification hidden">
-                            <li>Test noti 1</li>
-                            <li>Test noti 2</li>
-                            <li>Test noti 3</li>
-                        </ul>
-                    </li>
-                        
-                    </li>
-					<li class='col-md-3'><a href="{{url('user/logout')}}">ĐĂNG XUẤT</a></li>
+                    <li class='col-md-5'><a href="{{url('user/logout')}}">ĐĂNG XUẤT</a></li>
 				@else
-					<li class="col-md-7 login">
+					<li class="col-md-5 login">
 						<a><p>ĐĂNG NHẬP</p></a>
 						@yield('login')
 					</li>

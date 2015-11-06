@@ -1,7 +1,8 @@
 <?php
-
+define('AVATAR_PATH', 'upload/avatars');
+define('DEFAULT_AVATAR_PATH',"public/avatars/default/avatar.jpg");
 class UsersController extends BaseController {
-
+    
     private function checkLogged() {
         if (Session::has('current_user')) {
             return true;
@@ -159,16 +160,46 @@ class UsersController extends BaseController {
     }
 
     public function postSignup() {
-        $data = Input::all();
-        $upload_folder = "upload/avatars/" . uniqid(date('ymdHisu'));
-        if ($data['avatar']) {
-            $name = $data['avatar']->getFilename() . uniqid() . "." . $data['avatar']->getClientOriginalExtension();
-            $data['avatar']->move(public_path() . "/" . $upload_folder, $name);
+        if ($this->validateSignUpInfo()) {
+            Session::flash('signup_status', false);
+            return Redirect::to('user/signup');
         } else {
-            $name = "default/default-avatar.jpg";
+            if(!$this->isExistedUser()){
+                if($this->saveNewUser()){
+                    return Redirect::to('home');
+                }else{
+                    return Redirect::to('user/signup');
+                }
+            }else{
+                return Redirect::to('user/signup');
+            }
         }
+    }
+    
+    private function isExistedUser(){
+        $data = Input::all();
+        $user1 = User::where('account', $data['account'])->first();
+        $user2 = User::where('email', $data['email'])->first();
+        $errors_message = array();
+        $status = false;
+        if ($user1) {
+            Session::flash('signup_status', false);
+            $errors_message[] = "UserName is existed";
+            $status =  true;
+        }
+        if ($user2) {
+            Session::flash('signup_status', false);
+            $errors_message[] = 'Email existed';
+            $status =  true;
+        }
+        Session::flash('errors_message', $errors_message);
+        return $status;
+    }
+    
+    private function validateSignUpInfo(){
+        $data = Input::all();
         $validator = Validator::make(
-                        array(
+                array(
                     'password' => $data['password'],
                     'password_confirm' => $data['password_confirm'],
                     'account' => $data['account'],
@@ -177,56 +208,48 @@ class UsersController extends BaseController {
                     'phone' => $data['phone'],
                     'email' => $data['email'],
                     'is_admin' => 0
-                        ), array(
+                        ), 
+                array(
                     'name' => 'required|min:6',
                     'account' => 'required|min:6',
                     'password' => 'required|min:6',
                     'password_confirm' => 'same:password',
                     'email' => 'email|required',
-                    'phone' => 'numeric|required',
-                    'address' => 'required',
-                        )
-                        // array(
-                        // 	'required' => 'Yêu cầu bắt buộc.',
-                        // 	//'min:5' => 'Tối thiểu 5 ký tự',
-                        // 	)
+                    'phone' => 'numeric',
+                    )
         );
-        if ($validator->fails()) {
-            $messages = $validator->messages();
-            // $messages
+        if($validator->fails()){
             Session::flash('signup_status', false);
-            return Redirect::to('user/signup');
-        } else {
-            $user = User::where('account', $data['account'])->first();
-            if ($user) {
-                Session::flash('signup_status', false);
-                return Redirect::to('home/index');
-            } else {
-                $new = new User;
-                $new->name = $data['name'];
-                $new->account = $data['account'];
-                $new->password = $data['password'];
-                $new->email = $data['email'];
-                $new->phone = $data['phone'];
-                $new->address = $data['address'];
-                if ($data['avatar']) {
-                    $new->avatar = $upload_folder . "/" . $name;
-                } else {
-                    $new->avatar = "upload/avatars/" . $name;
-                }
-                $status = $new->save();
-                Session::flash('signup_status', $status);
-                if ($status == true) {
-                    Session::set("current_user", $new->id);
-                    $new_notification = new Notification;
-                    $new_notification->user_id = $new->id;
-                    $new_notification->save();
-                }
-                return Redirect::to('home/index')->with('user', $new);
-            }
+            Session::flash('errors_message',$validator->messages());
         }
     }
 
+    private function saveNewUser(){
+        $data = Input::all();
+        $upload_folder = AVATAR_PATH .'/'. uniqid(date('ymdHisu'));
+        $new = new User;
+        $new->name = $data['name'];
+        $new->account = $data['account'];
+        $new->password = $data['password'];
+        $new->email = $data['email'];
+        $new->phone = $data['phone'];
+        $new->address = $data['address'];
+        if ($data['avatar']) {
+            $name = $data['avatar']->getFilename() . uniqid() . "." . $data['avatar']->getClientOriginalExtension();
+            $new->avatar = $upload_folder . "/" . $name;
+            $data['avatar']->move(public_path() . "/" . $upload_folder, $name);
+        } else {
+            $new->avatar = DEFAULT_AVATAR_PATH;
+        }
+        if ($new->save()) {
+            Session::flash('signup_status', true);
+            Session::set("current_user", $new->id);
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
     public function postAjaxLogin() {
         if (Input::get('account') && Input::get('password')) {
             $data = Input::all();
