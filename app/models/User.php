@@ -2,6 +2,12 @@
 class User extends Eloquent {
 	protected $table = 'mst_users';
     
+    public function short_name(){
+        $name_array = array();
+        $name_array = explode(" ", $this->name);
+        return $name_array[count($name_array)-1];
+    }
+    
     public function image(){
         return $this->hasMany('Image','user_id');
     }

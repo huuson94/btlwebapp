@@ -1,6 +1,6 @@
 <?php
 define('AVATAR_PATH', 'upload/avatars');
-define('DEFAULT_AVATAR_PATH',"public/avatars/default/avatar.jpg");
+define('DEFAULT_AVATAR_PATH',"public/upload/avatars/default/avatar.jpg");
 class UsersController extends BaseController {
     
     private function checkLogged() {
@@ -236,7 +236,7 @@ class UsersController extends BaseController {
         $new->address = $data['address'];
         if ($data['avatar']) {
             $name = $data['avatar']->getFilename() . uniqid() . "." . $data['avatar']->getClientOriginalExtension();
-            $new->avatar = $upload_folder . "/" . $name;
+            $new->avatar = 'public/'.$upload_folder . "/" . $name;
             $data['avatar']->move(public_path() . "/" . $upload_folder, $name);
         } else {
             $new->avatar = DEFAULT_AVATAR_PATH;

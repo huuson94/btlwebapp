@@ -555,6 +555,17 @@ section .wrapper{
 .item-image .photo_content .view .share{
     color: #2F50FB;
 }
+
+p.user-name{
+    position: relative;
+    bottom: 8px;
+}
+img.avatar{
+    width: 30%;
+    height: 50%;
+    margin-right: 5px;
+    
+}
 /*
 .login .error{
     width: 100%;

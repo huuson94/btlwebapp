@@ -46,7 +46,11 @@
 			<ul class="col-md-3 login_singin_area pull-right">
 				@if(Session::has('current_user'))
 					<li class="col-md-7">
-						<a href="{{url('/details')}}"><p>XIN CHÀO <span class="user_name">{{ $user_name }}</span></p></a>
+						<a href="{{url('/details')}}">
+                            <p class="user-name"><img class="img-rounded avatar" src="{{url(User::find(Session::get('current_user'))->avatar)}}">
+                                <span class="user_name">{{ User::find(Session::get('current_user'))->short_name() }}</span>
+                            </p>
+                        </a>
 
 					</li>
                     <li class='col-md-5'><a href="{{url('user/logout')}}">ĐĂNG XUẤT</a></li>
