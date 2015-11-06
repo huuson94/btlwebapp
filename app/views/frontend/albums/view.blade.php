@@ -49,18 +49,6 @@
 					<p>ĐĂNG BỞI</p>
 					<p>
                         <a href="#" class="user_name">{{$album->user->name}}</a>
-                        <input type='hidden' id='user_id' value='{{$image->album->user->id}}'>
-                        <input type='hidden' id='current_user' value='{{Session::get('current_user')}}'>
-                        @if($image->album->user->id != Session::get('current_user'))
-                            @if ($current_user->follow($album->user->id) == 0)
-                                <button class="btn btn-success follow-btn" itemid='{{url('/user/ajax-follow')}}'>Follow</button>
-                                <button class="btn btn-success unfollow-btn" itemid='{{url('/user/ajax-unfollow')}}' style='display: none'>Unfollow</button>
-                            @elseif ($current_user->follow($album->user->id) == 1)
-                            <button class="btn btn-success follow-btn" itemid='{{url('/user/ajax-follow')}}' style='display: none'>Follow</button>
-                                <button class="btn btn-success unfollow-btn" itemid='{{url('/user/ajax-unfollow')}}'>Unfollow</button>
-                            @endif
-                        @endif
-                        
                     </p>
 				</li>
 				<li>
@@ -71,76 +59,7 @@
 					<p>CHUYÊN MỤC</p>
 					<p>{{ $album->category->title}}</p>
 				</li>
-                @if(Session::has('current_user'))
-				<li>
-					<p>BÌNH LUẬN</p>
-                    <textarea class="form-control" placeholder="Viết bình luận của bạn..."></textarea>
-				</li>
-				<li>
-					<button class="btn btn-danger">Bình luận</button>
-				</li>
-                @else
-                <li>
-                    <p>(Đăng nhập để có thể bình luận ...)</p>
-                </li>
-                @endif
-                <li>
-                    <div class="detailBox">
-                        <div class="titleBox">
-                            <label>Comment Box</label>
-                            <span>(Click để thu gọn)</span>
-                        </div>
-                        <div class="actionBox">
-                            <ul class="commentList">
-                                <li>
-                                    <div class="commenterImage">
-                                      <img src="http://lorempixel.com/50/50/people/6" />
-                                    </div>
-                                    <div class="commentText">
-                                        <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span>
-
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="commenterImage">
-                                      <img src="http://lorempixel.com/50/50/people/7" />
-                                    </div>
-                                    <div class="commentText">
-                                        <p class="">Hello this is a test comment and this comment is particularly very long and it goes on and on and on.</p> <span class="date sub-text">on March 5th, 2014</span>
-
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="commenterImage">
-                                      <img src="http://lorempixel.com/50/50/people/9" />
-                                    </div>
-                                    <div class="commentText">
-                                        <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span>
-
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="commenterImage">
-                                      <img src="http://lorempixel.com/50/50/people/8" />
-                                    </div>
-                                    <div class="commentText">
-                                        <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span>
-
-                                    </div>
-                                    <li>
-                                    <div class="commenterImage">
-                                      <img src="http://lorempixel.com/50/50/people/10" />
-                                    </div>
-                                    <div class="commentText">
-                                        <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span>
-
-                                    </div>
-                                </li>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
+                @include('frontend/components/comment_box',array('post' => $album))
 			</ul>
 		</div>
 	</div>
