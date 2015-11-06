@@ -14,6 +14,12 @@ class ImagesController extends BaseController{
         $files = Input::file('path');
         $filesStatus = Input::get('file_status');
         $status = 'success';
+        if($files == null){
+            Session::flash('status','false');
+            $errors_message[] = "Over max upload size!";
+            Session::flash('errors_message',$errors_message);
+            return Redirect::to('user/upload')->header('Cache-Control', 'no-store, no-cache');;
+        }
         foreach($files as $index => $file){
             if($file->isValid() && $filesStatus[$index] != 0) {
                 $album = $this->saveAlbum($index);

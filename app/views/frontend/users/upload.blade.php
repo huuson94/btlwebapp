@@ -15,8 +15,12 @@
     
     @if(Session::get('status') == 'success')
     <p class="alert-success">Saved</p>
-    @elseif (Session::get('status') == 'fail')
-    <p class="alert-danger">Can't save</p>
+    @elseif (Session::get('status') == 'false')
+    @foreach(Session::get('errors_message') as $error_message)
+    <p class="alert-danger">
+        {{$error_message}}
+    </p>
+    @endforeach
     @endif
     <div id='upload-tabs' class="upload_content col-md-10 center-block">
           <ul>
