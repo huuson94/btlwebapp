@@ -7,18 +7,7 @@ $(document).ready(function () {
         cursorwidth: "10px", // Kích thước bề ngang của scroll bar
         autohidemode: true   //Tắt chế độ tự ẩn của scroll bar
     });
-    var kt = 0;
-    $('.titleBox').click(function () {
-        $('.actionBox').toggle();
-        if (kt == 0) {
-            $('.titleBox span').text('(Click để xem	)');
-            kt = 1;
-        } else {
-            $('.titleBox span').text('(Click để thu gọn)');
-            kt = 0;
-        }
-        ;
-    });
+    
     
     $('#comment-form').submit(function (e) {
 

@@ -35,4 +35,18 @@ $(document).ready(function(){
           }
        });
    }); 
+   
+   //comment 
+    var kt = 0;
+    $('.titleBox').click(function () {
+        $('.actionBox').toggle(300);
+        if (kt == 0) {
+            $('.titleBox span').attr('class','glyphicon glyphicon-chevron-down');
+            kt = 1;
+        } else {
+            $('.titleBox span').attr('class','glyphicon glyphicon-chevron-up');
+            kt = 0;
+        }
+        ;
+    });
 });
