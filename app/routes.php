@@ -10,18 +10,25 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+Route::controller('home','HomeController');
+Route::get('/','HomeController@getIndex');
 
 Route::post('login', 'SessionController@store');
 Route::get('logout', 'SessionController@destroy');
 Route::get('signup', 'UsersController@create');
 Route::resource('user','UsersController');
 
-Route::controller('home','HomeController');
+Route::get('upload','HomeController@upload');
+Route::resource('image', 'ImagesController');
+Route::resource('album', 'AlbumsController');
+
+
+
 Route::post('update',array('user'=>'UsersController@DetailsUpdate','as'=>'Details.update'));
 Route::controller('category', 'CategoriesController');
 Route::resource('image', 'ImagesController');
 Route::resource('album', 'AlbumsController');
-Route::get('/','HomeController@getIndex');
+
 Route::controller('admin', 'AdminController');
 Route::resource('admin-category', 'CategoriesController');
 Route::resource('admin-album', 'AlbumsController');

@@ -43,8 +43,7 @@ class AlbumsController extends BaseController{
         return View::make('frontend/albums/view')->with('album',$album);
     }
 
-    public function index()
-    {
+    public function index(){
         
         $sortby = Input::get('sortby');
         $order = Input::get('order');
@@ -55,4 +54,5 @@ class AlbumsController extends BaseController{
         }
             return View::make('backend.album.list', compact('albums', 'sortby', 'order'));
     }
+    
 }

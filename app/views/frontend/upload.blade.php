@@ -57,7 +57,7 @@
         </div>
 		<div id='upload-image-tabs' class="upload_left">
             
-                {{ Form::open(array('url'=>'image/save','files'=>true, 'method' => 'POST', 'id' => 'upload-image-form')) }}
+                {{ Form::open(array('url'=>'image','files'=>true, 'method' => 'POST', 'id' => 'upload-image-form')) }}
                 <div id="images-description" style="display: none"></div>
                 <h1>Upload images</h1>
                 <!--<p class="note">Use <span>Select image</span> to s Đăng <span>tẹt ga thoải con gà mái nhé</span>!</p>-->
@@ -77,7 +77,7 @@
             {{Form::close()}}
         </div>
 		<div id='upload-album-tabs' class="upload_right">
-            {{ Form::open(array('url'=>'album/save','files'=>true, 'method' => 'POST')) }}
+            {{ Form::open(array('url'=>'album','files'=>true, 'method' => 'POST')) }}
                 <h1>Upload album</h1>
                 <!--<p class="note">Sử dụng nút <span>Chọn ảnh</span> để chọn ảnh cho album của bạn. Đăng <span>tẹt ga thoải con gà mái nhé</span>!</p>-->
                 <div>
