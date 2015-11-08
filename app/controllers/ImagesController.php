@@ -3,8 +3,8 @@ class ImagesController extends BaseController{
     public function show($id){
         $image = Image::where('id',$id)->first();
         if($image->album->user_id == Session::get('current_user')){
-            return Redirect::to('image/'.$image->id.'/edit')->header('Cache-Control', 'no-store, no-cache')->with('image',$image);
-        }else{
+            return Redirect::to('image/'.$image->id.'/edit')->with('image',$image);
+        }else{die;
             return View::make('frontend/images/show')->with('image',$image);
         }
     }
@@ -17,7 +17,15 @@ class ImagesController extends BaseController{
     public function update($id){
         $data = Input::all();
         $image = Image::where('id',$id)->first();
-        App::make('AlbumsController')->save($image->album->id, $data);
+        if(AlbumsHelper::save($data, $image->album->id)){
+            $image->caption = $data['caption'];
+            if($image->save()){
+                Session::flash('status','success');
+            }else{
+                Session::flash('status','fail');
+            }
+            return Redirect::to('image/'.$image->id.'/edit');
+        }
     }
     
     public function store(){

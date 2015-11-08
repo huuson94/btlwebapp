@@ -5,7 +5,7 @@
             return View::make('frontend/index')->with('data',$data);
 		}
         
-		public function getUpload(){
+		public function upload(){
 			return View::make('frontend/upload');
 		}
 		public function getDetail($id){

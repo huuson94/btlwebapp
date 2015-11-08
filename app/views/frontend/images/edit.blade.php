@@ -13,6 +13,16 @@
     Single Image Viewer
 @stop
 @section('content')
+@if(Session::get('status') == 'success')
+<p class="alert-success">Saved</p>
+@elseif (Session::get('status') == 'false')
+<p class="alert-danger">Failed</p>
+@foreach(Session::get('errors_message') as $error_message)
+<p class="alert-danger">
+    {{$error_message}}
+</p>
+@endforeach
+@endif
 {{ Form::open(array('url'=>'image/'.$image->id,'files'=>true, 'method' => 'PATCH', 'id' => 'upload-image-form')) }}
 <div class="image_content row">
 		<div class="image_left col-md-8">
@@ -20,7 +30,7 @@
                 <div class="detail_image_header">
                     <h2 class="detail_image_title">
                         Title<br/>
-                        <input type='text' class='form-control' name='title' value='{{$image->title}}'>
+                        <input type='text' class='form-control' name='title' value='{{$image->album->title}}'>
                     </h2>
                 </div>
                 <ul class="detail_image_info">
@@ -45,7 +55,7 @@
 		<div class="image_right col-md-4">
 			<ul>
 				<li>
-                    <p><b>ĐĂNG BỞI</b></p>
+                    <p><b>Upload by</b></p>
 					<p>
                        <a href="{{url('user/'.$image->album->user->id)}}" class="user_name">
                             <div>
@@ -54,16 +64,16 @@
                         </a>
                     </p>
 				</li>
-				<li>
-                    <p><b>GIỚI THIỆU<b/></p>
+<!--				<li>
+                    <p><b>Description<b/></p>
 					<p>
-                        <textarea class='form-control'>{{ $image->album['description'] }}</textarea>
+                        <textarea class='form-control'>{{ $image->album->description }}</textarea>
                     </p>
-				</li>
+				</li>-->
 				<li>
-                    <p><b>CHUYÊN MỤC</b></p>
+                    <p><b>Category</b></p>
 					<p>
-                        <select class='form-control' name='category'>
+                        <select class='form-control' name='category_id'>
                             @foreach($categories as $category)
                             <option value='{{$category->id}}'
                                     @if($category->id == $image->album->category_id)

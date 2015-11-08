@@ -13,7 +13,7 @@
             <li class="item-image album">
                 @include('frontend/components/album', array('album' => $album))
                 <div class="action-buttons pull-right">
-                    <a href="{{url('album/edit/'.$album->id)}}">
+                    <a href="{{url('album/'.$album->id.'/edit')}}">
                         <button class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button>
                     </a>
                 </div>
@@ -22,7 +22,7 @@
             <li class="item-image album">
                 @include('frontend/components/image', array('image' => $album->images->first()))
                 <div class="action-buttons pull-right">
-                    <a href="{{url('image/edit/'.$album->id)}}">
+                    <a href="{{url('image/'.$album->id.'/edit')}}">
                         <button class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button>
                     </a>
                 </div>

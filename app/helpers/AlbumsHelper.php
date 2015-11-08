@@ -17,7 +17,7 @@ class AlbumsHelper{
         }else{
             $album = Album::find($id);
             $album->title = $data['title'];
-            $album->description = $data['description'];
+            $album->description = isset($data['description'])?$data['description']:"";
             $album->category_id = $data['category_id'];
         }
         if($album->save()) return $album;

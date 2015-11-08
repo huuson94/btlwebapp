@@ -57,14 +57,14 @@
                         </a>
 
 					</li>
-                    <li class='col-md-5'><a href="{{url('logout')}}">ĐĂNG XUẤT</a></li>
+                    <li class='col-md-5'><a href="{{url('logout')}}">Logout</a></li>
 				@else
 					<li class="col-md-5 login">
-						<a><p>ĐĂNG NHẬP</p></a>
+						<a><p>Login</p></a>
 						@yield('login')
 					</li>
 					<li class="col-md-5" >
-						<a href="{{Asset('signup')}}"><p>ĐĂNG KÝ</p></a>
+						<a href="{{Asset('signup')}}"><p>Signup</p></a>
 						@yield('signup')
 					</li>
 				@endif
@@ -73,9 +73,9 @@
 		<div class="pop-up">
 			<div class="wrapper">
 	            <form action="{{url('login')}}" id="login-form" method="POST">
-					<input type="text" name="account" placeholder="Nhập tài khoản">
-					<input type="password" name="password" placeholder="Nhập mật khẩu">
-	                <button class="submit">Đăng nhập</button>
+					<input type="text" name="account" placeholder="Username">
+					<input type="password" name="password" placeholder="Password">
+	                <button class="submit">Login</button>
 				</form>
 				<p class="error" style="text-align: center"></p>
 				<span title="Click to close">x</span>
@@ -86,12 +86,12 @@
     <nav>
         <div class="navi">
         	<div class="categories col-md-6">
-	            <p class="menu_button"><span></span>Danh mục</p>
+	            <p class="menu_button"><span></span>Category</p>
 	            <div class="menu">
-	                <ul>
+<!--	                <ul>
 	                    <li><a href="">Ảnh hot nhất</a></li>
 	                    <li><a href="">Mới Nhất</a></li>
-	                </ul>
+	                </ul>-->
 	                <ul>
 	                    @foreach($categories as $index => $category)
 	                    <li><a href="{{Asset('category/view/'.$category->id)}}">{{$category->title}}</a></li>
@@ -102,7 +102,7 @@
 	        </div>
 	        @if(Session::has('current_user'))
 	        <div class='images-manage-buttons col-md-6 '>
-                <p class="col-md-6 pull-right"><a  class="btn btn-danger upload_button" href="{{url('/home/upload')}}">Upload</a></p>
+                <p class="col-md-6 pull-right"><a  class="btn btn-danger upload_button" href="{{url('upload')}}">Upload</a></p>
 	            <p class="col-md-3 pull-right"><a class="btn btn-danger mypic_button" href="{{Asset("/album?u=".Session::get('current_user'))}}">My images</a></p>
                 @if(User::find(Session::get('current_user'))->is_admin == 1)
                 <p class="col-md-3 pull-right"><a href='{{url('admin')}}'><button class='btn btn-default'>Admin page</button></a></p>
@@ -122,10 +122,10 @@
     <div class="clearfix"></div>
     <footer>
         <ul class="team_contact">
-            <li><a href="">Giới thiệu</a></li>
-            <li><a href="">Chính Sách Riêng Tư</a></li>
-            <li><a href="">Hỗ Trợ</a></li>
-            <li><a href="">Liên Hệ</a></li>
+            <li><a href="">About us</a></li>
+            <li><a href="">Policy</a></li>
+            <li><a href="">Contact</a></li>
+            
         </ul>
     </footer>
 </body>

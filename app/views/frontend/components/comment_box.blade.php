@@ -4,33 +4,31 @@
     <input type="hidden" name="type" value="2">
     <ul>
         <li>
-            <p>BÌNH LUẬN</p>
-            <textarea class="form-control" name="commentContent" placeholder="Viết bình luận của bạn..."></textarea>
+            <p><b>Comment</b></p>
+            <textarea class="form-control" name="commentContent" placeholder="Comment here..."></textarea>
         </li>
         <li>
-            <button class="btn btn-danger" name="submit">Bình luận</button>
+            <button class="btn btn-danger submit" name="submit" value=''>Submit</button>
         </li>
     </ul>
 </form>
 @else
 <ul>
     <li>
-        <p>(Đăng nhập để có thể bình luận ...)</p>
+        <p>(Please login to comment)</p>
     </li>
 </ul>  
 @endif
+<div class='clearfix'></div>
 <div class="detailBox">
     <div class="titleBox">
         <label>Comment Box</label>
-        <span>(Click để thu gọn)</span>
+        <span class='glyphicon glyphicon-chevron-up'></span>
     </div>
     <div class="actionBox">
         <ul class="commentList">
             @foreach ($post->comments as $comment)
             <li>
-                <!-- <div class="commenterImage">
-                    <img src="http://lorempixel.com/50/50/people/6" />
-                </div> -->
                 <p>{{$comment->user->name}}</p>
                 <div class="commentText">
                     <p class="">{{$comment->content}}</p>
