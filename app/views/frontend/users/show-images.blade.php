@@ -8,7 +8,7 @@
 @section('content')
 	<div class="container-div">
 		<ul>
-			@foreach($data['albums'] as $index => $album)
+			@foreach($albums as $index => $album)
             @if($album->is_single == 0)
             <li class="item-image album">
                 @include('frontend/components/album', array('album' => $album))

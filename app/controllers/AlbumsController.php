@@ -37,14 +37,16 @@ class AlbumsController extends BaseController{
     }
 
     public function index(){
-        $sortby = Input::get('sortby');
-        $order = Input::get('order');
-        if ($sortby && $order) {
-            $albums = Album::select('*')->orderBy($sortby, $order)->paginate(10);
-        }else {
-            $albums = Album::paginate(10);
+        $params = Input::all();
+        $user_id = isset($params['u'])?$params['u']:"";
+        if($user_id != ""){
+            $albums = Album::where('user_id','=',$user_id)->get();
+            return View::make('frontend/users/show-images')->with('albums',$albums);
+        }else{
+            $albums = Album::all();
+            return View::make('frontend/index')->with('albums',$albums);
         }
-            return View::make('backend.album.list', compact('albums', 'sortby', 'order'));
+        
     }
     
 }
