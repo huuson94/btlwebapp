@@ -5,10 +5,13 @@
 @section('script-bot')
 {{ HTML::script('public/assets/js/users/signup.js') }}
 @stop
+@section('title')
+	Sign Up
+@stop
 @section('content')
 
 <div class="signup-form">
-    {{ Form::open(array('url'=>'user/signup', 'method' => 'POST','files'=>true)) }}
+    {{ Form::open(array('url'=>'user', 'method' => 'POST','files'=>true)) }}
     <div class="col-sm-12 error-content">
         @if(Session::has('signup_status'))
         @if(Session::get('signup_status') == true)

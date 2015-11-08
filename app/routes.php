@@ -12,15 +12,15 @@
 */
 
 Route::get('login', 'UsersController@getLogin');
-Route::get('signup', 'UsersController@getSignup');
+Route::get('signup', 'UsersController@create');
 Route::controller('home','HomeController');
-Route::controller('user','UsersController');
+Route::resource('user','UsersController');
 Route::post('update',array('user'=>'UsersController@DetailsUpdate','as'=>'Details.update'));
 Route::controller('category', 'CategoriesController');
-Route::controller('image', 'ImagesController');
-Route::controller('album', 'AlbumsController');
+Route::resource('image', 'ImagesController');
+Route::resource('album', 'AlbumsController');
 Route::get('/','HomeController@getIndex');
-Route::resource('admin', 'UsersController');
+Route::controller('admin', 'AdminController');
 Route::resource('admin-category', 'CategoriesController');
 Route::resource('admin-album', 'AlbumsController');
 Route::get('details','UsersController@getViewDetails');
