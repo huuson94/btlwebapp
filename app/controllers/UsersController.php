@@ -12,7 +12,7 @@ class UsersController extends BaseController {
         if (Session::get('current_user')) {
             return View::make('frontend/index');
         }
-        return View::make('frontend/users/signup');
+        return View::make('frontend/users/create');
     }
     
     /**
