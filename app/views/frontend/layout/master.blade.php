@@ -57,7 +57,7 @@
                         </a>
 
 					</li>
-                    <li class='col-md-5'><a href="{{url('user/logout')}}">ĐĂNG XUẤT</a></li>
+                    <li class='col-md-5'><a href="{{url('logout')}}">ĐĂNG XUẤT</a></li>
 				@else
 					<li class="col-md-5 login">
 						<a><p>ĐĂNG NHẬP</p></a>
@@ -72,7 +72,7 @@
 		</div>
 		<div class="pop-up">
 			<div class="wrapper">
-	            <form action="{{url('user/ajax-login')}}" id="login-form" method="POST">
+	            <form action="{{url('login')}}" id="login-form" method="POST">
 					<input type="text" name="account" placeholder="Nhập tài khoản">
 					<input type="password" name="password" placeholder="Nhập mật khẩu">
 	                <button class="submit">Đăng nhập</button>
@@ -102,8 +102,8 @@
 	        </div>
 	        @if(Session::has('current_user'))
 	        <div class='images-manage-buttons col-md-6 '>
-                <p class="col-md-6 pull-right"><a  class="btn btn-danger upload_button" href="{{url('/user/upload')}}">Đăng ảnh</a></p>
-	            <p class="col-md-3 pull-right"><a class="btn btn-danger mypic_button" href="{{url('/user/view-images')}}">Ảnh của tôi</a></p>
+                <p class="col-md-6 pull-right"><a  class="btn btn-danger upload_button" href="{{url('/home/upload')}}">Đăng ảnh</a></p>
+	            <p class="col-md-3 pull-right"><a class="btn btn-danger mypic_button" href="{{url('/home/view-images')}}">Ảnh của tôi</a></p>
                 @if(User::find(Session::get('current_user'))->is_admin == 1)
                 <p class="col-md-3 pull-right"><a href='{{url('admin')}}'><button class='btn btn-default'>Admin page</button></a></p>
                 @endif

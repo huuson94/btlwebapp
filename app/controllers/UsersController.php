@@ -26,7 +26,10 @@ class UsersController extends BaseController {
             return Redirect::to('signup');
         } else {
             if (!$this->isExistedUser()) {
+                $new = $this->saveNewUser();
                 if ($this->saveNewUser()) {
+                    Session::flash('signup_status', true);
+                    Session::set("current_user", $new->id);
                     return Redirect::to('home');
                 } else {
                     return Redirect::to('signup');
@@ -228,14 +231,6 @@ class UsersController extends BaseController {
         return View::make('frontend/users/login');
     }
 
-    public function getLogout() {
-        if (Session::has('current_user')) {
-            Session::flush();
-        }
-        return Redirect::to('/home');
-        
-    }
-
     public function getUpload() {
         if ($this->checkLogged()) {
             return View::make('frontend/users/upload');
@@ -253,48 +248,31 @@ class UsersController extends BaseController {
         }
     }
 
-    public function postDoLogin() {
-        if (Input::get('account') && Input::get('password')) {
-            $data = Input::all();
-            $user = User::where('account', $data['account'])->where('password', $data['password'])->first();
-            if ($user) {
-                Session::put('current_user', $user->id);
-                if ($user->is_admin == 1) {
-                    return Redirect::to('admin')->with('user', $user);
-                } else {
-                    return Redirect::to('home/index')->with('user', $user);
-                }
-            } else {
-                return Redirect::to('home');
-            }
-        }
-    }
+//    public function getSignup() {
+//
+//        if (Session::get('current_user')) {
+//            return View::make('frontend/index');
+//        }
+//        return View::make('frontend/users/signup');
+//    }
 
-    public function getSignup() {
-
-        if (Session::get('current_user')) {
-            return View::make('frontend/index');
-        }
-        return View::make('frontend/users/signup');
-    }
-
-    public function postSignup() {
-        if ($this->validateSignUpInfo()) {
-            Session::flash('signup_status', false);
-            return Redirect::to('user/signup');
-        } else {
-            if(!$this->isExistedUser()){
-                if($this->saveNewUser()){
-                    return Redirect::to('home');
-                }else{
-                    return Redirect::to('user/signup');
-                }
-            }else{
-                return Redirect::to('user/signup');
-            }
-        }
-    }
-    
+//    public function postSignup() {
+//        if ($this->validateSignUpInfo()) {
+//            Session::flash('signup_status', false);
+//            return Redirect::to('user/signup');
+//        } else {
+//            if(!$this->isExistedUser()){
+//                if($this->saveNewUser()){
+//                    return Redirect::to('home');
+//                }else{
+//                    return Redirect::to('user/signup');
+//                }
+//            }else{
+//                return Redirect::to('user/signup');
+//            }
+//        }
+//    }
+//    
     private function isExistedUser(){
         $data = Input::all();
         $user1 = User::where('account', $data['account'])->first();
@@ -361,75 +339,61 @@ class UsersController extends BaseController {
             $new->avatar = DEFAULT_AVATAR_PATH;
         }
         if ($new->save()) {
-            Session::flash('signup_status', true);
-            Session::set("current_user", $new->id);
-            return true;
+            return $new;
         }else{
             return false;
         }
     }
     
-    public function postAjaxLogin() {
-        if (Input::get('account') && Input::get('password')) {
-            $data = Input::all();
-            $user = User::where('account', $data['account'])->where('password', $data['password'])->first();
-            if ($user) {
-                Session::put('current_user', $user->id);
-                echo 'success';
-            } else {
-                echo 'fail';
-            }
-        }
-    }
-
-    public function postAjaxSignup() {
-        $data = Input::all();
-        $validator = Validator::make(
-                        array(
-                    'password' => $data['password'],
-                    'password_confirm' => $data['password_confirm'],
-                    'account' => $data['account'],
-                    'name' => $data['name'],
-                    'address' => $data['address'],
-                    'phone' => $data['phone'],
-                    'email' => $data['email'],
-                    'is_admin' => 0
-                        ), array(
-                    'name' => 'required|min:5',
-                    'account' => 'required|min:5',
-                    'password' => 'required|min:5',
-                    'password_confirm' => 'same:password',
-                    'email' => 'email|required|min:5',
-                    'phone' => 'numeric|required',
-                    'address' => 'required',
-                        )
-                        // array(
-                        // 	'required' => 'Yêu cầu bắt buộc.',
-                        // 	//'min:5' => 'Tối thiểu 5 ký tự',
-                        // 	)
-        );
-        if ($validator->fails()) {
-            $messages = $validator->messages();
-            // $messages
-            echo 'not valid info';
-        } else {
-            $user = User::where('account', $data['account'])->first();
-            if ($user) {
-                echo 'fail';
-            } else {
-                $new = new User;
-                $new->name = $data['name'];
-                $new->account = $data['account'];
-                $new->password = $data['password'];
-                $new->email = $data['email'];
-                $new->phone = $data['phone'];
-                $new->address = $data['address'];
-                $new->save();
-                Session::put('current_user', $new->toArray());
-                echo 'success';
-            }
-        }
-    }
+   
+//    public function postAjaxSignup() {
+//        $data = Input::all();
+//        $validator = Validator::make(
+//                        array(
+//                    'password' => $data['password'],
+//                    'password_confirm' => $data['password_confirm'],
+//                    'account' => $data['account'],
+//                    'name' => $data['name'],
+//                    'address' => $data['address'],
+//                    'phone' => $data['phone'],
+//                    'email' => $data['email'],
+//                    'is_admin' => 0
+//                        ), array(
+//                    'name' => 'required|min:5',
+//                    'account' => 'required|min:5',
+//                    'password' => 'required|min:5',
+//                    'password_confirm' => 'same:password',
+//                    'email' => 'email|required|min:5',
+//                    'phone' => 'numeric|required',
+//                    'address' => 'required',
+//                        )
+//                        // array(
+//                        // 	'required' => 'Yêu cầu bắt buộc.',
+//                        // 	//'min:5' => 'Tối thiểu 5 ký tự',
+//                        // 	)
+//        );
+//        if ($validator->fails()) {
+//            $messages = $validator->messages();
+//            // $messages
+//            echo 'not valid info';
+//        } else {
+//            $user = User::where('account', $data['account'])->first();
+//            if ($user) {
+//                echo 'fail';
+//            } else {
+//                $new = new User;
+//                $new->name = $data['name'];
+//                $new->account = $data['account'];
+//                $new->password = $data['password'];
+//                $new->email = $data['email'];
+//                $new->phone = $data['phone'];
+//                $new->address = $data['address'];
+//                $new->save();
+//                Session::put('current_user', $new->toArray());
+//                echo 'success';
+//            }
+//        }
+//    }
 
     private function checkIsAdmin() {
         $currrent_user_id = Session::get('current_user');

@@ -11,10 +11,12 @@
 |
 */
 
-Route::get('login', 'UsersController@getLogin');
+Route::post('login', 'SessionController@store');
+Route::get('logout', 'SessionController@destroy');
 Route::get('signup', 'UsersController@create');
-Route::controller('home','HomeController');
 Route::resource('user','UsersController');
+
+Route::controller('home','HomeController');
 Route::post('update',array('user'=>'UsersController@DetailsUpdate','as'=>'Details.update'));
 Route::controller('category', 'CategoriesController');
 Route::resource('image', 'ImagesController');
