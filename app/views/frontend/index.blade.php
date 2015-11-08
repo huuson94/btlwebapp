@@ -8,7 +8,7 @@
 @section('content')
 	<div class="container-div">
 		<ul>
-			@foreach($data['albums'] as $index => $album)
+			@foreach($albums as $index => $album)
                 @if($album->public != 2)
                 @if($album->is_single == 0)
                 <li class="item-image album">
