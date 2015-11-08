@@ -9,6 +9,7 @@
     {{ HTML::style('public/assets/css/bootstrap.min.css') }}
     {{ HTML::style('public/assets/css/jquery-ui.min.css') }}
     {{ HTML::style('public/assets/css/animate.css') }}
+    {{ HTML::style('public/assets/css/lightslider.css') }}
     {{ HTML::style("vendor/kartik-v/bootstrap-fileinput/css/fileinput.min.css")}}
     
     @yield('style-bot')
@@ -18,7 +19,7 @@
     {{ HTML::script('public/assets/js/bootstrap.min.js') }}
     {{ HTML::script('public/assets/js/imagesloaded.js') }}
     {{ HTML::script('public/assets/js/masonry.pkgd.min.js') }}
-    {{ HTML::script("public/assets/js/jssor.slider.min.js")}}
+    {{ HTML::script("public/assets/js/lightslider.js")}}
     
     {{ HTML::script("vendor/kartik-v/bootstrap-fileinput/js/plugins/canvas-to-blob.min.js")}}
     {{ HTML::script("vendor/kartik-v/bootstrap-fileinput/js/fileinput.min.js")}}
