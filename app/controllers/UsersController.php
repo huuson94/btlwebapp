@@ -25,9 +25,9 @@ class UsersController extends BaseController {
             Session::flash('signup_status', false);
             return Redirect::to('signup');
         } else {
-            if (!$this->isExistedUser()) {
-                $new = $this->saveNewUser();
-                if ($this->saveNewUser()) {
+            if (!UsersHelper::isExistedUser()) {
+                $new = UsersHelper::saveNewUser();
+                if ($new) {
                     Session::flash('signup_status', true);
                     Session::set("current_user", $new->id);
                     return Redirect::to('home');
@@ -124,16 +124,10 @@ class UsersController extends BaseController {
         return Redirect::route('admin.index');
     }
 
-    private function checkLogged() {
-        if (Session::has('current_user')) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+    
 
     public function getViewDetails() {
-        if ($this->checkLogged()) {
+        if (UsersHelper::checkLogged()) {
             $data['albums'] = Album::where('user_id', Session::get('current_user'))->get();
             $info = User::find(Session::get('current_user'));
             return View::make('frontend/users/details')->with('data', $data)->with('info', $info);
@@ -232,7 +226,7 @@ class UsersController extends BaseController {
     }
 
     public function getUpload() {
-        if ($this->checkLogged()) {
+        if (UsersHelper::checkLogged()) {
             return View::make('frontend/users/upload');
         } else {
             return Redirect::to('home/index');
@@ -240,7 +234,7 @@ class UsersController extends BaseController {
     }
 
     public function getViewImages() {
-        if ($this->checkLogged()) {
+        if (UsersHelper::checkLogged()) {
             $data['albums'] = Album::where('user_id', Session::get('current_user'))->get();
             return View::make('frontend/users/view-images')->with('data', $data);
         } else {
@@ -273,25 +267,7 @@ class UsersController extends BaseController {
 //        }
 //    }
 //    
-    private function isExistedUser(){
-        $data = Input::all();
-        $user1 = User::where('account', $data['account'])->first();
-        $user2 = User::where('email', $data['email'])->first();
-        $errors_message = array();
-        $status = false;
-        if ($user1) {
-            Session::flash('signup_status', false);
-            $errors_message[] = "UserName is existed";
-            $status =  true;
-        }
-        if ($user2) {
-            Session::flash('signup_status', false);
-            $errors_message[] = 'Email existed';
-            $status =  true;
-        }
-        Session::flash('errors_message', $errors_message);
-        return $status;
-    }
+    
     
     private function validateSignUpInfo(){
         $data = Input::all();
@@ -321,29 +297,7 @@ class UsersController extends BaseController {
         }
     }
 
-    private function saveNewUser(){
-        $data = Input::all();
-        $upload_folder = AVATAR_PATH .'/'. uniqid(date('ymdHisu'));
-        $new = new User;
-        $new->name = $data['name'];
-        $new->account = $data['account'];
-        $new->password = $data['password'];
-        $new->email = $data['email'];
-        $new->phone = $data['phone'];
-        $new->address = $data['address'];
-        if ($data['avatar']) {
-            $name = $data['avatar']->getFilename() . uniqid() . "." . $data['avatar']->getClientOriginalExtension();
-            $new->avatar = 'public/'.$upload_folder . "/" . $name;
-            $data['avatar']->move(public_path() . "/" . $upload_folder, $name);
-        } else {
-            $new->avatar = DEFAULT_AVATAR_PATH;
-        }
-        if ($new->save()) {
-            return $new;
-        }else{
-            return false;
-        }
-    }
+    
     
    
 //    public function postAjaxSignup() {
@@ -395,15 +349,7 @@ class UsersController extends BaseController {
 //        }
 //    }
 
-    private function checkIsAdmin() {
-        $currrent_user_id = Session::get('current_user');
-        $current_user = User::find($currrent_user_id);
-        if ($current_user->is_admin == 1) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+    
 
     /**
      * Display a listing of the resource.
@@ -411,7 +357,7 @@ class UsersController extends BaseController {
      * @return Response
      */
     public function index() {
-        if ($this->checkIsAdmin()) {
+        if (UsersHelper::checkIsAdmin()) {
             $users = User::all();
             return View::make('backend.users.list')->with('users', $users);
         } else {
