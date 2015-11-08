@@ -14,17 +14,23 @@
 @stop
 @section('content')
 @if(Session::get('status') == 'success')
-<p class="alert-success">Saved</p>
+@foreach(Session::get('messages') as $message)
+<p class="alert-success">
+    {{$message}}
+</p>
+@endforeach
+
 @elseif (Session::get('status') == 'false')
 <p class="alert-danger">Failed</p>
-@foreach(Session::get('errors_message') as $error_message)
+@foreach(Session::get('messages') as $message)
 <p class="alert-danger">
-    {{$error_message}}
+    {{$message}}
 </p>
 @endforeach
 @endif
-{{ Form::open(array('url'=>'image/'.$image->id,'files'=>true, 'method' => 'PATCH', 'id' => 'upload-image-form')) }}
 <div class="image_content row">
+    
+    {{ Form::open(array('url'=>'image/'.$image->id,'files'=>true, 'method' => 'PATCH', 'id' => 'upload-image-form')) }}
 		<div class="image_left col-md-8">
             <article>
                 <div class="detail_image_header">
@@ -51,6 +57,7 @@
             <p>
                 <input type='submit' class='btn btn-primary' value='Save'>
             </p>
+            
 		</div>
 		<div class="image_right col-md-4">
 			<ul>
@@ -89,6 +96,11 @@
             {{Form::close()}}
             @include('frontend/components/comment_box',array('post' => $image))
 		</div>
+        {{ Form::open(array('url'=>'image/'.$image->id,'files'=>true, 'method' => 'DELETE', 'id' => 'upload-image-form')) }}
+        <div class="col-md-5">
+            <input type="submit" class="btn btn-danger delete-image" value="Delete">
+        </div>
+        {{Form::close()}}
         <div class='clearfix'></div>
         
 	</div>

@@ -21,8 +21,10 @@ class ImagesController extends BaseController{
             $image->caption = $data['caption'];
             if($image->save()){
                 Session::flash('status','success');
+                Session::flash('messages',array(0 => 'Updated'));
             }else{
                 Session::flash('status','fail');
+                Session::flash('messages',array(0 => 'Failed'));
             }
             return Redirect::to('image/'.$image->id.'/edit');
         }
@@ -54,6 +56,21 @@ class ImagesController extends BaseController{
         }
         Session::flash('status',$status);
         return Redirect::to('home/upload')->header('Cache-Control', 'no-store, no-cache');;
+    }
+    
+    public function destroy($id){
+        $image = Image::find($id);
+        if($image){
+            $image->album->delete();
+            $image->delete();
+            Session::flash('status','success');
+            Session::put('message',array('0' => 'Successed'));
+            return Redirect::to('album?u='.Session::get('current_user'));
+        }else{
+            Session::flash('status','fail');
+            Session::put('message',array('0' => 'Failed'));
+            return Redirect::to('image/'.$id);
+        }
     }
     
     private function saveAlbum($index){
