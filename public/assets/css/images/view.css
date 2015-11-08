@@ -94,18 +94,3 @@ button{
 .share{
     color: #2F50FB;
 }
-div.image_left{
-    padding-left: 0px !important;
-}
-
-li img.preview{
-    width: 100%;
-    border-radius: 7px;
-}
-ul.lSGallery li.active a img{
-    border-radius: 50%;
-    
-}
-.lSPager.lSGallery{
-    margin: 5px auto !important;
-}

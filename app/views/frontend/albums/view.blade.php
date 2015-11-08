@@ -25,7 +25,7 @@
         <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
         @foreach($album->images as $index => $image)
         <li data-thumb="{{url('public/'.$image->path)}}"> 
-            <img src="{{url('public/'.$image->path)}}" />
+            <a href='{{url('image/view/'.$image->id)}}'><img class='preview' src="{{url('public/'.$image->path)}}" /></a>
         </li>
         @endforeach
         </ul>
