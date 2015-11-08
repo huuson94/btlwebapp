@@ -1,15 +1,15 @@
 @extends('frontend/layout/master')
 @section('style-bot')
-{{ HTML::style('public/assets/css/albums-images/view.css') }}
-{{ HTML::style('public/assets/css/albums/view.css') }}
+{{ HTML::style('public/assets/css/albums-images/show.css') }}
+{{ HTML::style('public/assets/css/albums/show.css') }}
 @stop
 @section('script-bot')
 {{ HTML::script('public/assets/js/albums/jquery-ui-1.10.3.custom.min.js') }}
 {{ HTML::script('public/assets/js/albums/jquery.kinetic.min.js') }}
 {{ HTML::script('public/assets/js/albums/jquery.mousewheel.min.js') }}
 {{ HTML::script('public/assets/js/albums/jquery.smoothdivscroll-1.3-min.js') }}
-{{ HTML::script('public/assets/js/albums-images/view.js') }}
-{{ HTML::script('public/assets/js/albums/view.js') }}
+{{ HTML::script('public/assets/js/albums-images/show.js') }}
+{{ HTML::script('public/assets/js/albums/show.js') }}
 @stop
 @section('width_70per')
 	width_70per
@@ -25,7 +25,7 @@
         <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
         @foreach($album->images as $index => $image)
         <li data-thumb="{{url('public/'.$image->path)}}"> 
-            <a href='{{url('image/view/'.$image->id)}}'><img class='preview' src="{{url('public/'.$image->path)}}" /></a>
+            <a href='{{url('image/'.$image->id)}}'><img class='preview' src="{{url('public/'.$image->path)}}" /></a>
         </li>
         @endforeach
         </ul>

@@ -1,9 +1,9 @@
 @extends('frontend/layout/master')
 @section('style-bot')
-{{ HTML::style('public/assets/css/users/upload.css') }}
+{{ HTML::style('public/assets/css/upload.css') }}
 @stop
 @section('script-bot')
-{{ HTML::script('public/assets/js/users/upload.js') }}
+{{ HTML::script('public/assets/js/upload.js') }}
 @stop
 @section('width_70per')
 	width_70per

@@ -5,7 +5,7 @@ class ImagesController extends BaseController{
         if($image->album->user_id == Session::get('current_user')){
             return Redirect::to('image/'.$image->id.'/edit')->header('Cache-Control', 'no-store, no-cache')->with('image',$image);
         }else{
-            return View::make('frontend/images/view')->with('image',$image);
+            return View::make('frontend/images/show')->with('image',$image);
         }
     }
     

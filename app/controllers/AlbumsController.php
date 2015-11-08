@@ -33,7 +33,7 @@ class AlbumsController extends BaseController{
     
     public function show($id){
         $album = Album::where('id', $id)->first();
-        return View::make('frontend/albums/view')->with('album',$album);
+        return View::make('frontend/albums/show')->with('album',$album);
     }
 
     public function index(){

@@ -1,0 +1,8 @@
+.follow-btn, .unfollow-btn{
+    margin-bottom: 13px;
+}
+
+a.user_name img.avatar{
+    width: 10%;
+    margin-left: 5px;
+}

@@ -1,11 +1,11 @@
 @extends('frontend/layout/master')
 @section('style-bot')
-{{ HTML::style('public/assets/css/albums-images/view.css') }}
-{{ HTML::style('public/assets/css/images/view.css') }}
+{{ HTML::style('public/assets/css/albums-images/show.css') }}
+{{ HTML::style('public/assets/css/images/show.css') }}
 @stop
 @section('script-bot')
-{{ HTML::script('public/assets/js/images/view.js') }}
-{{ HTML::script('public/assets/js/albums-images/view.js') }}
+{{ HTML::script('public/assets/js/images/show.js') }}
+{{ HTML::script('public/assets/js/albums-images/show.js') }}
 <script type="text/javascript">
 </script>
 @stop
@@ -25,12 +25,12 @@
                     <li class="detail_image_info_count_share"><span class="share"><i class='glyphicon glyphicon-share'></i> <span>{{$image->count_share}}</span></span></li>
                 </ul>
                 <div class="photo_content">
-                    <a href='{{Asset('image/view/'.$image->id)}}'>
+                    <a href='{{Asset('image/'.$image->id)}}'>
                         <img class="img-rounded image-view" src="{{url('public/'.$image->path)}}" alt="{{$image->album->title}}">
                     </a>
                     <p>
                         <label class="caption">Caption: </label>
-                        <span>{{$image->caption}}</span>
+                        <p>{{$image->caption}}</p>
                     </p>
                 </div>
             </article>
@@ -40,18 +40,10 @@
 				<li>
 					<p>ĐĂNG BỞI</p>
 					<p>
-                        <a href="#" class="user_name">{{$image->album->user->name}}</a>
-                        <input type='hidden' id='user_id' value='{{$image->album->user->id}}'>
-                        <input type='hidden' id='current_user' value='{{Session::get('current_user')}}'>
-                        @if($image->album->user->id != Session::get('current_user') && Session::get('current_user'))
-                            @if ($current_user->follow($image->album->user->id) == 0)
-                                <button class="btn btn-success follow-btn" itemid='{{url('/user/ajax-follow')}}'>Follow</button>
-                                <button class="btn btn-success unfollow-btn" itemid='{{url('/user/ajax-unfollow')}}' style='display: none'>Unfollow</button>
-                            @elseif ($current_user->follow($image->album->user->id) == 1)
-                                <button class="btn btn-success follow-btn" itemid='{{url('/user/ajax-follow')}}' style='display: none'>Follow</button>
-                                <button class="btn btn-success unfollow-btn" itemid='{{url('/user/ajax-unfollow')}}'>Unfollow</button>
-                            @endif
-                        @endif
+                        <a href="{{url('user/'.$image->album->user->id)}}" class="user_name">
+                            <p>{{$image->album->user->name}}</p>
+                            <div ><img class='img-rounded avatar' src='{{$image->avatar}}'></div>
+                        </a>
                     </p>
 				</li>
 				<li>
