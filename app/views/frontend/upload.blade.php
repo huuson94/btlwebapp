@@ -89,7 +89,7 @@
                         </li>
                         <li>
                             <p>Category</p>
-                            <select name="category">
+                            <select name="category_id">
                                 @foreach($categories as $index => $category)
                                 <option value="{{$category->id}}">{{$category->title}}</option>
                                 @endforeach

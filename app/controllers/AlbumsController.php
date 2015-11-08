@@ -1,20 +1,13 @@
 <?php
 class AlbumsController extends BaseController{
-    public function getIndex() {
-        $data['album_img'] = Album::all();
-        return View::make('frontend/index', $data);
-    }
     
-    public function postSave(){
-        $album = new Album;
-        $album->category_id = Input::get('category');
-        $album->description = Input::get('description');
-        $album->user_id = Session::get('current_user');
-        $album->title = Input::get('title');
-        $album->public = Input::get('public');
-        $album->is_single = 0;
+    
+    public function store(){
+        $data = Input::all();
+        $data['is_single'] = 0;
+        $album = AlbumsHelper::save($data);
+        
         $filesStatus = Input::get('file_status');
-        $album->save();
         $upload_folder = "upload/albums/". uniqid(date('ymdHisu'));
         $files = Input::file('path');
         $captions = Input::get('caption');
@@ -35,16 +28,15 @@ class AlbumsController extends BaseController{
             }
         }
         Session::flash('status',$status);
-        return Redirect::to('user/upload');
+        return Redirect::to('home/upload');
     }
     
-    public function getView($id){
+    public function show($id){
         $album = Album::where('id', $id)->first();
         return View::make('frontend/albums/view')->with('album',$album);
     }
 
     public function index(){
-        
         $sortby = Input::get('sortby');
         $order = Input::get('order');
         if ($sortby && $order) {
