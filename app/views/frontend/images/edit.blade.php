@@ -60,39 +60,7 @@
             
 		</div>
 		<div class="image_right col-md-4">
-			<ul>
-				<li>
-                    <p><b>Upload by</b></p>
-					<p>
-                       <a href="{{url('user/'.$image->album->user->id)}}" class="user_name">
-                            <div>
-                                <span>{{$image->album->user->name}}</span><img class='img-rounded avatar' src='{{url($image->album->user->avatar)}}'>
-                            </div>
-                        </a>
-                    </p>
-				</li>
-<!--				<li>
-                    <p><b>Description<b/></p>
-					<p>
-                        <textarea class='form-control'>{{ $image->album->description }}</textarea>
-                    </p>
-				</li>-->
-				<li>
-                    <p><b>Category</b></p>
-					<p>
-                        <select class='form-control' name='category_id'>
-                            @foreach($categories as $category)
-                            <option value='{{$category->id}}'
-                                    @if($category->id == $image->album->category_id)
-                                    selected='true'
-                                    @endif
-                                    >{{$category->title}}</option>
-                            @endforeach
-                        </select>
-                    </p>
-				</li>
-			</ul>
-            
+			@include('frontend/components/image_user_info',array('image' => $image))
             {{Form::close()}}
             @include('frontend/components/comment_box',array('post' => $image))
 		</div>
