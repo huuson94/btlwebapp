@@ -41,16 +41,26 @@ class AlbumsController extends BaseController{
 
     public function index(){
         $datas = Input::all();
-        $user_id = isset($datas['u'])?$datas['u']:"";
-        $params['u'] = $user_id;
-        $title = isset($datas['title'])?$datas['title']:"";
-        $params['title'] = $title;
+        $params = array();
+        if(isset($datas['u'])){
+            $params['user_id'] = $datas['u'];
+        }
+        if(isset($datas['title'])){
+            $params['title'] = $datas['title'];
+        }
         $albums_d = Album::where('public','=','1');
         foreach($params as $key => $param){
-            $albums_d = Album::where($key,'=',$param);
+            if($key == 'title'){
+                $op = 'LIKE';
+                $param = "%".$param."%";
+            }
+            if($key == 'user_id'){
+                $op = '=';
+            }
+            $albums_d = Album::where($key,$op,$param);
         }
         $albums = $albums_d->get();
-        if($user_id != ""){
+        if( !empty($params['user_id'])){
             return View::make('frontend/albums/my-images')->with('albums',$albums);
         }else{
             return View::make('frontend/index')->with('albums',$albums);
