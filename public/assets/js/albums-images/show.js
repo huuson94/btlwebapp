@@ -52,7 +52,7 @@ $(document).ready(function(){
     
     $('#comment-form').submit(function (e) {
         e.preventDefault();
-        if ($('textarea.form-control').val() != '') {
+        if ($('textarea.comment-conent').val() != '') {
             var formData = new FormData($('#comment-form')[0]);
             e.preventDefault();
             var obj = $(this);
@@ -66,16 +66,16 @@ $(document).ready(function(){
                 cache: false,
             }).done(function (data) {
                 // alert('comment thanh cong');
-                var cmt_content = $('textarea.form-control').val();
-                var str = "<li><p>" + data.user_name + "</p><div class=\"commentText\"><p>" + data.content + "</p><span class=\"date sub-text\">on" + data.updated_at + "</span></div></li>";
+                var cmt_content = $('textarea.comment-conent').val();
+                var str = "<li><p>" + data.user_name + "</p><div class=\"commentText\"><textarea class='form-control'>" + data.content + "</textarea><span class=\"date sub-text\">on" + data.updated_at + "</span></div></li>";
                 $('ul.commentList').prepend(str);
-                $('.form-control').attr('placeholder', 'Viết bình luận của bạn...');
-                $('.form-control').val('');
+                $('.comment-conent').attr('placeholder', 'Viết bình luận của bạn...');
+                $('.comment-conent').val('');
             }).fail(function () {
                 alert('* Bạn không có quyền bình luận !');
             });
         } else {
-            $('.form-control').attr('placeholder', 'Bạn cần nhập nội dung trước khi bình luận !!!');
+            $('.comment-conent').attr('placeholder', 'Bạn cần nhập nội dung trước khi bình luận !!!');
             return false;
         }
         ;

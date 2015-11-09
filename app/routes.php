@@ -18,11 +18,11 @@ Route::get('logout', 'SessionController@destroy');
 Route::get('signup', 'UsersController@create');
 Route::resource('user','UsersController');
 
-Route::get('upload','HomeController@upload');
+Route::get('home/upload','HomeController@upload');
 Route::resource('image', 'ImagesController');
 Route::resource('album', 'AlbumsController');
 
-
+Route::resource('comment','CommentsController');
 
 Route::post('update',array('user'=>'UsersController@DetailsUpdate','as'=>'Details.update'));
 Route::controller('category', 'CategoriesController');

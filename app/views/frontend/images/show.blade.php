@@ -42,7 +42,7 @@
 					<p>
                         <a href="{{url('user/'.$image->album->user->id)}}" class="user_name">
                             <p>{{$image->album->user->name}}</p>
-                            <div ><img class='img-rounded avatar' src='{{$image->avatar}}'></div>
+                            <div ><img class='img-rounded avatar' src='{{url($image->album->user->avatar)}}'></div>
                         </a>
                     </p>
 				</li>

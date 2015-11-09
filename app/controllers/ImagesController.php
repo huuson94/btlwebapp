@@ -4,7 +4,7 @@ class ImagesController extends BaseController{
         $image = Image::where('id',$id)->first();
         if($image->album->user_id == Session::get('current_user')){
             return Redirect::to('image/'.$image->id.'/edit')->with('image',$image);
-        }else{die;
+        }else{
             return View::make('frontend/images/show')->with('image',$image);
         }
     }

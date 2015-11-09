@@ -64,7 +64,7 @@ button{
     margin-top:10px;
 }
 .commentList li > div {
-    display:table-cell;
+    /*display:table-cell;*/
 }
 .commenterImage {
     width:30px;
@@ -103,7 +103,7 @@ li img.preview{
     border-radius: 7px;
 }
 ul.lSGallery li.active a img{
-    border-radius: 50%;
+    border-radius: 8%;
     
 }
 .lSPager.lSGallery{

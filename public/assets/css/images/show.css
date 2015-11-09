@@ -64,7 +64,7 @@ button{
     margin-top:10px;
 }
 .commentList li > div {
-    display:table-cell;
+    /*display:table-cell;*/
 }
 .commenterImage {
     width:30px;

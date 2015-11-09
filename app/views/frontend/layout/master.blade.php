@@ -41,7 +41,7 @@
 				
 				<li>
                     <form action="{{url('home/search')}}" method="get">
-                        <p class='col-md-10'><input type="text" placeholder="Tìm kiếm ..." class="search form-control" name="title" style="display: inline"><p>
+                        <p class='col-md-10'><input type="text" placeholder="Search ..." class="search form-control" name="title" style="display: inline"><p>
                         <input type="submit" class="col-md-2 btn btn-default" value="Search">
                         <!--<button class="icon-search">\</button>-->
                     </form>
@@ -102,7 +102,7 @@
 	        </div>
 	        @if(Session::has('current_user'))
 	        <div class='images-manage-buttons col-md-6 '>
-                <p class="col-md-6 pull-right"><a  class="btn btn-danger upload_button" href="{{url('upload')}}">Upload</a></p>
+                <p class="col-md-6 pull-right"><a  class="btn btn-danger upload_button" href="{{url('home/upload')}}">Upload</a></p>
 	            <p class="col-md-3 pull-right"><a class="btn btn-danger mypic_button" href="{{Asset("/album?u=".Session::get('current_user'))}}">My images</a></p>
                 @if(User::find(Session::get('current_user'))->is_admin == 1)
                 <p class="col-md-3 pull-right"><a href='{{url('admin')}}'><button class='btn btn-default'>Admin page</button></a></p>
