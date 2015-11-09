@@ -101,7 +101,7 @@
 	            </div>
 	        </div>
             <div class='category-title col-md-2'>
-            @if($category_title)
+            @if(isset($category_title))
             <h2>{{$category_title}}</h2>
             @endif
             </div>
