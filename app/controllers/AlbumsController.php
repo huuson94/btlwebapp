@@ -1,6 +1,9 @@
 <?php
 class AlbumsController extends BaseController{
     
+    public function create(){
+        return View::make('frontend/albums/create');
+    }
     
     public function store(){
         $data = Input::all();
@@ -37,13 +40,19 @@ class AlbumsController extends BaseController{
     }
 
     public function index(){
-        $params = Input::all();
-        $user_id = isset($params['u'])?$params['u']:"";
+        $datas = Input::all();
+        $user_id = isset($datas['u'])?$datas['u']:"";
+        $params['u'] = $user_id;
+        $title = isset($datas['title'])?$datas['title']:"";
+        $params['title'] = $title;
+        $albums_d = Album::where('public','=','1');
+        foreach($params as $key => $param){
+            $albums_d = Album::where($key,'=',$param);
+        }
+        $albums = $albums_d->get();
         if($user_id != ""){
-            $albums = Album::where('user_id','=',$user_id)->get();
-            return View::make('frontend/users/show-images')->with('albums',$albums);
+            return View::make('frontend/albums/my-images')->with('albums',$albums);
         }else{
-            $albums = Album::all();
             return View::make('frontend/index')->with('albums',$albums);
         }
         

@@ -18,7 +18,7 @@ Route::get('logout', 'SessionController@destroy');
 Route::get('signup', 'UsersController@create');
 Route::resource('user','UsersController');
 
-Route::get('home/upload','HomeController@upload');
+Route::resource('post','PostsController');
 Route::resource('image', 'ImagesController');
 Route::resource('album', 'AlbumsController');
 
