@@ -31,26 +31,9 @@
         </ul>
     </div>
     <div class="image_right col-md-4">
-        <ul>
-            <li>
-                <p>ĐĂNG BỞI</p>
-                <p>
-                    <a href="{{url('user/'.$image->album->user->id)}}" class="user_name">
-                        <p>{{$image->album->user->name}}</p>
-                        <div ><img class='img-rounded avatar' src='{{url($image->album->user->avatar)}}'></div>
-                    </a>
-                </p>
-            </li>
-            <li>
-                <p>GIỚI THIỆU</p>
-                <p>{{ $album['description'] }}</p>
-            </li>
-            <li>
-                <p>CHUYÊN MỤC</p>
-                <p>{{ $album->category->title}}</p>
-            </li>
-            @include('frontend/components/comment_box',array('post' => $album))
-        </ul>
+        @include('frontend/components/album_user_info', array('album',$album))
+        @include('frontend/components/comment_box',array('post' => $album))
+        
     </div>
 </div>
 @stop
