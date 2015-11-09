@@ -94,14 +94,19 @@
 	                </ul>-->
 	                <ul>
 	                    @foreach($categories as $index => $category)
-	                    <li><a href="{{Asset('category/view/'.$category->id)}}">{{$category->title}}</a></li>
+	                    <li><a href="{{Asset('album?category='.$category->id)}}">{{$category->title}}</a></li>
 	                    @endforeach
 	                </ul>
 	                
 	            </div>
 	        </div>
+            <div class='category-title col-md-2'>
+            @if($category_title)
+            <h2>{{$category_title}}</h2>
+            @endif
+            </div>
 	        @if(Session::has('current_user'))
-	        <div class='images-manage-buttons col-md-6 '>
+	        <div class='images-manage-buttons col-md-4 '>
                 <p class="col-md-6 pull-right"><a  class="btn btn-danger upload_button" href="{{url('album/create')}}">Upload</a></p>
 	            <p class="col-md-3 pull-right"><a class="btn btn-danger mypic_button" href="{{Asset("/album?u=".Session::get('current_user'))}}">My images</a></p>
                 @if(User::find(Session::get('current_user'))->is_admin == 1)
@@ -110,6 +115,7 @@
 	        </div>
         	@endif
         </div>
+        <div class='clearfix'></div>
     </nav>
     <section>
         <div class="wrapper">

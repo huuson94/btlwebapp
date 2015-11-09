@@ -48,23 +48,30 @@ class AlbumsController extends BaseController{
         if(isset($datas['title'])){
             $params['title'] = $datas['title'];
         }
+        if(isset($datas['category'])){
+            $params['category_id'] = $datas['category'];
+        }
         $albums_d = Album::where('public','=','1');
         foreach($params as $key => $param){
             if($key == 'title'){
                 $op = 'LIKE';
                 $param = "%".$param."%";
             }
-            if($key == 'user_id'){
+            if($key == 'user_id' || $key == 'category_id'){
                 $op = '=';
             }
             $albums_d = Album::where($key,$op,$param);
         }
         $albums = $albums_d->get();
         if( !empty($params['user_id'])){
-            return View::make('frontend/albums/my-images')->with('albums',$albums);
+            $view =  View::make('frontend/albums/my-images')->with('albums',$albums);
         }else{
-            return View::make('frontend/index')->with('albums',$albums);
+            $view =  View::make('frontend/index')->with('albums',$albums);
         }
+        if(!empty($params['category_id'])){
+            $view->with('category_title', Category::find($params['category_id'])->title);
+        }
+        return $view;
         
     }
     

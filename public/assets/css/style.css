@@ -634,3 +634,11 @@ img.avatar{
     height: 120px;
 }
 */
+
+div.category-title h2{
+    margin-top: 0px;
+    position: relative;
+    right: 60px;
+    font-family: Roboto,​sans-serif;
+    color: #888888;
+}
