@@ -36,8 +36,19 @@ class AlbumsController extends BaseController{
     
     public function show($id){
         $album = Album::where('id', $id)->first();
-        return View::make('frontend/albums/show')->with('album',$album);
+        if($album->user_id == Session::get('current_user')){
+            return Redirect::to('album/'.$album->id.'/edit')->with('album',$album);
+        }else{
+            return View::make('frontend/albums/show')->with('album',$album);
+        }
+        
     }
+
+    public function edit($id){
+        $album = Album::find($id);
+        return View::make('frontend/albums/edit')->with('album',$album);
+    }
+
 
     public function index(){
         $datas = Input::all();

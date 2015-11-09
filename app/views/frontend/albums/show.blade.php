@@ -15,20 +15,33 @@
 	width_70per
 @stop
 @section('title')
-	Image Viewer
+	Album Viewer
 @stop
 @section('content')
 
 
 <div class="image_content row">
     <div class="image_left col-md-8">
-        <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
-        @foreach($album->images as $index => $image)
-        <li data-thumb="{{url('public/'.$image->path)}}"> 
-            <a href='{{url('image/'.$image->id)}}'><img class='preview' src="{{url('public/'.$image->path)}}" /></a>
-        </li>
-        @endforeach
-        </ul>
+        <article>
+            <div class="detail_image_header">
+                <h2 class="detail_image_title">{{$album->title}}</h2>
+            </div>
+            <ul class="detail_image_info">
+                <li class="detail_image_info_date"><span >{{$album->updated_at}}</span></li>
+                <li class="detail_image_info_count_like"><span class="like"><i class="glyphicon glyphicon-heart"></i> <span>{{$image->count_like}}</span></span></li>
+                <li class="detail_image_info_count_share"><span class="share"><i class='glyphicon glyphicon-share'></i> <span>{{$image->count_share}}</span></span></li>
+            </ul>
+            <div class="photo_content">
+                <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
+                    @foreach($album->images as $index => $image)
+                    <li data-thumb="{{url('public/'.$image->path)}}"> 
+                        <a href='{{url('image/'.$image->id)}}'><img class='preview' src="{{url('public/'.$image->path)}}" /></a>
+                    </li>
+                    @endforeach
+                </ul>
+            </div>
+        </article>
+        
     </div>
     <div class="image_right col-md-4">
         @include('frontend/components/album_user_info', array('album',$album))
