@@ -1,8 +1,7 @@
 @if($album)
-<li class="item-image album">
     <article>
         @if($album->images->count() > 1)
-        <a href='{{Asset('album/view/'.$album->id)}}'>
+        <a href='{{Asset('album/'.$album->id)}}'>
             <img src="{{url('public/'.$album->images->first()->path)}}" alt="{{$album->title}}">
         </a>
         <div class="photo_content">
@@ -16,5 +15,4 @@
         </div>
         @endif
     </article>
-</li>
 @endif

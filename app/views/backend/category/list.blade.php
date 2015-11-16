@@ -11,6 +11,8 @@
                 <tr>
                     <th class="text-center row-number">#</th>
                     <th width="200">Title</th>
+                    <th width="200">Description</th>
+                    <th width="200">Category parent</th>
                     <th class="text-center" width="200">Thời gian cập nhật</th>
                     <th class="action" width="150">Action</th>
 
@@ -18,12 +20,22 @@
                 </thead>
                 <tbody>
                 @if(count($categories) > 0)
-                    <?php $i=1; ?>
+                        {{  $i=1 }}
+
                     @foreach($categories as $item)
                         <tr>
                             <td class="text-center">{{ $i++ }}.</td>
                             <td>
                                 {{ $item->title }}
+                            </td>
+                            <td>
+                                {{ $item->description }}
+                            </td>
+                            <td>
+                                @if ($item->parent)
+                                    {{ $item->parent->title }}
+                                @endif
+                               
                             </td>
                             <td class="date">{{ e($item->updated_at) }}</td>
                             <td>

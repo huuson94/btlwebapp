@@ -1,9 +1,9 @@
 @extends('frontend/layout/master')
 @section('style-bot')
-{{ HTML::style('public/assets/css/users/upload.css') }}
+{{ HTML::style('public/assets/css/upload.css') }}
 @stop
 @section('script-bot')
-{{ HTML::script('public/assets/js/users/upload.js') }}
+{{ HTML::script('public/assets/js/upload.js') }}
 @stop
 @section('width_70per')
 	width_70per
@@ -15,8 +15,12 @@
     
     @if(Session::get('status') == 'success')
     <p class="alert-success">Saved</p>
-    @elseif (Session::get('status') == 'fail')
-    <p class="alert-danger">Can't save</p>
+    @elseif (Session::get('status') == 'false')
+    @foreach(Session::get('errors_message') as $error_message)
+    <p class="alert-danger">
+        {{$error_message}}
+    </p>
+    @endforeach
     @endif
     <div id='upload-tabs' class="upload_content col-md-10 center-block">
           <ul>
@@ -53,7 +57,7 @@
         </div>
 		<div id='upload-image-tabs' class="upload_left">
             
-                {{ Form::open(array('url'=>'image/save','files'=>true, 'method' => 'POST', 'id' => 'upload-image-form')) }}
+                {{ Form::open(array('url'=>'image','files'=>true, 'method' => 'POST', 'id' => 'upload-image-form')) }}
                 <div id="images-description" style="display: none"></div>
                 <h1>Upload images</h1>
                 <!--<p class="note">Use <span>Select image</span> to s Đăng <span>tẹt ga thoải con gà mái nhé</span>!</p>-->
@@ -73,7 +77,7 @@
             {{Form::close()}}
         </div>
 		<div id='upload-album-tabs' class="upload_right">
-            {{ Form::open(array('url'=>'album/save','files'=>true, 'method' => 'POST')) }}
+            {{ Form::open(array('url'=>'album','files'=>true, 'method' => 'POST')) }}
                 <h1>Upload album</h1>
                 <!--<p class="note">Sử dụng nút <span>Chọn ảnh</span> để chọn ảnh cho album của bạn. Đăng <span>tẹt ga thoải con gà mái nhé</span>!</p>-->
                 <div>
@@ -85,7 +89,7 @@
                         </li>
                         <li>
                             <p>Category</p>
-                            <select name="category">
+                            <select name="category_id">
                                 @foreach($categories as $index => $category)
                                 <option value="{{$category->id}}">{{$category->title}}</option>
                                 @endforeach

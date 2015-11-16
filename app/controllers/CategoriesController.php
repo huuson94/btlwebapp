@@ -13,12 +13,7 @@ class CategoriesController extends BaseController{
 
     public function index()
     {
-        // if($this->checkIsAdmin()) {
-        //     $users = User::all();
-        //     return View::make('backend.users.list')->with('users',$users);
-        // }else{
-        //     return Redirect::to('home/index');
-        // }
+        
         $categories = Category::all();
         return View::make('backend.category.list')->with('categories',$categories);
     }
@@ -30,7 +25,8 @@ class CategoriesController extends BaseController{
    */
   public function create()
       {
-        return View::make('backend.category.create');
+        $p_id = Category::select('*')->where('p_id','=',0)->get();
+        return View::make('backend.category.create')->with('p_id',$p_id);
       }
 
   /**
@@ -57,8 +53,12 @@ class CategoriesController extends BaseController{
             $category = new Category;
 
             $title = Input::get('title');
+            $description = Input::get('description');
+            $p_id = Input::get('p_id');
 
             $category->title = $title;
+            $category->description = $description;
+            $category->p_id = $p_id;
 
             $category->save();
             return Redirect::route('admin-category.index');
@@ -85,12 +85,13 @@ class CategoriesController extends BaseController{
    */
   public function edit($id)
   {
+    $p_id = Category::select('*')->where('p_id','=',0)->get();
     $category = Category::find($id);
     if (is_null($category))
     {
         return Redirect::route('admin-category.index');
     }
-        return View::make('backend.category.edit', compact('category'));
+        return View::make('backend.category.edit', compact('category','p_id'));
   }
 
   /**
@@ -117,9 +118,13 @@ class CategoriesController extends BaseController{
         else{
             $category = Category::find($id);
 
-            $title = Input::get('title');
+            $title       = Input::get('title');
+            $description = Input::get('description');
+            $p_id        = Input::get('p_id');
 
             $category->title = $title;
+            $category->description = $description;
+            $category->p_id = $p_id;
 
             $category->save();
             return Redirect::route('admin-category.index');

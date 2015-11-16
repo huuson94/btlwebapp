@@ -5,10 +5,10 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="{{ asset('public/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image" />
+                <img src="{{ asset('public/avatars/'.User::find(Session::get('current_user'))->avatar) }}" class="img-circle" alt="User Image" />
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
+                <p>{{User::find(Session::get('current_user'))->name}}</p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
@@ -48,6 +48,14 @@
                     <li><a href="{{route('admin-category.create')}}"><i class="fa fa-angle-double-right"></i> Create</a></li>
                 </ul>
             </li>
+            <li class="treeview">
+                <a href="{{route('admin-album.index')}}">
+                    <i class="fa fa-user text-red"></i>
+                    <span>Albums</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+            </li>
+
         </ul>
     </section>
     <!-- /.sidebar -->

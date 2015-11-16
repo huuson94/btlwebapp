@@ -18,4 +18,8 @@ class Album extends Eloquent{
     public function actions(){
         return $this->hasMany('Action', 'post_id')->where('a_type','=',1);
     }
+    
+    public function comments(){
+        return $this->hasMany('Comment', 'post_id')->where('p_type','=',1)->orderBy('created_at', 'desc');
+    }
 }

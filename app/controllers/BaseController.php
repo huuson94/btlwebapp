@@ -18,7 +18,7 @@ class BaseController extends Controller {
     public function __construct() {
         $data['categories'] = Category::all();
         View::share('categories', $data['categories']);
-        if(Session::has('current_user')){
+        if(Session::has('current_user') && User::find(Session::get('current_user'))){
             $data['user_name'] = User::find(Session::get('current_user'))->name;
             $data['notifications'] = $this->getNotifications();
             View::share('user_name', $data['user_name']);

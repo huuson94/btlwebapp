@@ -19,7 +19,6 @@ $(document).ready(function () {
             'showRemove': false,
             minFileCount: 0,
             maxFileCount: 20,
-            uploadUrl: "#",
             previewTemplates: {
                 generic: '<div class="file-preview-frame" id="{previewId}" data-fileindex="{fileindex}">\n' +
                         '   {content}\n' +
@@ -52,9 +51,9 @@ $(document).ready(function () {
         input.fileinput({
             showUpload: false,
             showRemove: false,
-            uploadUrl: "#",
             minFileCount: 1,
             maxFileCount: 20,
+            dropZoneEnabled: false,
             previewTemplates: {
                 generic: '<div class="file-preview-frame" id="{previewId}" data-fileindex="{fileindex}">\n' +
                         '   {content}\n' +

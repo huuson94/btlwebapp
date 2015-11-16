@@ -1,6 +1,7 @@
-<li class="item-image image">
+@if($image)
+
     <article>
-        <a href='{{Asset('image/view/'.$image->id)}}'>
+        <a href='{{Asset('image/'.$image->id)}}'>
             <img src="{{url('public/'.$image->path)}}" alt="">
         </a>
         <div class="photo_content">
@@ -12,4 +13,5 @@
             </div>
         </div>
     </article>
-</li>
+
+@endif

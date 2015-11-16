@@ -7,7 +7,6 @@ Thumbs.db
 private.xml
 private.properties
 btl_web_app.sql
-public/upload/images/*
-public/upload/albums/*
+public/upload/*
 .idea/*
 app/config/database.php
