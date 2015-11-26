@@ -61,9 +61,9 @@ class UsersController extends BaseController {
         // return View::make('backend.users.edit')->with('user',$user);
         $user = User::find($id);
         if (is_null($user)) {
-            return Redirect::route('admin.index');
+            return Redirect::to('frontend.users.edit');
         }
-        return View::make('backend.users.edit', compact('user'));
+        return View::make('frontend.users.edit', compact('user'));
     }
 
     /**
