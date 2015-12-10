@@ -59,7 +59,7 @@
 					</li>
                     <li class='col-md-5'><a href="{{url('logout')}}">Logout</a></li>
 				@else
-					<li class="col-md-5 login">
+					<li class="col-md-7 login">
 						<a><p>Login</p></a>
 						@yield('login')
 					</li>
@@ -107,10 +107,10 @@
             </div>
 	        @if(Session::has('current_user'))
 	        <div class='images-manage-buttons col-md-4 '>
-                <p class="col-md-6 pull-right"><a  class="btn btn-danger upload_button" href="{{url('album/create')}}">Upload</a></p>
-	            <p class="col-md-3 pull-right"><a class="btn btn-danger mypic_button" href="{{Asset("/album?u=".Session::get('current_user'))}}">My images</a></p>
+                <span class="button"><a  class="btn btn-danger upload_button" href="{{url('album/create')}}">Upload</a></span>
+	            <span class="button"><a class="btn btn-danger mypic_button" href="{{Asset("/album?u=".Session::get('current_user'))}}">My images</a></span>
                 @if(User::find(Session::get('current_user'))->is_admin == 1)
-                <p class="col-md-3 pull-right"><a href='{{url('admin')}}'><button class='btn btn-default'>Admin page</button></a></p>
+                <span class="button"><a href='{{url('admin')}}'><button class='btn btn-default'>Admin page</button></a></span>
                 @endif
 	        </div>
         	@endif
