@@ -99,7 +99,7 @@
 	                </ul>-->
 	                <ul>
                         <li><a href="{{url('/home?s=like')}}">Ảnh hot nhất</a></li>
-	                    <li><a href="/home">Mới Nhất</a></li>
+	                    <li><a href="{{url('/home')}}">Mới Nhất</a></li>
 	                    @foreach($categories as $index => $category)
 	                    <li><a href="{{Asset('album?category='.$category->id)}}">{{$category->title}}</a></li>
 	                    @endforeach
