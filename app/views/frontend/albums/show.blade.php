@@ -33,7 +33,7 @@
             </ul>
             <div class="photo_content">
                 <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
-                    @foreach($album->images as $index => $image)
+                    @foreach($album->getImages() as $index => $image)
                     <li data-thumb="{{url('public/'.$image->path)}}"> 
                         <a href='{{url('image/'.$image->id)}}'><img class='preview' src="{{url('public/'.$image->path)}}" /></a>
                     </li>

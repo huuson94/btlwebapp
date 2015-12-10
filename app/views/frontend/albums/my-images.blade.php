@@ -20,7 +20,7 @@
             </li>
             @elseif($album->is_single == 1)
             <li class="item-image album">
-                @include('frontend/components/image', array('image' => $album->images->first()))
+                @include('frontend/components/image', array('image' => $album->getImages()->first()))
                 <div class="action-buttons pull-right">
                     <a href="{{url('image/'.$album->id.'/edit')}}">
                         <button class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button>

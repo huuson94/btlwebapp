@@ -67,7 +67,7 @@ $(document).ready(function(){
             }).done(function (data) {
                 // alert('comment thanh cong');
                 var cmt_content = $('textarea.comment-conent').val();
-                var str = "<li><p>" + data.user_name + "</p><div class=\"commentText\"><textarea class='form-control'>" + data.content + "</textarea><span class=\"date sub-text\">on" + data.updated_at + "</span></div></li>";
+                var str = "<li><p>" + data.user_name + "</p><div class=\"commentText\"><span class='form-control'>" + data.content + "</span><span class=\"date sub-text\">on" + data.updated_at + "</span></div></li>";
                 $('ul.commentList').prepend(str);
                 $('.comment-conent').attr('placeholder', 'Viết bình luận của bạn...');
                 $('.comment-conent').val('');

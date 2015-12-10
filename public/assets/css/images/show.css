@@ -86,11 +86,15 @@ button{
 }
 .actionBox {
     border-top:1px dotted #bbb;
-    padding:10px;
+    padding:0px;
+    
 }
 .like{
     color: #ec6440;
 }
 .share{
     color: #2F50FB;
+}
+.detail_image_title input{
+    width: 40%;
 }

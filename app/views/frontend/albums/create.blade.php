@@ -65,7 +65,7 @@
                     <ul>
                         <li>
                             <p class="control-label">Select image</p>
-                            <p>{{Form::file('path[]', array("accept" => "image/*", "class" => "single form-control", 'multiple' => 'true'))}}</p>
+                            <p>{{Form::file('path[]', array("accept" => "image/*", "class" => "single form-control", 'multiple' => 'true', 'required' => 'true'))}}</p>
                             <!--<p><img class='img-rounded img-thumbnail'></p>-->
                         </li>
                         
@@ -84,7 +84,7 @@
                     <ul>
                         <li>
                             <p>Select image</p>
-                            <p>{{Form::file('path[]', array("accept" => "image/*", "class" => "multiple form-control", 'multiple' => 'true'))}}</p>
+                            <p>{{Form::file('path[]', array("accept" => "image/*", "class" => "multiple form-control", 'multiple' => 'true', 'required' => 'true'))}}</p>
                             <div class='album-preview'></div>
                         </li>
                         <li>

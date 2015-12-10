@@ -31,7 +31,7 @@ class AlbumsController extends BaseController{
             }
         }
         Session::flash('status',$status);
-        return Redirect::to('home/upload');
+        return Redirect::to('album/create');
     }
     
     public function show($id){
@@ -51,6 +51,7 @@ class AlbumsController extends BaseController{
 
 
     public function index(){
+        
         $datas = Input::all();
         $params = array();
         if(isset($datas['u'])){
@@ -73,7 +74,14 @@ class AlbumsController extends BaseController{
             }
             $albums_d = Album::where($key,$op,$param);
         }
-        $albums = $albums_d->get();
+        if(Input::get('s') == 'like'){
+            $albums = $albums_d->orderBy('updated_at', 'DESC')->get()->sortBy(function($album){
+                return $album->images->sum('count_like');
+            },SORT_REGULAR, true);
+        }else{
+            $albums = $albums_d->orderBy('updated_at', 'DESC')->get();
+        }
+        
         if( !empty($params['user_id'])){
             $view =  View::make('frontend/albums/my-images')->with('albums',$albums);
         }else{

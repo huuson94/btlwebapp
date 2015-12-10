@@ -37,12 +37,17 @@
                 <h4 class='col-md-8'><a href="{{url('/home')}}"><img src="{{url('public/assets/images/logo.png')}}" alt="logo"/></a></h4>
                 <h4 id='link-to-home' class='col-md-4'><a href="{{url('/home')}}">HOME</a></h4>
             </div>
-			<ul class="col-md-4 search_area">
+			<ul class="col-md-6 search_area">
 				
 				<li>
                     <form action="{{url('album')}}" method="get">
-                        <p class='col-md-10'><input type="text" placeholder="Search ..." class="search form-control" name="title" style="display: inline"><p>
-                        <input type="submit" class="col-md-2 btn btn-default" value="Search">
+                        <p class='col-md-12'>
+                            <input type="text" placeholder="Search ..." class="search form-control" name="title">
+                            <input type="number" class="width form-control" name="width" placeholder="Width">
+                            <input type="number" class="height form-control" name="height" placeholder="Height">
+                            <input type="submit" class="btn btn-default" value="Search">
+                        </p>
+                        
                         <!--<button class="icon-search">\</button>-->
                     </form>
 				</li>
@@ -59,7 +64,7 @@
 					</li>
                     <li class='col-md-5'><a href="{{url('logout')}}">Logout</a></li>
 				@else
-					<li class="col-md-5 login">
+					<li class="col-md-7 login">
 						<a><p>Login</p></a>
 						@yield('login')
 					</li>
@@ -93,6 +98,8 @@
 	                    <li><a href="">Mới Nhất</a></li>
 	                </ul>-->
 	                <ul>
+                        <li><a href="{{url('/home?s=like')}}">Ảnh hot nhất</a></li>
+	                    <li><a href="/home">Mới Nhất</a></li>
 	                    @foreach($categories as $index => $category)
 	                    <li><a href="{{Asset('album?category='.$category->id)}}">{{$category->title}}</a></li>
 	                    @endforeach
@@ -107,10 +114,10 @@
             </div>
 	        @if(Session::has('current_user'))
 	        <div class='images-manage-buttons col-md-4 '>
-                <p class="col-md-6 pull-right"><a  class="btn btn-danger upload_button" href="{{url('album/create')}}">Upload</a></p>
-	            <p class="col-md-3 pull-right"><a class="btn btn-danger mypic_button" href="{{Asset("/album?u=".Session::get('current_user'))}}">My images</a></p>
+                <span class="button"><a  class="btn btn-danger upload_button" href="{{url('album/create')}}">Upload</a></span>
+	            <span class="button"><a class="btn btn-danger mypic_button" href="{{Asset("/album?u=".Session::get('current_user'))}}">My images</a></span>
                 @if(User::find(Session::get('current_user'))->is_admin == 1)
-                <p class="col-md-3 pull-right"><a href='{{url('admin')}}'><button class='btn btn-default'>Admin page</button></a></p>
+                <span class="button"><a href='{{url('admin')}}'><button class='btn btn-default'>Admin page</button></a></span>
                 @endif
 	        </div>
         	@endif

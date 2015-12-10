@@ -30,12 +30,12 @@
             @foreach ($post->comments as $comment)
             <li>
                 <p>
-                    <a href='{{Asset('user/'.$comment->user->id)}}'>
-                        <b>{{$comment->user->name}}</b><img class="img-rounded image-view avatar" src="{{url($comment->user->avatar)}}" alt="{{$comment->user->name}}">
-                    </a>
+                    
+                    <b>{{$comment->user->name}}</b>
+                    
                 </p>
                 <div class="commentText ">
-                    <textarea class="comment-view form-control">{{$comment->content}}</textarea>
+                    <span class="comment-view form-control">{{$comment->content}}</span>
                     <span class="date sub-text">on {{$comment->created_at}}</span>
                 </div>
             </li>
