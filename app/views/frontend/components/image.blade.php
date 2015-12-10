@@ -9,7 +9,6 @@
             <p class="user_by">{{$image->album->user->name}}</p>
             <div class="view">
                 <span class="like"><i class="glyphicon glyphicon-heart"></i> {{$image->count_like}}</span>
-                
             </div>
         </div>
     </article>

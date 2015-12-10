@@ -28,8 +28,8 @@
             </div>
             <ul class="detail_image_info">
                 <li class="detail_image_info_date"><span >{{$album->updated_at}}</span></li>
-                <li class="detail_image_info_count_like"><span class="like"><i class="glyphicon glyphicon-heart"></i> <span>{{$album->count_like}}</span></span></li>
-                <li class="detail_image_info_count_share"><span class="share"><i class='glyphicon glyphicon-share'></i> <span>{{$album->count_share}}</span></span></li>
+                <li class="detail_image_info_count_like"><span class="like"><i class="glyphicon glyphicon-heart"></i> <span>{{$album->images->sum('count_like')}}</span></span></li>
+                <!--<li class="detail_image_info_count_share"><span class="share"><i class='glyphicon glyphicon-share'></i> <span>{{$album->count_share}}</span></span></li>-->
             </ul>
             <div class="photo_content">
                 <ul id="image-gallery" class="gallery list-unstyled cS-hidden">

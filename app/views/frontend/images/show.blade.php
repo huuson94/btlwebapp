@@ -5,7 +5,7 @@
 @stop
 @section('script-bot')
 {{ HTML::script('public/assets/js/images/show.js') }}
-{{ HTML::script('public/assets/js/albums-images/show.js') }}
+{{ HTML::script('public/assets/js/ajax-like.js') }}
 <script type="text/javascript">
 </script>
 @stop
@@ -21,12 +21,12 @@
                 </div>
                 <ul class="detail_image_info">
                     <li class="detail_image_info_date"><span >{{$image->updated_at}}</span></li>
-                    <li class="detail_image_info_count_like"><span class="like"><i class="glyphicon glyphicon-heart"></i> <span>{{$image->count_like}}</span></span></li>
-                    <li class="detail_image_info_count_share"><span class="share"><i class='glyphicon glyphicon-share'></i> <span>{{$image->count_share}}</span></span></li>
+                    <li class="detail_image_info_count_like"><span class="like"><i class="glyphicon glyphicon-heart like" itemid='{{$image->id}}' itemref='{{url('image/'.$image->id.'?like=true')}}'></i> <span class='count-like'>{{$image->count_like}}</span></span></li>
+                    
                 </ul>
                 <div class="photo_content">
                     <a href='{{Asset('image/'.$image->id)}}'>
-                        <img class="img-rounded image-view" src="{{url('public/'.$image->path)}}" alt="{{$image->album->title}}">
+                        <img class="img-rounded image-view" src="{{url('public/'.$image->path."?like=true")}}" alt="{{$image->album->title}}">
                     </a>
                     <p>
                         <label class="caption">Caption: </label>

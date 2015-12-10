@@ -15,18 +15,25 @@ class ImagesController extends BaseController{
     }
     
     public function update($id){
-        $data = Input::all();
-        $image = Image::where('id',$id)->first();
-        if(AlbumsHelper::save($data, $image->album->id)){
-            $image->caption = $data['caption'];
-            if($image->save()){
-                Session::flash('status','success');
-                Session::flash('messages',array(0 => 'Updated'));
-            }else{
-                Session::flash('status','fail');
-                Session::flash('messages',array(0 => 'Failed'));
+        if(!empty(Input::get('like')) && Input::get('like') == 'true'){
+            $image = Image::find($id);
+            $image->count_like = $image->count_like +1;
+            $image->save();
+            echo 'true';
+        }else{
+            $data = Input::all();
+            $image = Image::where('id',$id)->first();
+            if(AlbumsHelper::save($data, $image->album->id)){
+                $image->caption = $data['caption'];
+                if($image->save()){
+                    Session::flash('status','success');
+                    Session::flash('messages',array(0 => 'Updated'));
+                }else{
+                    Session::flash('status','fail');
+                    Session::flash('messages',array(0 => 'Failed'));
+                }
+                return Redirect::to('image/'.$image->id.'/edit');
             }
-            return Redirect::to('image/'.$image->id.'/edit');
         }
     }
     
