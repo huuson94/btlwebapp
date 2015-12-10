@@ -1,7 +1,8 @@
 @extends('backend.layout.main')
 @section('content')
+
 <h1>Create Category</h1>
-{{ Form::open(array('route' => 'admin-category.store')) }}
+{{ Form::open(array('route' => 'admin.category.store')) }}
 <div class="form-group">
 	<label class="control-label col-sm-2" for="title">Title</label>
 	<div class="col-sm-10">
@@ -40,9 +41,5 @@
 </div>
 
 {{ Form::close() }}
-@if ($errors->any())
-<ul>
-	{{ implode('', $errors->all('<li class="error">:message</li>')) }}
-</ul>
-@endif
+
 @stop

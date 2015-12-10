@@ -8,9 +8,6 @@ class User extends Eloquent {
         return $name_array[count($name_array)-1];
     }
     
-    public function image(){
-        return $this->hasMany('Image','user_id');
-    }
     
     public function album(){
         return $this->hasMany('Album','user_id');

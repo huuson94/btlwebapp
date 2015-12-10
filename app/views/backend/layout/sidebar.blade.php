@@ -2,39 +2,13 @@
 <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-        <!-- Sidebar user panel -->
-        <div class="user-panel">
-            <div class="pull-left image">
-                <img src="{{ asset('public/avatars/'.User::find(Session::get('current_user'))->avatar) }}" class="img-circle" alt="User Image" />
-            </div>
-            <div class="pull-left info">
-                <p>{{User::find(Session::get('current_user'))->name}}</p>
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-            </div>
-        </div>
-        <!-- search form -->
-        <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Search..."/>
-                <span class="input-group-btn">
-                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
-                </span>
-            </div>
-        </form>
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
-            <li class="header">MAIN NAVIGATION</li>
-            <li class="active treeview">
-                <a href="#">
-                <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
-                </a>
-            </li>
             <li class="treeview">
-                <a href="{{route('admin.index')}}">
+                <a href="{{route('admin.user.index')}}">
                     <i class="fa fa-user text-red"></i>
-                    <span> Users</span>
-                    <i class="fa fa-angle-left pull-right"></i>
+                    <span>User</span>
                 </a>
             </li>
             <li class="treeview">
@@ -44,15 +18,15 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('admin-category.index')}}"><i class="fa fa-angle-double-right"></i> Lists</a></li>
-                    <li><a href="{{route('admin-category.create')}}"><i class="fa fa-angle-double-right"></i> Create</a></li>
+                    <li><a href="{{route('admin.category.index')}}"><i class="fa fa-angle-double-right"></i> Lists</a></li>
+                    <li><a href="{{route('admin.category.create')}}"><i class="fa fa-angle-double-right"></i> Create</a></li>
                 </ul>
             </li>
+
             <li class="treeview">
-                <a href="{{route('admin-album.index')}}">
+                <a href="{{route('admin.image.index')}}">
                     <i class="fa fa-user text-red"></i>
-                    <span>Albums</span>
-                    <i class="fa fa-angle-left pull-right"></i>
+                    <span>Image</span>
                 </a>
             </li>
 
