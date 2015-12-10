@@ -73,7 +73,7 @@ class AlbumsController extends BaseController{
             }
             $albums_d = Album::where($key,$op,$param);
         }
-        $albums = $albums_d->get();
+        $albums = $albums_d->orderBy('updated_at', 'DESC')->get();
         if( !empty($params['user_id'])){
             $view =  View::make('frontend/albums/my-images')->with('albums',$albums);
         }else{
