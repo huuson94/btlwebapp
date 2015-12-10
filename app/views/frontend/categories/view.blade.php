@@ -10,7 +10,7 @@
             </li>
             @elseif($album->is_single == 1)
             <li class="item-image image">
-                @include('frontend/components/image', array('image' => $album->images->first()))
+                @include('frontend/components/image', array('image' => $album->getImages()->first()))
             </li>
             @endif
             @endforeach

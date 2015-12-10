@@ -645,3 +645,16 @@ div.category-title h2{
     font-family: Roboto,​sans-serif;
     color: #888888;
 }
+ul.search_area {
+    padding-top: 10px;
+}
+
+ul.search_area form input.search{
+    width: 35%;
+    display: inline;
+}
+
+ul.search_area form input.width, ul.search_area form input.height{
+    display: inline;
+    width: 20%;
+}

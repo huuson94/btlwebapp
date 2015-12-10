@@ -9,14 +9,15 @@
 	<div class="container-div">
 		<ul>
 			@foreach($albums as $index => $album)
+            
                 @if($album->public != 2)
-                @if($album->is_single == 0)
+                @if($album->is_single == 0 && count($album->getImages(array('width' => Input::get('width'), 'height' => Input::get('height')))) > 0)
                 <li class="item-image album">
                     @include('frontend/components/album', array('album' => $album))
                 </li>
-                @elseif($album->is_single == 1)
+                @elseif($album->is_single == 1 && count($album->getImages(array('width' => Input::get('width'), 'height' => Input::get('height')))) > 0)
                 <li class="item-image image">
-                    @include('frontend/components/image', array('image' => $album->images->first()))
+                    @include('frontend/components/image', array('image' => $album->getImages(array('width' => Input::get('width'), 'height' => Input::get('height')))->first()))
                 </li>
                 @endif
                 @endif

@@ -37,12 +37,17 @@
                 <h4 class='col-md-8'><a href="{{url('/home')}}"><img src="{{url('public/assets/images/logo.png')}}" alt="logo"/></a></h4>
                 <h4 id='link-to-home' class='col-md-4'><a href="{{url('/home')}}">HOME</a></h4>
             </div>
-			<ul class="col-md-4 search_area">
+			<ul class="col-md-6 search_area">
 				
 				<li>
                     <form action="{{url('album')}}" method="get">
-                        <p class='col-md-10'><input type="text" placeholder="Search ..." class="search form-control" name="title" style="display: inline"><p>
-                        <input type="submit" class="col-md-2 btn btn-default" value="Search">
+                        <p class='col-md-12'>
+                            <input type="text" placeholder="Search ..." class="search form-control" name="title">
+                            <input type="number" class="width form-control" name="width" placeholder="Width">
+                            <input type="number" class="height form-control" name="height" placeholder="Height">
+                            <input type="submit" class="btn btn-default" value="Search">
+                        </p>
+                        
                         <!--<button class="icon-search">\</button>-->
                     </form>
 				</li>

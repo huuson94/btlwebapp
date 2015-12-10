@@ -10,6 +10,32 @@ class Album extends Eloquent{
     public function images(){
         return $this->hasMany('Image', 'album_id');
     }
+    
+    public function getImages($option = array()){
+        $images = Image::where("album_id",$this->id)->get();
+        
+        if(!empty($option['width'])){
+            foreach($images as $index => $image){
+                $width = getimagesize(public_path() ."/".$image->path)[0];
+                if($width > $option['width']){
+                    $images->forget($index);
+                }
+            }
+        }
+        if(!empty($option['height'])){
+            foreach($images as $index => $image){
+                $height = getimagesize(public_path() ."/".$image->path)[1];
+                if($height > $option['width']){
+                    $images->forget($index);
+                }
+            }
+        }
+        if($images->count() == 0){
+            return array();
+        }else{
+            return $images;
+        }
+    }
 
     public function category(){
     	return $this->belongsTo('Category','category_id');
