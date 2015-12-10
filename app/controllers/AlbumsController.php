@@ -31,7 +31,7 @@ class AlbumsController extends BaseController{
             }
         }
         Session::flash('status',$status);
-        return Redirect::to('home/upload');
+        return Redirect::to('album/create');
     }
     
     public function show($id){

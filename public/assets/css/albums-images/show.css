@@ -17,5 +17,5 @@ ul.commentList li{
 ul.commentList div.commentText{
     width: 100%;
     background-color: #cccccc;
-    border-radius: 5px;
+    border-radius: 0px;
 }

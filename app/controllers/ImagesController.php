@@ -55,7 +55,7 @@ class ImagesController extends BaseController{
             }
         }
         Session::flash('status',$status);
-        return Redirect::to('home/upload')->header('Cache-Control', 'no-store, no-cache');;
+        return Redirect::to('album/create')->header('Cache-Control', 'no-store, no-cache');;
     }
     
     public function destroy($id){
