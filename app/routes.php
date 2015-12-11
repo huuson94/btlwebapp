@@ -29,8 +29,9 @@ Route::controller('category', 'CategoriesController');
 Route::resource('image', 'ImagesController');
 Route::resource('album', 'AlbumsController');
 
-Route::controller('admin', 'AdminController');
-Route::resource('admin-category', 'CategoriesController');
-Route::resource('admin-album', 'AlbumsController');
-Route::get('details','UsersController@getViewDetails');
-
+Route::group(array('prefix' => 'admin', 'before' => 'checkAdmin'), function(){
+    Route::get('/','BEUsersController@index');
+	Route::resource('user', 'BEUsersController');
+	Route::resource('category', 'BECategoriesController');
+    Route::resource('image', 'BEImageController');
+});

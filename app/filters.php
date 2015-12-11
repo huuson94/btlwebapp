@@ -88,3 +88,14 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+Route::filter('checkAdmin', function()
+{   if(!BEUsersHelper::isAdmin()){
+        $messages = array();
+        $status = false;
+        $messages[] = "Bạn không có quyền vào trang này";
+        Session::flash('status',$status);
+        Session::flash('messages', $messages);
+        return Redirect::to('/');
+    }
+});
