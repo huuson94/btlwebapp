@@ -1,6 +1,7 @@
 @extends('frontend/layout/master')
 @section('script-bot')
 	{{ HTML::script('public/assets/js/layout/master.js') }}
+    {{ HTML::script('public/assets/js/ajax-like.js') }}
 @stop
 @section('title')
 	Chia sẻ ảnh trực tuyến

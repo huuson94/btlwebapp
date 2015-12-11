@@ -14,6 +14,8 @@ class AlbumsHelper{
             $album->title = $data['title'];
             $album->description = $data['description'];
             $album->is_single = $data['is_single'];
+            $album->post_id = $data['post_id'];
+            $album->count_like = 0;
         }else{
             $album = Album::find($id);
             $album->title = $data['title'];

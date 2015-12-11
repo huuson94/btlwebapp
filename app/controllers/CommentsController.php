@@ -16,7 +16,6 @@ class CommentsController extends BaseController{
             $new = new Comment;
             $new->post_id = $data['post_id'];
             $new->user_id = Session::get('current_user');
-            $new->p_type = $data['type'];
             $new->content = $data['commentContent'];
             $new->save();
             $new = $new->toArray();

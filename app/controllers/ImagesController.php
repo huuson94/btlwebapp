@@ -49,9 +49,11 @@ class ImagesController extends BaseController{
         }
         foreach($files as $index => $file){
             if($file->isValid() && $filesStatus[$index] != 0) {
-                $album = $this->saveAlbum($index);
+                $post = new Post;
+                $post->save();
+                $album = $this->saveAlbum($index, $post);
                 if($album){
-                    if(!$this->saveImage($index, $album->id)){
+                    if(!$this->saveImage($index, $album->id, $post)){
                         $status = 'false';
                         break;
                     }
@@ -80,7 +82,7 @@ class ImagesController extends BaseController{
         }
     }
     
-    private function saveAlbum($index){
+    private function saveAlbum($index, $post){
         $categories = Input::get('category');
         $publices = Input::get('public');
         $titles = Input::get('title');
@@ -93,20 +95,23 @@ class ImagesController extends BaseController{
             $data['title'] = $titles[$index];
             $data['description'] = "";
             $data['is_single'] = 1;
+            $data['post_id'] = $post->id;
             return AlbumsHelper::save($data);
         }
         return false;
     }
     
-    private function saveImage($index, $album_id){
+    private function saveImage($index, $album_id, $post){
         $files = Input::file('path');
         $file = $files[$index];
         $name = $file->getFilename().uniqid().".".$file->getClientOriginalExtension();
         $upload_folder = "upload/images/". uniqid(date('ymdHisu'));
         $data['path'] = $upload_folder."/".$name;
         $data['album_id'] = $album_id;
+        
         $captions = Input::get('caption');
         $data['caption'] = $captions[$index];
+        $data['post_id'] = $post->id;
         App::make('FilesController')->save($file, $upload_folder, $name);
         return ImagesHelper::save($data);
     }

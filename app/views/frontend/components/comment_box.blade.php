@@ -1,6 +1,6 @@
 @if(Session::has('current_user'))
 <form action="{{url('comment')}}" id="comment-form" method="POST">
-    <input type="hidden" name="post_id" value="{{$post->id}}">
+    <input type="hidden" name="post_id" value="{{$post->post_id}}">
     <input type="hidden" name="type" value="2">
     <ul>
         <li>

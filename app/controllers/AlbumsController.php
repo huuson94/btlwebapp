@@ -8,6 +8,9 @@ class AlbumsController extends BaseController{
     public function store(){
         $data = Input::all();
         $data['is_single'] = 0;
+        $post = new Post;
+        $post->save();
+        $data['post_id'] = $post->id;
         $album = AlbumsHelper::save($data);
         
         $filesStatus = Input::get('file_status');
@@ -20,9 +23,14 @@ class AlbumsController extends BaseController{
                 $image = new Image;
                 $name= $file->getFilename().uniqid().".".$file->getClientOriginalExtension();
                 $file->move(public_path() ."/". $upload_folder,$name);
+                $post = new Post;
+                $post->save();
                 $image->path= $upload_folder."/".$name;
                 $image->caption = $captions[$index];
                 $image->album_id = $album->id;
+                $image->count_like = 0;
+                $image->post_id = $post->id;
+                
                 $status = $image->save();
                 if($status == FALSE){
                     $status = 'fail';
