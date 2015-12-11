@@ -55,7 +55,7 @@
 			<ul class="col-md-3 login_singin_area pull-right">
 				@if(Session::has('current_user'))
 					<li class="col-md-7">
-						<a href="{{url('/details')}}">
+						<a href="{{url('user/'.Session::get('current_user').'/edit')}}">
                             <p class="user-name"><img class="img-rounded avatar" src="{{url(User::find(Session::get('current_user'))->avatar)}}">
                                 <span class="user_name">{{ User::find(Session::get('current_user'))->short_name() }}</span>
                             </p>
